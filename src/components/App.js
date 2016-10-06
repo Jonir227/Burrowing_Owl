@@ -1,10 +1,15 @@
 import React from 'react';
-
+import ImageLoader from './ImageLoader'
+import LetterBox from './LetterBox'
 class App extends React.Component {
     render(){
-
+    
         return (
-                <h1>Hello React Skeleton</h1>
+                
+                <div>
+                    <ImageLoader image = './image1.png'/>
+                    <LetterBox/>
+                </div>
         );
     }
 }

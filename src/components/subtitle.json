@@ -1,0 +1,25 @@
+{
+  "HeungbooNolboo" : { "data" : [
+    {
+      "image": "./image1.png",
+      "type" : "narration",
+      "script" : "옛날 옛적에 한 형제가 살았습니다.",
+      "scene" : "#0",
+      "index" : "0"
+    },
+    {
+      "image": "./image2.png",
+      "type" : "narration",
+      "script" : "아버지가 물려주신 막대한 재산을 가진 놀부와, 그렇지 못한 흥부였지요",
+      "scene" : "#0",
+      "index" : "1"
+    },
+    {
+      "image": "./image3.png",
+      "type" : "Nolboo",
+      "script" : "에잉, 여기가 어디라고 들어오느냐! 이 시간에 어디 가서 일이나 하나 더 하면서 돈을 벌어라! 게으른 너셕 같으니라고!",
+      "scene" : "#0",
+      "index" : "2"
+    }
+  ], "page" : "3" }
+}
