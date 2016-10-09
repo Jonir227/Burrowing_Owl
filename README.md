@@ -1,11 +1,9 @@
-# REACT.JS Skeleton
+# Burrowing Owl
 
-This project is a React workspace that you can simply start working on React.js project right away.
-
-React 0.14.7, Babel 6 and webpack on Node.js is used to setup the environment.
+This project is a simple fairytail application for children of foreigners living in korea.
 
 ## How to use
-- ``git clone https://github.com/velopert/react-skeleton.git`` - Clone the project
+- ``git clone https://github.com/Jonir227/Burrowing_Owl.git`` - Clone the project
 - ``npm install`` - Install the dependency
 - ``npm start``  -Run the development server
 
