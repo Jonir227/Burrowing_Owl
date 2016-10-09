@@ -1,6 +1,6 @@
 import React, { PropType } from 'react';
+import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 import ImageLoader from './ImageLoader';
-import Start from './Start'
 import JsonData from './subtitle.json';
 
  
@@ -45,7 +45,7 @@ export default class LetterBox extends React.Component {
             location : 'absolute'
             }
             var letterStyle = {
-                fontFamily : "맑은 고딕",
+            fontFamily : "맑은 고딕",
             fontSize : 50,
             color : 'white',
             textAlign: 'center'
@@ -66,15 +66,15 @@ export default class LetterBox extends React.Component {
             }
            
                 return (
-                    <div>
+                <div>
                     <ImageLoader
                         image = {JsonData.HeungbooNolboo.data[this.state.page].image}/>
                     
                     <div style = {boxStyle}>
                         <div style = {letterStyle}>{JsonData.HeungbooNolboo.data[this.state.page].script}</div>
-                            <button style = {buttonStyleRight} onClick = {this.nextPage}> next </button>
-                            <button style = {buttonStyleLeft} onClick = {this.prevPage}> prev </button>   
-                        </div>
+                        <button style = {buttonStyleRight} onClick = {this.nextPage}> next </button>
+                        <button style = {buttonStyleLeft} onClick = {this.prevPage}> prev </button>   
+                    </div>
                 </div>
                 );
             
