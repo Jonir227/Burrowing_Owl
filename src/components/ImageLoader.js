@@ -1,4 +1,7 @@
 import React, { PropType } from 'react';
+import Router from 'react-router/BrowserRouter';
+import Match from 'react-router/Match';
+import Link from 'react-router/Link';
 import JsonData from './subtitle.json';
 
 class ImageLoader extends React.Component {
@@ -6,7 +9,6 @@ class ImageLoader extends React.Component {
         super(props);
     }
     render(){
-        
         
         var backgroundStyle = {
            width:1920,
@@ -24,13 +26,10 @@ class ImageLoader extends React.Component {
             
         }
        
-       
-       
         return (
            
-            <div style = {backgroundStyle} > 
-                <button style = {buttonStyle}>흥부와 놀부</button>
-            </div>
+            <div style = {backgroundStyle} /> 
+
         );
     }
 }

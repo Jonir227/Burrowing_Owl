@@ -1,4 +1,7 @@
 import React, { PropType } from 'react';
+import Router from 'react-router/BrowserRouter'
+import Match from 'react-router/Match'
+import Link from 'react-router/Link'
 import App from './App'
 
 
@@ -10,19 +13,16 @@ class Start extends React.Component {
         
     }
     nextPage(){
-       
  
       
     }
     render(){
         
-        
-        
         var backgroundStyle = {
            width:1920,
            height:1080,
          
-           backgroundImage: 'url('+ './image1.png' +')',
+           backgroundImage: 'url('+ './image2.png' +')',
            backgroundRepeat: 'noRepeat'
            
         }
@@ -34,11 +34,12 @@ class Start extends React.Component {
             
         }
          return (
-           
-            <div style = {backgroundStyle} > 
-             <button style = {buttonStyle} onClick = {this.nextPage}>흥부와 놀부</button>
-              </div>
-               
+           <Link to = "/LetterBox">
+            <div style = {backgroundStyle} >
+            <button style = {buttonStyle} onClick = {this.nextPage}>흥부와 놀부</button>
+            </div>
+            <hr/>
+            </Link>
          );
        
             
