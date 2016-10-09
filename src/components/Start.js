@@ -1,5 +1,5 @@
 import React, { PropType } from 'react';
-import App from './App'
+import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 
 
 class Start extends React.Component {
@@ -34,11 +34,12 @@ class Start extends React.Component {
             
         }
          return (
+           <Link to = "/Main">
+                <div style = {backgroundStyle} >
+                    <button style = {buttonStyle} onClick = {this.nextPage}>흥부와 놀부</button>
+                </div>
            
-            <div style = {backgroundStyle} > 
-             <button style = {buttonStyle} onClick = {this.nextPage}>흥부와 놀부</button>
-              </div>
-               
+           </Link>
          );
        
             

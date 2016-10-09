@@ -1,7 +1,8 @@
-import React, { PropType } from 'react';
-import JsonData from './subtitle.json';
+import React from 'react';
+import LetterBox from './LetterBox'
+import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 
-class ImageLoader extends React.Component {
+class Main extends React.Component {
     constructor(props){
         super(props);
     }
@@ -12,7 +13,7 @@ class ImageLoader extends React.Component {
            width:1920,
            height:1080,
          
-           backgroundImage: 'url('+ this.props.image +')',
+           backgroundImage: 'url('+ './image2.png' +')',
            backgroundRepeat: 'noRepeat'
            
         }
@@ -28,15 +29,12 @@ class ImageLoader extends React.Component {
        
         return (
          
-            <div style = {backgroundStyle}/ > 
+            <div style = {backgroundStyle} >
+                <Button style = {buttonStyle}>흥부와 놀부 
                 
        
         );
     }
 }
 
-ImageLoader.defaultProps = {
-    image : './image1.png'
-};
-
-export default ImageLoader;
+export default Main;
