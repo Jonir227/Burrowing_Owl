@@ -1,6 +1,9 @@
 import React, { PropType } from 'react';
+import Router from 'react-router/BrowserRouter'
+import Match from 'react-router/Match'
+import Link from 'react-router/Link'
 import ImageLoader from './ImageLoader';
-import Start from './Start'
+import Start from './Start';
 import JsonData from './subtitle.json';
 
  
