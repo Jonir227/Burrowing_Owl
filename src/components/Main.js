@@ -18,23 +18,23 @@ class Main extends React.Component {
              borderColor : 'black',
              visibility : 'visible'
         })
-       
-        
-        
+
+
+
     }
     render(){
-        
+
         var backgroundStyle = {
+           cursor: 'url(./star.png), pointer',
            location:'absolute',
            width:1920,
            height:1080,
-         
            backgroundImage: 'url('+ './image2.png' +')',
            backgroundRepeat: 'noRepeat'
-           
+
         }
         var selectButtonStyle = {
-            
+
             background : 'transparent',
             fontSize : 50,
             position : 'absolute',
@@ -42,7 +42,7 @@ class Main extends React.Component {
             top : 160,
             borderWidth : this.state.borderWidth,
             borderColor : this.state.borderColor
-            
+
         }
        var nextButtonStyle = {
 
@@ -61,14 +61,14 @@ class Main extends React.Component {
            height : 550,
            top :150,
            left : 1010
-           
        }
-       
-       
+
+
+
         return (
-         
+
             <div style = {backgroundStyle} >
-                
+
                     <button style = {selectButtonStyle} onClick = {this.buttonChange}>
                         흥부와 놀부 </button>
                     <img src = './image3.png' style = {imageStyle}/>
@@ -77,8 +77,8 @@ class Main extends React.Component {
                         <button style = {nextButtonStyle}>시작하기</button>
                     </Link>
             </div>
-         
-       
+
+
         );
     }
 }
