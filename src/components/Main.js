@@ -1,5 +1,5 @@
 import React, { PropType } from 'react';
-import LetterBox from './LetterBox'
+import Window from './Window';
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 
 class Main extends React.Component {
@@ -18,9 +18,6 @@ class Main extends React.Component {
              borderColor : 'black',
              visibility : 'visible'
         })
-
-
-
     }
     render(){
 
@@ -73,7 +70,7 @@ class Main extends React.Component {
                         흥부와 놀부 </button>
                     <img src = './image3.png' style = {imageStyle}/>
 
-                    <Link to = "/LetterBox">
+                    <Link to = "/Window">
                         <button style = {nextButtonStyle}>시작하기</button>
                     </Link>
             </div>

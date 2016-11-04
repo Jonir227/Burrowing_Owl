@@ -5,7 +5,7 @@ class ImageLoader extends React.Component {
 
     constructor(props){
         super(props);
-        this.updateCanvas = this.updateCanvas.bind(this); 
+        this.updateCanvas = this.updateCanvas.bind(this);
     }
     componentDidMount(){
         this.updateCanvas();
@@ -18,15 +18,15 @@ class ImageLoader extends React.Component {
         let imgWidth = window.innerWidth;
         let imgHeight = window.innerHeight;
         base_image.onload = function(){
-            
-            base_image.src = this.props.image;  
-            ctx.drawImage(base_image, 0, 0, imgWidth++ , imgHeight++);
-        
+
+            base_image.src = this.props.image;
+            ctx.drawImage(base_image, 0, 0, imgWidth, imgHeight);
+
         }.bind(this);
     }
-   
+
     render(){
-    
+
         return (
                 <canvas ref="canvas" width={window.innerWidth} height={window.innerHeight}/>
         );
