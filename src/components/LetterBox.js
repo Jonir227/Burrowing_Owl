@@ -1,32 +1,10 @@
 import React, { PropType } from 'react';
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
-import ImageLoader from './ImageLoader';
 import JsonData from './subtitle.json';
 
 export default class LetterBox extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      page : 0,
-      max : JsonData.HeungbooNolboo.page,
-      done : false
-    }
-    this.nextPage = this.nextPage.bind(this);
-    this.prevPage = this.prevPage.bind(this);
-  }
-  nextPage(){
-    if(this.state.page == this.state.max - 1) return;
-    this.setState({
-      page : this.state.page+1
-    })
-    console.log(this.state.page);
-  }
-  prevPage(){
-    if(this.state.page < 1) return;
-    this.setState({
-      page:this.state.page-1
-    })
-    console.log(this.state.page);
   }
 
   render(){
@@ -60,11 +38,11 @@ export default class LetterBox extends React.Component {
 
     return (
       <div>
-        <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}/>
+
         <div style = {boxStyle}>
-        <div style = {letterStyle}>{JsonData.HeungbooNolboo.data[this.state.page].script}</div>
-          <button style = {buttonStyleRight} onClick = {this.nextPage}> next </button>
-          <button style = {buttonStyleLeft} onClick = {this.prevPage}> prev </button>
+        <div style = {letterStyle}>{this.props.script}</div>
+          <button style = {buttonStyleRight} onClick = {this.props.nextPage}> next </button>
+          <button style = {buttonStyleLeft} onClick = {this.props.prevPage}> prev </button>
           <Link to = "/Main">
             <button style = {buttonStyleLeft}>menu</button>
           </Link>
