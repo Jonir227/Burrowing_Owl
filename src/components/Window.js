@@ -14,7 +14,6 @@ export default class Window extends React.Component {
     }
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
-    console.log("Im in");
   }
   nextPage(){
     if(this.state.page == this.state.max - 1) return;
