@@ -33,8 +33,10 @@ export default class Window extends React.Component {
   render(){
     return (
       <div>
-        <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}/>
+        <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}
+                     isZoom = {JsonData.HeungbooNolboo.data[this.state.page].isZoom}/>
         <LetterBox script = {JsonData.HeungbooNolboo.data[this.state.page].script}
+                   page = {this.state.page}
                    nextPage = {this.nextPage}
                    prevPage = {this.prevPage}/>
       </div>

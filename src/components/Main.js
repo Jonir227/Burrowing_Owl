@@ -65,7 +65,6 @@ class Main extends React.Component {
         return (
 
             <div style = {backgroundStyle} >
-
                     <button style = {selectButtonStyle} onClick = {this.buttonChange}>
                         흥부와 놀부 </button>
                     <img src = './image3.png' style = {imageStyle}/>
