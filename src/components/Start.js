@@ -16,32 +16,27 @@ class Start extends React.Component {
 
         var backgroundStyle = {
            location:'absolute',
-           width:1920,
-           height:1080,
-
-           backgroundImage: 'url('+ './image1.png' +')',
-           backgroundRepeat: 'noRepeat'
-
+           width: window.innerWidth,
+           height: window.innerHeight
         }
         var buttonStyle = {
-            width:1920,
-            height:1080,
-            background : 'transparent',
-            fontSize : 100
-
+            width: window.innerWidth,
+            height: window.innerHeight,
+            background : 'transparent'
         }
          return (
-
            <Link to = "/Main">
-                <div style = {backgroundStyle} >
-                    <button style = {buttonStyle} onClick = {this.nextPage}>흥부와 놀부</button>
+                <div style = {backgroundStyle}>
+                    <button style = {buttonStyle} onClick = {this.nextPage}>
+                      <img
+                        src='./image1.png'
+                        style = {{ width: window.innerWidth, height: window.innerHeight}}/>
+                    </button>
+                    <div style = {{fontSize : 100, position: 'absolute', top: window.innerHeight / 1.6, left: window.innerWidth / 2.7 }}>흥부와 놀부</div>
                 </div>
-
            </Link>
 
          );
-
-
     }
 }
 
