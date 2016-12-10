@@ -24,9 +24,8 @@ class Main extends React.Component {
         var backgroundStyle = {
            cursor: 'url(./star.png), pointer',
            location:'absolute',
-           width:1920,
-           height:1080,
-           backgroundImage: 'url('+ './image2.png' +')',
+           width:window.innerWidth,
+           height:window.innerHeight,
            backgroundRepeat: 'noRepeat'
 
         }
@@ -35,8 +34,8 @@ class Main extends React.Component {
             background : 'transparent',
             fontSize : 50,
             position : 'absolute',
-            left : 500,
-            top : 160,
+            left : window.innerWidth / 4.2,
+            top : window.innerHeight / 7,
             borderWidth : this.state.borderWidth,
             borderColor : this.state.borderColor
 
@@ -46,18 +45,18 @@ class Main extends React.Component {
            background : 'transparent',
            fontSize : 50,
            position : 'absolute',
-           top : 730,
-           left : 1300,
+           top : window.innerHeight / 1.5,
+           left : window.innerWidth / 1.5,
            visibility : this.state.visibility,
            borderColor : 'transparent'
        }
        var imageStyle = {
            position : 'absolute',
            visibility : this.state.visibility,
-           width : 570,
-           height : 550,
-           top :150,
-           left : 1010
+           width : window.innerWidth / 3.5,
+           height : window.innerHeight / 2.5,
+           top : window.innerHeight / 5,
+           left : window.innerWidth / 1.85
        }
 
 
@@ -65,16 +64,14 @@ class Main extends React.Component {
         return (
 
             <div style = {backgroundStyle} >
+                    <img src = './image2.png' style = {{width:window.innerWidth, height:window.innerHeight}}/>
                     <button style = {selectButtonStyle} onClick = {this.buttonChange}>
                         흥부와 놀부 </button>
                     <img src = './image3.png' style = {imageStyle}/>
-
                     <Link to = "/Window">
                         <button style = {nextButtonStyle}>시작하기</button>
                     </Link>
             </div>
-
-
         );
     }
 }

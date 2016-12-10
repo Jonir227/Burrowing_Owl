@@ -2,6 +2,7 @@ import React, { PropType } from 'react';
 import ImageLoader from './ImageLoader';
 import LetterBox from './LetterBox';
 import JsonData from './subtitle.json';
+import VoicePlayer from './voicePlayer';
 
 export default class Window extends React.Component {
 
@@ -20,14 +21,12 @@ export default class Window extends React.Component {
     this.setState({
       page : this.state.page+1
     })
-    console.log(this.state.page);
   }
   prevPage(){
     if(this.state.page < 1) return;
     this.setState({
       page:this.state.page-1
     })
-    console.log(this.state.page);
   }
 
   render(){
@@ -39,6 +38,8 @@ export default class Window extends React.Component {
                    page = {this.state.page}
                    nextPage = {this.nextPage}
                    prevPage = {this.prevPage}/>
+        <VoicePlayer audioSrc = './audio/zeze.mp3'
+                     onPause = {false}/>
       </div>
     )
   }
