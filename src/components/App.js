@@ -15,8 +15,6 @@ class App extends React.Component {
         }
 
       return (
-
-
         <Router>
             <div style = {divStyle}>
                 <Match exactly pattern="/" component={Start} />
@@ -26,8 +24,6 @@ class App extends React.Component {
             </div>
         </Router>
         )
-
-
     }
 }
 

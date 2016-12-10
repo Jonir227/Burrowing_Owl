@@ -4,7 +4,7 @@ import JsonData from './subtitle.json';
 class ImageLoader extends React.Component {
     constructor(props){
         super(props);
-        this.updateCanvas = this.updateCanvas.bind(this); 
+        this.updateCanvas = this.updateCanvas.bind(this);
         this.zoomImage = this.zoomImage.bind(this);
         this.state = {
             imgWidth : window.innerWidth,
@@ -25,10 +25,10 @@ class ImageLoader extends React.Component {
         this.state.chgWidth = 0;
         this.state.chgHeight = 0;
     }
-    
+
     updateCanvas(base_image) {
-        
-        
+
+
         const ctx = this.refs.canvas.getContext('2d');
         var base_image = new Image();
         base_image.src = this.props.image;
@@ -41,14 +41,14 @@ class ImageLoader extends React.Component {
 
         }.bind(this);
 
-       
+
     }
     zoomImage(xPosition, yPosition, ratio){
-       
+
         if(this.state.chgWidth >= -xPosition*window.innerWidth/1920 && this.state.chgHeight >= -yPosition*window.innerHeight/1080*0.85){
                 this.state.chgWidth -= xPosition*window.innerWidth/1920/10000.0;
                 this.state.chgHeight -= yPosition*window.innerHeight/1080*0.85/10000.0;
-                
+
         }
         if(this.state.imgWidth <= window.innerWidth*ratio && this.state.imgHeight <= window.innerHeight*ratio*0.85){
                 this.state.imgWidth +=  (window.innerWidth*ratio - window.innerWidth)/10000.0;
@@ -64,7 +64,7 @@ class ImageLoader extends React.Component {
 }
 
 ImageLoader.defaultProps = {
-    image : './image1.png'
+    image : './image/image1.png'
 };
 
 export default ImageLoader;

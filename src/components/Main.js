@@ -22,7 +22,7 @@ class Main extends React.Component {
     render(){
 
         var backgroundStyle = {
-           cursor: 'url(./star.png), pointer',
+           cursor: 'url(./image/star.png), pointer',
            location:'absolute',
            width:window.innerWidth,
            height:window.innerHeight,
@@ -64,10 +64,10 @@ class Main extends React.Component {
         return (
 
             <div style = {backgroundStyle} >
-                    <img src = './image2.png' style = {{width:window.innerWidth, height:window.innerHeight}}/>
+                    <img src = './image/image2.png' style = {{width:window.innerWidth, height:window.innerHeight}}/>
                     <button style = {selectButtonStyle} onClick = {this.buttonChange}>
                         흥부와 놀부 </button>
-                    <img src = './image3.png' style = {imageStyle}/>
+                    <img src = './image/image3.png' style = {imageStyle}/>
                     <Link to = "/Window">
                         <button style = {nextButtonStyle}>시작하기</button>
                     </Link>

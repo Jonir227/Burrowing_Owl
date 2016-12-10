@@ -29,7 +29,7 @@ class Start extends React.Component {
                 <div style = {backgroundStyle}>
                     <button style = {buttonStyle} onClick = {this.nextPage}>
                       <img
-                        src='./image1.png'
+                        src='./image/image1.png'
                         style = {{ width: window.innerWidth, height: window.innerHeight}}/>
                     </button>
                     <div style = {{fontSize : 100, position: 'absolute', top: window.innerHeight / 1.6, left: window.innerWidth / 2.7 }}>흥부와 놀부</div>

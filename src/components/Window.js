@@ -11,7 +11,8 @@ export default class Window extends React.Component {
     this.state = {
       page : 0,
       max : JsonData.HeungbooNolboo.page,
-      done : false
+      done : false,
+      isMuted: false
     }
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
@@ -39,7 +40,13 @@ export default class Window extends React.Component {
                    nextPage = {this.nextPage}
                    prevPage = {this.prevPage}/>
         <VoicePlayer audioSrc = './audio/zeze.mp3'
-                     onPause = {false}/>
+                     onPause = {this.state.isMuted}/>
+        <button onClick = {() => {
+          this.setState({isMuted: !this.state.isMuted})
+        }}>
+          <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
+                style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
+        </button>
       </div>
     )
   }
