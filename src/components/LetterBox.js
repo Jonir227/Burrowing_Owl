@@ -52,11 +52,13 @@ export default class LetterBox extends React.Component {
     super(props);
     this.state = {
       isDispeared: false,
-      modalVisible: false
+      modalVisible: false,
+      scriptn: 0
     }
     this.toggleModalVisible = this.toggleModalVisible.bind(this);
   }
 
+  
   toggleModalVisible(){
     this.setState({modalVisible: !this.state.modalVisible});
   }
@@ -82,21 +84,32 @@ export default class LetterBox extends React.Component {
         <div style = {styles.boxStyle}>
           <Motion defaultStyle={{opacity: 0, fontSize : 50, color : 'white', textAlign: 'center'}} style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 50, color : 'white', textAlign: 'center'}}>
             {interpolatingStyle =>
-              <div style = {interpolatingStyle}>{this.props.script}</div>
+              <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage]}</div>
             }
           </Motion>
           <button style = {styles.buttonStyleRight} onClick = {()=>{
+            
             if(this.props.page == 2 && this.state.isDispeared){
               this.toggleModalVisible();
             }
             else {
-              if(this.state.isDispeared)this.props.nextPage();
-              this.setState({isDispeared: !this.state.isDispeared});
+              if(this.props.scriptPage < this.props.script.length - 1) this.props.nextScript();
+              else{
+                this.setState({ 
+                  isDispeared : false
+                });
+                this.props.nextPage();
+              } 
             }
           }}> next </button>
         <button style = {styles.buttonStyleLeft} onClick = {()=>{
-            if(this.state.isDispeared)this.props.prevPage();
-            this.setState({isDispeared: !this.state.isDispeared});
+            if(this.props.scriptPage > 0) this.props.prevScript();
+            else{
+              this.setState({
+                isDispeared : false   
+              })
+              this.props.prevPage();
+            }
           }}> prev </button>
           <Link to = "/Main">
             <button style = {styles.buttonStyleLeft}>menu</button>

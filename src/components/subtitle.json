@@ -3,41 +3,53 @@
     {
       "image": "./image/image3.png",
       "type" : "narration",
-      "script" : "옛날 옛적에 한 형제가 살았습니다.",
+      "script" : ["옛날 옛적에 한 형제가 살았습니다.",
+                  "아버지가 물려주신 막대한 재산을 가진 놀부와",
+                  "그렇지 못한 흥부였지요"],
       "scene" : "#0",
       "index" : "0",
-      "isZoom" :  {
-                    "zoom" : "true",
-                    "xPosition" : "500",
-                    "yPosition" : "700",
+      "isZoom" :  [
+                  {
+                      "zoom" : false
+                  },
+                  {
+                    "zoom" : true,
+                    "xPosition" : "300",
+                    "yPosition" : "500",
                     "ratio" : "2"
-                  }
+                  },
+                  {
+                    "zoom" : true,
+                    "xPosition" : "1900",
+                    "yPosition" : "1000",
+                    "ratio" : "2"
+                  }]
     },
     {
       "image": "./image/image4.png",
       "type" : "narration",
-      "script" : "아버지가 물려주신 막대한 재산을 가진 놀부와, 그렇지 못한 흥부였지요",
+      "script" : ["에잉, 여기가 어디라고 들어오느냐! 이 시간에 어디 가서 일이나 하나 더 하면서 돈을 벌어라! 게으른 너셕 같으니라고!"],
       "scene" : "#0",
       "index" : "1",
-      "isZoom" :  {
-                    "zoom" : "true",
-                    "xPosition" : "500",
-                    "yPosition" : "700",
+      "isZoom" :  [{
+                    "zoom" : true,
+                    "xPosition" : "1000",
+                    "yPosition" : "500",
                     "ratio" : "2"
-                  }
+      }]
     },
     {
       "image": "./image/image5.png",
       "type" : "Nolboo",
-      "script" : "에잉, 여기가 어디라고 들어오느냐! 이 시간에 어디 가서 일이나 하나 더 하면서 돈을 벌어라! 게으른 너셕 같으니라고!",
+      "script" : ["제비 다리를 고쳐봐!"],
       "scene" : "#0",
       "index" : "2",
-      "isZoom" :  {
-                    "zoom" : "true",
+      "isZoom" :  [{
+                    "zoom" : true,
                     "xPosition" : "500",
                     "yPosition" : "700",
                     "ratio" : "2"
-                  }
+      }]
     }
   ], "page" : "3" }
 }

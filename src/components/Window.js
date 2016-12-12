@@ -11,31 +11,52 @@ export default class Window extends React.Component {
     this.state = {
       page : 0,
       max : JsonData.HeungbooNolboo.page,
-      done : false,
+      scriptPage : 0,
+      scriptDone : false,
       isMuted: false
     }
+    this.nextScript = this.nextScript.bind(this);
+    this.prevScript = this.prevScript.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
+  }
+  nextScript(){
+    this.setState({scriptPage : this.state.scriptPage + 1})
+   
+  }
+  prevScript(){
+    this.setState({scriptPage : this.state.scriptPage - 1})
+    
   }
   nextPage(){
     if(this.state.page == this.state.max - 1) return;
     this.setState({
-      page : this.state.page+1
+      page : this.state.page+1,
+      scriptPage : 0,
+      scriptDone : false
     })
   }
   prevPage(){
     if(this.state.page < 1) return;
     this.setState({
-      page:this.state.page-1
+      page:this.state.page-1,
+      scriptPage : 0,
+      scriptDone : false
     })
   }
-
+  
   render(){
     return (
       <div>
         <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}
-                     isZoom = {JsonData.HeungbooNolboo.data[this.state.page].isZoom}/>
+                     isZoom = {JsonData.HeungbooNolboo.data[this.state.page].isZoom}
+                     scriptPage = {this.state.scriptPage}
+                     />
         <LetterBox script = {JsonData.HeungbooNolboo.data[this.state.page].script}
+                   scriptPage = {this.state.scriptPage}
+                   scriptDone = {this.state.scriptDone}
+                   nextScript = {this.nextScript}
+                   prevScript = {this.prevScript}
                    page = {this.state.page}
                    nextPage = {this.nextPage}
                    prevPage = {this.prevPage}/>
