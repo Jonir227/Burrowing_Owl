@@ -101,6 +101,11 @@ export default class LetterBox extends React.Component {
       <Modal isOpen={this.state.quizVisible}
              style={quizStyles}>
         <div>
+          <img src = './image/closeIcon.svg'
+               onClick = {()=>{
+                 this.setState({quizVisible: false});
+               }}
+               style= {{width: 50, height: 50}}/>
           <h1 style = {{textAlign: 'center'}}>Quiz: 이 동화의 제목은 무엇일까요?</h1>
           <button style = {{position: 'absolute', left: 480}}
                   onClick = {()=>{
@@ -166,16 +171,23 @@ export default class LetterBox extends React.Component {
             }
           </Motion>
           <button style = {styles.buttonStyleRight} onClick = {()=>{
+            console.log(this.state.isDispeared);
             if(this.props.page == 2){
               this.toggleModalVisible();
             }
             else {
-              if(this.props.scriptPage < this.props.script.length - 1) this.props.nextScript();
+              if(this.props.scriptPage < this.props.script.length - 1){
+                if(this.state.isDispeared){ this.props.nextScript(); this.setState({isDispeared: false}); }
+                else this.setState({isDispeared: true});
+              }
               else{
-                this.setState({
-                  isDispeared : false
-                });
-                this.props.nextPage();
+                if(this.state.isDispeared){
+                  this.setState({
+                    isDispeared: false
+                  });
+                  this.props.nextPage();
+                }
+                else this.setState({isDispeared: true});
               }
             }
           }}> next </button>

@@ -18,10 +18,7 @@ class ImageLoader extends React.Component {
     }
 
     componentDidMount(){
-
-
         this.updateCanvas();
-        console.log(JSON.stringify(this.props));
     }
     componentWillReceiveProps(nextProps)
     {
