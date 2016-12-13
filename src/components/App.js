@@ -3,6 +3,7 @@ import Window from './Window'
 import Start from './Start'
 import Main from './Main'
 import Game from './game'
+import AvoidBat from './avoidBat';
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 
 class App extends React.Component {
