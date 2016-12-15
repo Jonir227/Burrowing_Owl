@@ -8,7 +8,6 @@ const btnUrl = [['./image/game2/btn1.png',true]
                 ,['./image/game2/btn7.png',false]
                 ,['./image/game2/btn8.png',false]
                 ,['./image/game2/btn9.png',false]];
-const btnCorrectUrl = './image/game2/btnCorrect.jpg';
 const styles = {
     boxStyle: {
         background : 'white',
@@ -34,8 +33,8 @@ const styles = {
     }
 }
 export default class Game2 extends React.Component{
-    
- 
+
+
     constructor(props){
         super(props);
         this.state = {
@@ -51,25 +50,25 @@ export default class Game2 extends React.Component{
         this.drawCorrectImg = this.drawCorrectImg.bind(this);
         this.renderBtn = this.renderBtn.bind(this);
     }
-    
+
     componentDidMount(){
-        
+
         this.state.imgWidth = window.innerWidth;
         this.state.imgHeight = window.innerHeight*0.85;
         this.updateCanvas();
     }
     componentDidUpdate(){
-        this.updateCanvas();       
+        this.updateCanvas();
     }
     updateCanvas(){
         const ctx = this.refs.canvas.getContext('2d');
         var base_image = new Image();
-        base_image.src = this.props.image;   
+        base_image.src = this.props.image;
 
-        
+
         base_image.onload = function(){
             ctx.drawImage(base_image, 0, 0, this.state.imgWidth, this.state.imgHeight);
-            
+
             if(this.state.correctCount == this.state.correctNum)
                 this.setState({status : "done"});
 
@@ -77,7 +76,7 @@ export default class Game2 extends React.Component{
 
             if(this.state.status != "start")
                 this.drawCorrectImg(this.state.status, ctx);
-                
+
         }.bind(this);
     }
     drawText(status, ctx){
@@ -85,19 +84,19 @@ export default class Game2 extends React.Component{
         if(status == "start")
             ctx.fillText("알맞은 도구를 클릭 해봐!",1100, 120);
         else if(status == "done")
-            ctx.fillText("모든 도구를 찾았어!", 1100, 120);     
+            ctx.fillText("모든 도구를 찾았어!", 1100, 120);
         else if(!status)
             ctx.fillText("틀렸어! 다시 찾아봐!", 1200, 120);
         else if(status)
             ctx.fillText("정답이야! 다음 도구도 찾아봐!", 1100, 120);
-        
+
     }
     drawCorrectImg(status, ctx){
 
         var select_image = new Image();
         select_image.src = this.state.selectImg;
-        ctx.drawImage(select_image, 1370, 520, 150, 150);    
-        
+        ctx.drawImage(select_image, 1370, 520, 150, 150);
+
         if(status){
             ctx.beginPath();
             ctx.arc(1450, 600, 80, 0, 2 * Math.PI, false);
@@ -118,14 +117,14 @@ export default class Game2 extends React.Component{
 
             ctx.stroke();
         }
-        
+
     }
     renderBtn(){
         return(
             <div>{btnUrl.map((value,i)=>{
-                return(     
-                    <img src = {btnUrl[i][0]} style ={styles.imgStyle} 
-                    onClick = {()=>{ 
+                return(
+                    <img src = {btnUrl[i][0]} style ={styles.imgStyle}
+                    onClick = {()=>{
                         this.setState({
                             status : btnUrl[i][1],
                             selectImg : btnUrl[i][0]
@@ -134,20 +133,20 @@ export default class Game2 extends React.Component{
                             btnUrl.splice(i,1);
                             this.setState({correctCount : this.state.correctCount + 1});
                         }
-                           
+
                     }}/>
                 );
-            })}</div> 
+            })}</div>
         )
     }
-    
+
     render(){
         return (
-            
+
             <div>
                 <canvas style = {styles.canvasStyle} ref="canvas" width={window.innerWidth} height={window.innerHeight*0.85}/>
                 <div style = {styles.boxStyle}>
-                    {this.renderBtn()}          
+                    {this.renderBtn()}
                 </div>
             </div>
         );
