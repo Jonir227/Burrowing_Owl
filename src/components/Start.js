@@ -5,7 +5,23 @@ import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 import App from './App'
 
 
-
+const styles = {
+    backgroundStyle : {
+        width:  '100%',
+        height: '85%',
+        margin: 0,
+        location : 'absolute',
+        display: 'block'
+    },
+    buttonStyle : {
+        width:  '100%',
+        height: '85%',
+        margin: 0,
+        location : 'absolute',
+        background : 'transparent',
+        display: 'block'
+    }
+}
 class Start extends React.Component {
 
     constructor(props){
@@ -14,20 +30,11 @@ class Start extends React.Component {
 
     render(){
 
-        var backgroundStyle = {
-           location:'absolute',
-           width: window.innerWidth,
-           height: window.innerHeight
-        }
-        var buttonStyle = {
-            width: window.innerWidth,
-            height: window.innerHeight,
-            background : 'transparent'
-        }
+        
          return (
            <Link to = "/Main">
-                <div style = {backgroundStyle}>
-                    <button style = {buttonStyle} onClick = {this.nextPage}>
+                <div style = {styles.backgroundStyle}>
+                    <button style = {styles.buttonStyle} onClick = {this.nextPage}>
                       <img
                         src='./image/image1.png'
                         style = {{ width: window.innerWidth, height: window.innerHeight}}/>

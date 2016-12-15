@@ -20,23 +20,38 @@
                   },
                   {
                     "zoom" : true,
-                    "xPosition" : "1900",
-                    "yPosition" : "1000",
+                    "xPosition" : "1700",
+                    "yPosition" : "900",
                     "ratio" : "2"
                   }]
     },
     {
       "image": "./image/image4.png",
       "type" : "narration",
-      "script" : ["에잉, 여기가 어디라고 들어오느냐! 이 시간에 어디 가서 일이나 하나 더 하면서 돈을 벌어라! 게으른 너셕 같으니라고!"],
+      "script" : ["에잉, 여기가 어디라고 들어오느냐!",
+                  "이 시간에 어디 가서 일이나 하나 더 하면서 돈을 벌어라!",
+                   "게으른 너셕 같으니라고!"],
       "scene" : "#0",
       "index" : "1",
-      "isZoom" :  [{
+      "isZoom" :  [
+                    {
+                      "zoom":false
+                    },
+                    {
+                      "zoom":true,
+                      "xPosition" : "1500",
+                      "yPosition" : "300",
+                      "ratio" : "2"
+                    }
+                    ,{
+
                     "zoom" : true,
                     "xPosition" : "1000",
                     "yPosition" : "500",
                     "ratio" : "2"
-      }]
+
+                    }]
+
     },
     {
       "image": "./image/image5.png",

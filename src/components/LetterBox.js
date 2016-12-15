@@ -70,10 +70,12 @@ export default class LetterBox extends React.Component {
     this.state = {
       isDispeared: false,
       modalVisible: false,
+
       quizVisible: true,
       answer: '',
       rightAnswer: '흥부와놀부',
       scriptn: 0
+
     }
     this.toggleModalVisible = this.toggleModalVisible.bind(this);
     this.renderQuiz = this.renderQuiz.bind(this);
@@ -87,6 +89,8 @@ export default class LetterBox extends React.Component {
 
   renderModal(){
     return (
+
+
       <MessageBox boxVisible={this.state.modalVisible}
                   customStyles={customStyles}
                   isLink = {true}
@@ -162,6 +166,7 @@ export default class LetterBox extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <div style = {styles.boxStyle}>
@@ -171,7 +176,9 @@ export default class LetterBox extends React.Component {
             }
           </Motion>
           <button style = {styles.buttonStyleRight} onClick = {()=>{
+
             if(this.props.page == 2){
+
               this.toggleModalVisible();
             }
             else {
