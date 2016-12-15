@@ -80,7 +80,7 @@ export default class Game extends React.Component {
                     this.setState({count: this.state.count - 1, message: "Try hard"})
                   }}/>
         </div>
-        <img src = './image/image7.png'
+        <img src = '../image/image7.png'
              style = {{width: width, height : 500}}/>
         <div style = {{width: width, fontSize: 20, textAlign: 'center'}}> {this.state.message} 현재 점수는 {this.state.count} 입니다! </div>
       </div>

@@ -91,7 +91,7 @@ export default class LetterBox extends React.Component {
                   customStyles={customStyles}
                   isLink = {true}
                   title = '미니게임을 진행하시겠습니까?'
-                  path = './Game'
+                  path = './GameContainer/Game'
                   rightButtonEvent={this.toggleModalVisible}/>
     )
   }
@@ -171,7 +171,6 @@ export default class LetterBox extends React.Component {
             }
           </Motion>
           <button style = {styles.buttonStyleRight} onClick = {()=>{
-            console.log(this.state.isDispeared);
             if(this.props.page == 2){
               this.toggleModalVisible();
             }
