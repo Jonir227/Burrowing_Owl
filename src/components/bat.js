@@ -30,10 +30,6 @@ export default class Bat extends React.Component {
   render() {
     return (
       <div>
-        <img src = "../image/magicBat.jpg"
-  render() {
-    return (
-      <div>
         <img src = "./image/magicBat.jpg"
              style = {{width: 20, height: 60, opacity: (this.state.done) ? 0 : 1, position: 'absolute', left: this.state.positionX * 20, top: this.state.positionY}}/>
       </div>
