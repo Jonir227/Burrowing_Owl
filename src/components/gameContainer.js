@@ -34,7 +34,6 @@ export default class GameContainer extends React.Component {
       component = () => <Game/>
       break;
     }
-    console.log(this.props.params.name);
     this.setState({currentGame: component})
   }
   render() {
