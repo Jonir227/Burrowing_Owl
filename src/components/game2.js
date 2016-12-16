@@ -15,13 +15,13 @@ const styles = {
         borderWidth : 5,
         borderColor : 'black',
         borderStyle : 'solid',
-        location : 'relative'
+        location : 'absolute'
     },
     canvasStyle: {
         width:  '100%',
         height: '85%',
         margin: 0,
-        location : 'relative'
+        location : 'absolute'
     },
     imgStyle : {
         borderWidth : 1,
@@ -82,7 +82,7 @@ export default class Game2 extends React.Component{
     drawText(status, ctx){
         ctx.font = "50px Arial";
 
-        var x = this.state.imgWidth * 0.6;
+        var x = this.state.imgWidth * 0.55;
         var y = this.state.imgHeight * 0.15;
         ctx.textAligh = "center";
 
@@ -100,11 +100,17 @@ export default class Game2 extends React.Component{
 
         var select_image = new Image();
         select_image.src = this.state.selectImg;
-        ctx.drawImage(select_image, 1370, 520, 150, 150);
+
+        var imageX = this.state.imgWidth * 0.71;
+        var imageY = this.state.imgHeight * 0.65;
+
+        var correctX = this.state.imgWidth * 0.75;
+        var correctY = this.state.imgHeight * 0.75;
+        ctx.drawImage(select_image, imageX, imageY, 150, 150);
 
         if(status){
             ctx.beginPath();
-            ctx.arc(1450, 600, 80, 0, 2 * Math.PI, false);
+            ctx.arc(correctX, correctY, 80, 0, 2 * Math.PI, false);
             ctx.lineWidth = 10;
             ctx.strokeStyle = 'red';
             ctx.stroke();
@@ -112,10 +118,10 @@ export default class Game2 extends React.Component{
         else if(!status){
             ctx.beginPath();
 
-            ctx.moveTo(1450 - 50, 600 - 50);
-            ctx.lineTo(1450 + 50, 600 + 50);
-            ctx.moveTo(1450 + 50, 600 - 50);
-            ctx.lineTo(1450 - 50, 600 + 50);
+            ctx.moveTo(correctX - 50, correctY - 50);
+            ctx.lineTo(correctX + 50, correctY + 50);
+            ctx.moveTo(correctX + 50, correctY - 50);
+            ctx.lineTo(correctX - 50, correctY + 50);
 
             ctx.lineWidth = 10;
             ctx.strokeStyle = 'red';
