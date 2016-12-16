@@ -65,6 +65,16 @@
                     "yPosition" : "700",
                     "ratio" : "2"
       }]
+    },
+    {
+      "image": "./image/image7.png",
+      "type" : "Nolboo",
+      "script" : ["박을 까보자!"],
+      "scene" : "#0",
+      "index" : "3",
+      "isZoom" :  [{
+                    "zoom" : false
+                  }]
     }
-  ], "page" : "3" }
+  ], "page" : "4" }
 }

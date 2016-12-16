@@ -81,14 +81,19 @@ export default class Game2 extends React.Component{
     }
     drawText(status, ctx){
         ctx.font = "50px Arial";
+
+        var x = this.state.imgWidth * 0.6;
+        var y = this.state.imgHeight * 0.15;
+        ctx.textAligh = "center";
+
         if(status == "start")
-            ctx.fillText("알맞은 도구를 클릭 해봐!",1100, 120);
+            ctx.fillText("알맞은 도구를 클릭 해봐!",x, y);
         else if(status == "done")
-            ctx.fillText("모든 도구를 찾았어!", 1100, 120);
+            ctx.fillText("모든 도구를 찾았어!", x, y);
         else if(!status)
-            ctx.fillText("틀렸어! 다시 찾아봐!", 1200, 120);
+            ctx.fillText("틀렸어! 다시 찾아봐!", x, y);
         else if(status)
-            ctx.fillText("정답이야! 다음 도구도 찾아봐!", 1100, 120);
+            ctx.fillText("정답이야! 다음 도구도 찾아봐!", x, y);
 
     }
     drawCorrectImg(status, ctx){

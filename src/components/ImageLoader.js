@@ -117,6 +117,8 @@ class ImageLoader extends React.Component {
                 });
             }
                 
+        }else{
+            
         }
 
         if(Math.floor(this.state.chgHeight) != Math.floor(-yPosition*window.innerHeight/1080*0.85)){

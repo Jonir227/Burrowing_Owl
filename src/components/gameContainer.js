@@ -1,5 +1,7 @@
 import React, { PropType } from 'react';
+import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 import Game from './game';
+import Game2 from './game2';
 import AvoidBat from './avoidBat';
 
 export default class GameContainer extends React.Component {
@@ -20,6 +22,9 @@ export default class GameContainer extends React.Component {
     case "Game":
       component = () => <Game/>
       break;
+    case "Game2":
+      component = () => <Game2/>
+      break;
     }
     this.setState({currentGame: component})
   }
@@ -33,16 +38,28 @@ export default class GameContainer extends React.Component {
     case "Game":
       component = () => <Game/>
       break;
+    case "Game2":
+      component = () => <Game2/>
+      break;
     }
     this.setState({currentGame: component})
   }
   render() {
-    let Game = this.state.currentGame;
+
     return (
       <div>
         <button style = {{position: 'absolute', bottom: '5%', left: '30%', width: 50, height: 50}}
                 onClick = {()=>this.newGame()}> Retry </button>
-        <Game/>
+        <this.state.currentGame/>
+        
+        
+        <Link to = '/Window'>
+          <button style = {{position : 'absolute', bottom: '5%', right: '30%', width: 50, height: 50}}
+                >Skip
+          </button>
+        </Link>
+        
+        
       </div>
     )
   }

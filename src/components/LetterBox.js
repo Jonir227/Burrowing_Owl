@@ -95,7 +95,7 @@ export default class LetterBox extends React.Component {
                   customStyles={customStyles}
                   isLink = {true}
                   title = '미니게임을 진행하시겠습니까?'
-                  path = './GameContainer/Game'
+                  path = './GameContainer/AvoidBat'
                   rightButtonEvent={this.toggleModalVisible}/>
     )
   }
