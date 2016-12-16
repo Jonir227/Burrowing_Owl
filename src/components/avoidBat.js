@@ -5,7 +5,7 @@ export default class AvoidBat extends React.Component {
     super(props);
     this.state = {
       n: 20,
-      heroPosition: 200,
+      heroPosition: window.innerHeight * 0.85,
       busy: true,
       start: 0,
       time: ''
@@ -62,8 +62,8 @@ export default class AvoidBat extends React.Component {
       else if(this.state.heroPosition > 0) this.setState({heroPosition: 0})
     }
     if (event.keyCode === 39) {
-      if(this.state.heroPosition <= 470) this.setState({heroPosition: this.state.heroPosition + 10})
-      else if(this.state.heroPosition < 480) this.setState({heroPosition: 500})
+      if(this.state.heroPosition <= window.innerWidth - 10) this.setState({heroPosition: this.state.heroPosition + 10})
+      else if(this.state.heroPosition < window.innerWidth) this.setState({heroPosition:window.innerWidth + 10})
     }
     if(this.state.count >= 10) window.removeEventListener('keydown', this.keyboardListener);
   }
@@ -72,7 +72,7 @@ export default class AvoidBat extends React.Component {
   renderHero() {
     return (
       <img src = '../image/hero1.png'
-           style = {{top:  440, left: this.state.heroPosition, width: 20, height: 60, position: 'absolute'}}/>
+           style = {{top:  window.innerHeight * 0.8, left: this.state.heroPosition, width: 100, height: 200, position: 'absolute'}}/>
     )
   }
   render() {
@@ -85,11 +85,12 @@ export default class AvoidBat extends React.Component {
     }
     return (
       <div>
-        <div style = {{left: '30%', position: 'absolute', top: '10%'}}> Time: {this.state.time}</div>
-        <div style = {{background: 'green', width: 500, height: 500, position: 'absolute', top: '15%', left: '30%'}}>
+        
+        <div style = {{background: 'green', width: window.innerWidth, height: window.innerHeight, position: 'relative'}}>
           {bats}
           {this.renderHero()}
         </div>
+        <div style = {{left: '5%', position: 'absolute'}}> Time: {this.state.time}</div>
       </div>
     );
   }

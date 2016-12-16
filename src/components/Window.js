@@ -1,9 +1,18 @@
 import React, { PropType } from 'react';
+import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 import ImageLoader from './ImageLoader';
 import LetterBox from './LetterBox';
 import JsonData from './subtitle.json';
 import VoicePlayer from './voicePlayer';
 
+const styles={
+  buttonStyleLeft : {
+    float : 'left',
+    background : 'white',
+    fontSize : 20,
+    borderColor : 'black'
+  }
+}
 export default class Window extends React.Component {
 
   constructor(props){
@@ -68,6 +77,7 @@ export default class Window extends React.Component {
           <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
                 style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
         </button>
+        
       </div>
     )
   }

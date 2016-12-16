@@ -24,15 +24,24 @@ const styles = {
     textAlign: 'center'
   },
   buttonStyleRight : {
+
     float : 'right',
     background : 'white',
     marginRight: 10,
     fontSize : 20,
-    borderColor : 'white'
+    borderColor : 'black'
   },
   buttonStyleLeft : {
+    
+    float : 'right',
     background : 'white',
-    float: 'right',
+    fontSize : 20,
+    borderColor : 'black'
+  },
+  buttonStyleMenu : {
+    
+    float : 'left',
+    background : 'white',
     fontSize : 20,
     borderColor : 'black'
   },
@@ -74,7 +83,10 @@ export default class LetterBox extends React.Component {
       quizVisible: true,
       answer: '',
       rightAnswer: '흥부와놀부',
-      scriptn: 0
+      scriptn: 0,
+
+      width : window.innerWidth,
+      height : window.innerHeight
 
     }
     this.toggleModalVisible = this.toggleModalVisible.bind(this);
@@ -101,43 +113,49 @@ export default class LetterBox extends React.Component {
   }
 
   renderQuiz(){
+
+    var x = this.state.width;
+    var y = this.state.height;
     return (
       <Modal isOpen={this.state.quizVisible}
              style={quizStyles}>
-        <div>
+        <div style = {{ background : 'url('+'./image/image3.png' +')', backgroundSize : 'cover', width : '100%', height : '100%', location : 'absolute'}}>
           <img src = './image/closeIcon.svg'
                onClick = {()=>{
                  this.setState({quizVisible: false});
                }}
                style= {{width: 50, height: 50}}/>
-          <h1 style = {{textAlign: 'center'}}>Quiz: 이 동화의 제목은 무엇일까요?</h1>
-          <button style = {{position: 'absolute', left: 480}}
+          <h1 style = {{textAlign: 'center',position : 'absolute', top : 0, left : x * 0.25, width : x * 0.5, 
+                        background : 'white', borderWidth : 1, borderColor : 'black',borderStyle : 'solid',fontSize : 40}}>Quiz: 이 동화의 제목은 무엇일까요?</h1>
+          <button style = {{position: 'absolute', left: x * 0.4, top : y * 0.1, width : x * 0.03,height : y * 0.06, background : 'url('+'./image/backSpace.png'+')', backgroundSize : 'cover', backgroundColor : 'white',
+                            borderWidth : 1, borderColor : 'black',borderStyle : 'solid'}}
                   onClick = {()=>{
                     this.setState({answer: this.state.answer.slice(0,-1)})
-                  }}> Delete </button>
-          <button style = {{position: 'absolute', left: 900}}
+                  }}></button>
+          <button style = {{position: 'absolute', left: x * 0.55, top : y * 0.1, width : x * 0.03, height : y * 0.06, background : 'url('+'./image/check.png'+')', backgroundSize : 'cover', backgroundColor : 'white',
+                            borderWidth : 1, borderColor : 'black',borderStyle : 'solid'}}
                   onClick = {()=>{
                     if(this.state.rightAnswer === this.state.answer) {
                       alert('Congraturation');
                       this.setState({quizVisible: false});
                     }
                     else alert('try again');
-                  }}> Submit </button>
-          <div style = {{position: 'relative', top: 50, height: 70}}>
-            <div style = {{position: 'absolute', left: 450, background: 'yellow', width: 70, height: 70}}>
-              <div style = {{textAlign: 'center', marginTop: '45%'}}> {this.state.answer[0]} </div>
+                  }}></button>
+          <div style = {{position: 'relative', top: y * 0.1, height: y * 0.1}}>
+            <div style = {{position: 'absolute', left: x * 0.3, background: 'yellow', width: 70, height: 70, borderWidth : 1, borderColor : 'black',borderStyle : 'solid', borderRadius: 15}}>
+              <div style = {{textAlign: 'center', top: '100%', fontSize : 50, fontWeight : 'bold'}}> {this.state.answer[0]} </div>
             </div>
-            <div style = {{position: 'absolute', left: 550, background: 'yellow', width: 70, height: 70}}>
-              <div style = {{textAlign: 'center', marginTop: '45%'}}> {this.state.answer[1]} </div>
+            <div style = {{position: 'absolute', left: x * 0.3 + 150, background: 'yellow', width: 70, height: 70, borderWidth : 1, borderColor : 'black',borderStyle : 'solid', borderRadius: 15}}>
+              <div style = {{textAlign: 'center', top: '100%', fontSize : 50, fontWeight : 'bold'}}> {this.state.answer[1]} </div>
             </div>
-            <div style = {{position: 'absolute', left: 650, background: 'yellow', width: 70, height: 70}}>
-              <div style = {{textAlign: 'center', marginTop: '45%'}}> {this.state.answer[2]} </div>
+            <div style = {{position: 'absolute', left:x * 0.3 + 300, background: 'yellow', width: 70, height: 70, borderWidth : 1, borderColor : 'black',borderStyle : 'solid', borderRadius: 15}}>
+              <div style = {{textAlign: 'center', top: '100%', fontSize : 50, fontWeight : 'bold'}}> {this.state.answer[2]} </div>
             </div>
-            <div style = {{position: 'absolute', left: 750, background: 'yellow', width: 70, height: 70}}>
-              <div style = {{textAlign: 'center', marginTop: '45%'}}> {this.state.answer[3]} </div>
+            <div style = {{position: 'absolute', left: x * 0.3 + 450, background: 'yellow', width: 70, height: 70, borderWidth : 1, borderColor : 'black',borderStyle : 'solid', borderRadius: 15}}>
+              <div style = {{textAlign: 'center', top: '100%', fontSize : 50, fontWeight : 'bold'}}> {this.state.answer[3]} </div>
             </div>
-            <div style = {{position: 'absolute', left: 850, background: 'yellow', width: 70, height: 70}}>
-              <div style = {{textAlign: 'center', marginTop: '45%'}}> {this.state.answer[4]} </div>
+            <div style = {{position: 'absolute', left: x * 0.3 + 600, background: 'yellow', width: 70, height: 70, borderWidth : 1, borderColor : 'black',borderStyle : 'solid', borderRadius: 15}}>
+              <div style = {{textAlign: 'center', top: '100%', fontSize : 50, fontWeight : 'bold'}}> {this.state.answer[4]} </div>
             </div>
             {this.renderOption()}
           </div>
@@ -148,10 +166,10 @@ export default class LetterBox extends React.Component {
 
   renderOption(){
     return (
-      <div style = {{position: 'relative', top : 100, left: 450}}>
+      <div style = {{position: 'relative', top : this.state.width * 0.05, left: this.state.height * 0.7}}>
         {option.map((value,i)=>{
           return (
-            <button style = {{position: 'absolute', left: 100 * (i % 5), top: 100 * Math.floor(i / 5), width: 70, height: 70, background: 'green'}}
+            <button style = {{position: 'absolute', left: 100 * (i % 5), top: 100 * Math.floor(i / 5), width: 70, height: 70, background: 'green', borderWidth : 1, borderColor : 'black',borderStyle : 'solid', borderRadius: 15}}
             onClick = {() => {
               (this.state.answer.length < 5) && this.setState({answer: this.state.answer + option[i]})
             }}>
@@ -206,9 +224,9 @@ export default class LetterBox extends React.Component {
               this.props.prevPage();
             }
           }}> prev </button>
-          <Link to = "/Main">
-            <button style = {styles.buttonStyleLeft}>menu</button>
-          </Link>
+        <Link to = "/Main">
+            <button style = {styles.buttonStyleMenu}>menu</button>
+        </Link> 
         </div>
         {this.state.modalVisible && this.renderModal()}
         {this.state.quizVisible && this.renderQuiz()}
