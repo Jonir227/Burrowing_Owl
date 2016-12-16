@@ -82,7 +82,7 @@ class ImageLoader extends React.Component {
 }
 
 ImageLoader.defaultProps = {
-    image : './image/image1.png'
+    image : './mainimage/1.pdf'
 };
 
 export default ImageLoader;

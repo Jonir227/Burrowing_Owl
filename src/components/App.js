@@ -3,6 +3,7 @@ import Window from './Window'
 import Start from './Start'
 import Main from './Main'
 import Game from './game'
+import Draggame from './Draggame'
 import AvoidBat from './avoidBat';
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 
@@ -22,6 +23,7 @@ class App extends React.Component {
                 <Match pattern = "/Main" component={Main} />
                 <Match pattern = "/Window" component = {Window}/>
                 <Match pattern = "/Game" component = {Game}/>
+                <Match pattern = "/Draggame" component = {Draggame}/>
             </div>
         </Router>
         )

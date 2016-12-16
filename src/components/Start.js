@@ -1,38 +1,37 @@
 import React, { PropType } from 'react';
-
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
-
 import App from './App'
-
+import Resizable from 'react-component-resizable'
 
 
 class Start extends React.Component {
 
     constructor(props){
         super(props);
+        this.state = {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+        this.onResize = this.onResize.bind(this);
   }
-
+ 
+ onResize() {
+     this.setState({
+         width: window.innerWidth,
+         height: window.innerHeight,
+     })
+ }
     render(){
 
-        var backgroundStyle = {
-           location:'absolute',
-           width: window.innerWidth,
-           height: window.innerHeight
-        }
-        var buttonStyle = {
-            width: window.innerWidth,
-            height: window.innerHeight,
-            background : 'transparent'
-        }
          return (
            <Link to = "/Main">
-                <div style = {backgroundStyle}>
-                    <button style = {buttonStyle} onClick = {this.nextPage}>
-                      <img
-                        src='./image/image1.png'
-                        style = {{ width: window.innerWidth, height: window.innerHeight}}/>
+                <div>
+                    <Resizable onResize={this.onResize}>
+                    <button onClick = {this.nextPage}>
+                      <img src="./mainimage/1.svg" style = {{ width: this.state.width, height: this.state.height}}/>
                     </button>
-                    <div style = {{fontSize : 100, position: 'absolute', top: window.innerHeight / 1.6, left: window.innerWidth / 2.7 }}>흥부와 놀부</div>
+                    </Resizable>
+                    <div style = {{fontSize : 50, fontFamily: '궁서', position: 'absolute', top: window.innerHeight / 1.4, left: window.innerWidth / 1.9 }}>시작</div>
                 </div>
            </Link>
 
