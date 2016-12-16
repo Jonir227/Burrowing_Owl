@@ -18,10 +18,14 @@ export default class Bat extends React.Component {
       if(this.state.positionY >= 450) {
         this.setState({positionY: 0, speed: Math.floor((Math.random() * 5) + 1), positionX: Math.floor((Math.random() * 25))});
       }
-      if(400 <= this.state.positionY && this.state.positionX * 20 - 3<= this.props.heroPosition && this.state.positionX * 20 + 28 >= this.props.heroPosition)
+      if(400 <= this.state.positionY && this.state.positionX * 20 - 3<= this.props.heroPosition  && this.state.positionX * 20 + 28 >= this.props.heroPosition)
         this.props.toggleBusy();
       if(!this.props.busy) clearInterval(this.enemyInterval);
     }, 100);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.enemyInterval);
   }
   render() {
     return (

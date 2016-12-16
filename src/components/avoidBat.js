@@ -46,6 +46,7 @@ export default class AvoidBat extends React.Component {
 
   componentWillUnmount(){
     window.removeEventListener('keydown', this.keyboardListener);
+    clearInterval(clockTimer);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -70,7 +71,7 @@ export default class AvoidBat extends React.Component {
 
   renderHero() {
     return (
-      <img src = './image/hero1.png'
+      <img src = '../image/hero1.png'
            style = {{top:  440, left: this.state.heroPosition, width: 20, height: 60, position: 'absolute'}}/>
     )
   }
