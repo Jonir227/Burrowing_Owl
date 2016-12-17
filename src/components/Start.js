@@ -3,46 +3,44 @@ import React, { PropType } from 'react';
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 
 import App from './App'
+import Resizable from 'react-component-resizable'
 
 
-const styles = {
-    backgroundStyle : {
-        width:  '100%',
-        height: '85%',
-        margin: 0,
-        location : 'absolute',
-        display: 'block'
-    },
-    buttonStyle : {
-        width:  '100%',
-        height: '85%',
-        margin: 0,
-        location : 'absolute',
-        background : 'transparent',
-        display: 'block'
-    }
-}
 class Start extends React.Component {
 
     constructor(props){
+
         super(props);
+        this.state = {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+        this.onResize = this.onResize.bind(this);
   }
+    onResize() {
+            this.setState({
+                width: window.innerWidth,
+                height: window.innerHeight
+            })
 
+        }  
     render(){
-
+        
         
          return (
-           <Link to = "/Main">
-                <div style = {styles.backgroundStyle}>
-                    <button style = {styles.buttonStyle} onClick = {this.nextPage}>
-                      <img
-                        src='./image/image1.png'
-                        style = {{ width: window.innerWidth, height: window.innerHeight}}/>
-                    </button>
-                    <div style = {{fontSize : 100, position: 'absolute', top: window.innerHeight / 1.6, left: window.innerWidth / 2.7 }}>흥부와 놀부</div>
-                </div>
-           </Link>
-
+                <Resizable onResize={this.onResize}>
+                    <div style = {{width : this.state.width, height :this.state.height, margin: 0, position : 'absolute'}}>
+                        
+                        <img    src='./image/image1.svg' style = {{ width: this.state.width, height: this.state.height}}/>
+                        <img src = './image/title.png' style = {{position: 'absolute', top: this.state.height * 0.27, left: this.state.width * 0.4, width : this.state.width * 0.2, height : this.state.height * 0.13 }}/>
+                        <Link to = "/Main">
+                            <div>
+                                <img src = './image/start.png' style = {{position : 'absolute', top :  this.state.height * 0.7, left: this.state.width * 0.52, width : this.state.width * 0.1}}/>
+                            </div>
+                        </Link>
+                        
+                    </div>
+                </Resizable>
          );
     }
 }

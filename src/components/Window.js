@@ -57,17 +57,17 @@ export default class Window extends React.Component {
                    scriptDone = {this.state.scriptDone}
                    nextScript = {this.nextScript}
                    prevScript = {this.prevScript}
+                   narration = {JsonData.HeungbooNolboo.data[this.state.page].script[this.state.scriptPage][1]}
                    page = {this.state.page}
                    nextPage = {this.nextPage}
                    prevPage = {this.prevPage}/>
         <VoicePlayer audioSrc = './audio/zeze.mp3'
                      onPause = {this.state.isMuted}/>
-        <button onClick = {() => {
-          this.setState({isMuted: !this.state.isMuted})
-        }}>
           <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
-                style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
-        </button>
+                style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}
+                onClick = {() => {
+                    this.setState({isMuted: !this.state.isMuted})
+              }}/>
       </div>
     )
   }

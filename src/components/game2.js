@@ -1,4 +1,5 @@
 import React, { PropType } from 'react';
+import Resizable from 'react-component-resizable';
 const btnUrl = [['./image/game2/btn1.png',true]
                 ,['./image/game2/btn2.png',false]
                 ,['./image/game2/btn3.png',true]
@@ -14,14 +15,7 @@ const styles = {
         padding : 10,
         borderWidth : 5,
         borderColor : 'black',
-        borderStyle : 'solid',
-        location : 'relative'
-    },
-    canvasStyle: {
-        width:  '100%',
-        height: '85%',
-        margin: 0,
-        location : 'relative'
+        borderStyle : 'solid'
     },
     imgStyle : {
         borderWidth : 1,
@@ -30,6 +24,21 @@ const styles = {
         width : 100,
         height : 100,
         marginLeft : '5%'
+    },
+    correctImgStyle : {
+        width : 150,
+        height : 150,
+        top : '60%',
+        left : '70%',
+        position : 'absolute'
+    },
+    textStyle : {
+        top : '5%',
+        left : '55%',
+        position : 'absolute',
+        fontSize : 50,
+        fontAlign : 'center',
+        fontFamily : 'Arial'
     }
 }
 export default class Game2 extends React.Component{
@@ -41,25 +50,21 @@ export default class Game2 extends React.Component{
             status : "start",
             correctCount : 0,
             correctNum : 3,
-            imgWidth : window.innerWidth,
-            imgHeight : window.innerHeight*0.85,
             selectImg : null
         }
-        this.updateCanvas = this.updateCanvas.bind(this);
-        this.drawText = this.drawText.bind(this);
-        this.drawCorrectImg = this.drawCorrectImg.bind(this);
+        
         this.renderBtn = this.renderBtn.bind(this);
+        this.renderOX = this.renderOX.bind(this);
+        this.renderCorrectImg = this.renderCorrectImg.bind(this);
+        this.renderText = this.renderText.bind(this);
     }
 
     componentDidMount(){
 
-        this.state.imgWidth = window.innerWidth;
-        this.state.imgHeight = window.innerHeight*0.85;
-        this.updateCanvas();
+
+       
     }
-    componentDidUpdate(){
-        this.updateCanvas();
-    }
+    
     updateCanvas(){
         const ctx = this.refs.canvas.getContext('2d');
         var base_image = new Image();
@@ -78,46 +83,6 @@ export default class Game2 extends React.Component{
                 this.drawCorrectImg(this.state.status, ctx);
 
         }.bind(this);
-    }
-    drawText(status, ctx){
-        ctx.font = "50px Arial";
-        if(status == "start")
-            ctx.fillText("알맞은 도구를 클릭 해봐!",1100, 120);
-        else if(status == "done")
-            ctx.fillText("모든 도구를 찾았어!", 1100, 120);
-        else if(!status)
-            ctx.fillText("틀렸어! 다시 찾아봐!", 1200, 120);
-        else if(status)
-            ctx.fillText("정답이야! 다음 도구도 찾아봐!", 1100, 120);
-
-    }
-    drawCorrectImg(status, ctx){
-
-        var select_image = new Image();
-        select_image.src = this.state.selectImg;
-        ctx.drawImage(select_image, 1370, 520, 150, 150);
-
-        if(status){
-            ctx.beginPath();
-            ctx.arc(1450, 600, 80, 0, 2 * Math.PI, false);
-            ctx.lineWidth = 10;
-            ctx.strokeStyle = 'red';
-            ctx.stroke();
-        }
-        else if(!status){
-            ctx.beginPath();
-
-            ctx.moveTo(1450 - 50, 600 - 50);
-            ctx.lineTo(1450 + 50, 600 + 50);
-            ctx.moveTo(1450 + 50, 600 - 50);
-            ctx.lineTo(1450 - 50, 600 + 50);
-
-            ctx.lineWidth = 10;
-            ctx.strokeStyle = 'red';
-
-            ctx.stroke();
-        }
-
     }
     renderBtn(){
         return(
@@ -139,12 +104,44 @@ export default class Game2 extends React.Component{
             })}</div>
         )
     }
+    renderText(){
+      
+        
+        if(this.state.correctCount == this.state.correctNum)
+                this.setState({status : "done"});
+
+        if(this.state.status == "start")
+            return <h1 style = {styles.textStyle}>알맞은 도구를 클릭 해봐!</h1>
+        else if(this.state.status == "done")
+            return <h1 style = {styles.textStyle}>모든 도구를 찾았어!</h1>
+        else if(!this.state.status)
+            return <h1 style = {styles.textStyle}>틀렸어! 다른 도구를 찾아봐!</h1>
+        else if(this.state.status)
+            return <h1 style = {styles.textStyle}>정답이야! 다음 도구도 찾아봐!</h1>
+    }
+    renderCorrectImg(){
+        if(this.state.status != "start")
+            return <img src = {this.state.selectImg} style = {styles.correctImgStyle}/>
+        else   
+            return <img src = './image/game2/selectImg.png' style = {styles.correctImgStyle}/>
+    }
+    renderOX(){
+        if(this.state.status != "start")
+            if(this.state.status)
+                return  <img src = './image/game2/o.png' style = {styles.correctImgStyle}/>
+            else if(!this.state.status)
+                return  <img src = './image/game2/x.png' style = {styles.correctImgStyle}/>
+                
+    }
 
     render(){
         return (
 
-            <div>
-                <canvas style = {styles.canvasStyle} ref="canvas" width={window.innerWidth} height={window.innerHeight*0.85}/>
+            <div style = {{ position : 'absolute'}}>
+                <img src = {this.props.image} style = {{  width : 'auto',height : 'auto',position : 'relative'}}/>
+                {this.renderText()}
+                {this.renderCorrectImg()}
+                {this.renderOX()}
                 <div style = {styles.boxStyle}>
                     {this.renderBtn()}
                 </div>

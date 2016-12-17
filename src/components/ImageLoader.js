@@ -4,7 +4,8 @@ import JsonData from './subtitle.json';
 const styles = {
     canvasStyle: {
             width:  '100%',
-            height: '85%'
+            height: '85%',
+            position : 'relative'
     }
 }
 
@@ -21,7 +22,9 @@ class ImageLoader extends React.Component {
             currentRatio : 1,
             zoomDone : false,
             prevX : 0,
-            prevY : 0
+            prevY : 0,
+            xDone : false,
+            yDone : false
         }
 
         
@@ -42,6 +45,8 @@ class ImageLoader extends React.Component {
         if(this.props.image === nextProps.image){
             this.state.prevX = this.state.chgWidth;
             this.state.prevY = this.state.chgHeight;
+            this.state.xDone = false;
+            this.state.yDone = false;
             return;
         }
 
@@ -76,7 +81,7 @@ class ImageLoader extends React.Component {
 
             ctx.drawImage(base_image, this.state.chgWidth, this.state.chgHeight, this.state.imgWidth , this.state.imgHeight);
             
-            if(this.props.isZoom[this.props.scriptPage].zoom /*&& !this.state.zoomDone*/){
+            if(this.props.isZoom[this.props.scriptPage].zoom && (!this.state.xDone || ! this.state.yDone) ){
                 this.setState({
                     currentX : this.props.isZoom[this.props.scriptPage].xPosition,
                     currentY : this.props.isZoom[this.props.scriptPage].yPosition,
@@ -84,7 +89,7 @@ class ImageLoader extends React.Component {
                 })
                 this.zoomImage(this.props.isZoom[this.props.scriptPage].xPosition,this.props.isZoom[this.props.scriptPage].yPosition,this.props.isZoom[this.props.scriptPage].ratio);
             }
-            else{
+            else if(!this.props.isZoom[this.props.scriptPage].zoom){
               this.zoomoutImage(this.state.currentX,this.state.currentY,this.state.currentRatio)
 
             }
@@ -118,6 +123,8 @@ class ImageLoader extends React.Component {
             }
                 
         }
+        else    this.setState({ xDone : true })
+        
 
         if(Math.floor(this.state.chgHeight) != Math.floor(-yPosition*window.innerHeight/1080*0.85)){
             if(this.state.chgHeight > -yPosition*window.innerHeight/1080*0.85){
@@ -132,6 +139,7 @@ class ImageLoader extends React.Component {
             }
                 
         }
+        else    this.setState({ yDone : true })
         
        
         
