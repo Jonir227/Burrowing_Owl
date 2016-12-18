@@ -109,12 +109,12 @@ class ImageLoader extends React.Component {
         if(Math.floor(this.state.chgWidth) != Math.floor(-xPosition*window.innerWidth/1920) ){
             if(this.state.chgWidth > -xPosition*window.innerWidth/1920){
                 this.setState({
-                    chgWidth : this.state.chgWidth - xPosition*(window.innerWidth + this.state.prevX)/1920/100
+                    chgWidth : this.state.chgWidth - xPosition*(window.innerWidth + this.state.prevX)/1920/1000
                 });
             }
             else{
                 this.setState({
-                    chgWidth : this.state.chgWidth + xPosition*(window.innerWidth - this.state.prevX)/1920/100
+                    chgWidth : this.state.chgWidth + xPosition*(window.innerWidth - this.state.prevX)/1920/1000
                 });
             }
                 
@@ -125,12 +125,12 @@ class ImageLoader extends React.Component {
         if(Math.floor(this.state.chgHeight) != Math.floor(-yPosition*window.innerHeight/1080*0.85)){
             if(this.state.chgHeight > -yPosition*window.innerHeight/1080*0.85){
                 this.setState({
-                    chgHeight : this.state.chgHeight - yPosition*(window.innerHeight*0.85 + this.state.prevY)/1080/100
+                    chgHeight : this.state.chgHeight - yPosition*(window.innerHeight*0.85 + this.state.prevY)/1080/1000
                 });
             }
             else{
                 this.setState({
-                    chgHeight : this.state.chgHeight + yPosition*(window.innerHeight*0.85 - this.state.prevY)/1080/100
+                    chgHeight : this.state.chgHeight + yPosition*(window.innerHeight*0.85 - this.state.prevY)/1080/1000
                 });
             }
                 
@@ -141,8 +141,8 @@ class ImageLoader extends React.Component {
         
         if(this.state.imgWidth <= window.innerWidth*ratio || this.state.imgHeight <= window.innerHeight*ratio*0.85){
                 this.setState({
-                    imgWidth : this.state.imgWidth + (window.innerWidth*ratio - window.innerWidth)/100,
-                    imgHeight : this.state.imgHeight + (window.innerHeight*ratio - window.innerHeight)*0.85/100
+                    imgWidth : this.state.imgWidth + (window.innerWidth*ratio - window.innerWidth)/1000,
+                    imgHeight : this.state.imgHeight + (window.innerHeight*ratio - window.innerHeight)*0.85/1000
                 });
         }
     

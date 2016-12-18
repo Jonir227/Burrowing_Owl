@@ -31,7 +31,7 @@ class Start extends React.Component {
                 <Resizable onResize={this.onResize}>
                     <div style = {{width : this.state.width, height :this.state.height, margin: 0,padding : 0, position : 'absolute'}}>
                         
-                        <img    src='./image/1.svg' style = {{ width: this.state.width, height: this.state.height}}/>
+                        <img    src='./image/1.png' style = {{ width: this.state.width, height: this.state.height}}/>
                         <img src = './image/title.png' style = {{position: 'absolute', top: this.state.height * 0.27, left: this.state.width * 0.4, width : this.state.width * 0.2, height : this.state.height * 0.13 }}/>
                         <Link to = "/Main">
                             <div>

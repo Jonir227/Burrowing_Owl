@@ -4,6 +4,7 @@ import JsonData from './subtitle.json';
 import {Motion, spring, presets, precision} from 'react-motion';
 import Modal from 'react-modal';
 import MessageBox from './messageBox';
+
 const defaultConfig = {
   stiffness: 40
 };

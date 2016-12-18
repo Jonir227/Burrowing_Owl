@@ -1,7 +1,7 @@
 {
   "HeungbooNolboo" : { "data" : [
     {
-      "image": "./image/3.svg",
+      "image": "./image/3.png",
       "type" : "narration",
       "script" : [["옛날 옛적에 한 형제가 살았습니다.",0],
                   ["아버지가 물려주신 막대한 재산을 가진 놀부와",0],
@@ -15,18 +15,18 @@
                   {
                     "zoom" : true,
                     "xPosition" : "300",
-                    "yPosition" : "750",
+                    "yPosition" : "700",
                     "ratio" : "2"
                   },
                   {
                     "zoom" : true,
                     "xPosition" : "1700",
-                    "yPosition" : "750",
+                    "yPosition" : "700",
                     "ratio" : "2"
                   }]
     },
     {
-      "image": "./image/4.svg",
+      "image": "./image/4.png",
       "type" : "narration",
       "script" : [["에잉, 여기가 어디라고 들어오느냐!",2],
                   ["이 시간에 어디 가서 일이나 하나 더 하면서 돈을 벌어라!",2],
@@ -54,7 +54,7 @@
 
     },
     {
-      "image": "./image/5.svg",
+      "image": "./image/5.png",
       "type" : "Nolboo",
       "script" : [["그러던 어느 날, 커다란 구렁이가 흥부네 처마에 있던 제비집을 덮쳤어요.",0]],
       "scene" : "#0",
@@ -65,7 +65,7 @@
       }]
     },
     {
-      "image": "./image/6.svg",
+      "image": "./image/6.png",
       "type" : "narration",
       "script" : [["이를 본 흥부가 막대기로 구렁이를 쫓아주었지요.",0],
                   ["훠이 훠이!",1]],
@@ -83,7 +83,7 @@
                   }]
     },
     {
-      "image": "./image/7.svg",
+      "image": "./image/7.png",
       "type" : "narration",
       "script" : [["그런데 새끼 제비 한 마리가 땅에 떨어져 다리가 부러지고 말았어요",0]],
       "scene" : "#0",
@@ -94,7 +94,7 @@
                   }]
     },
     {
-      "image": "./image/8.svg",
+      "image": "./image/8.png",
       "type" : "narration",
       "script" : [["흥부는 붕대로 제비다리를 잘 매 주었어요.",0]],
       "scene" : "#0",
@@ -105,7 +105,7 @@
                   }]
     },
     {
-      "image": "./image/10.svg",
+      "image": "./image/10.png",
       "type" : "narration",
       "script" : [["이듬 해 봄, 흥부의 집에 제비가 날아왔어요.",0],
                   ["제비는 흥부에게 박씨를 물어다 주었어요.",0],
@@ -127,7 +127,7 @@
                   }]
     },
     {
-      "image": "./image/11.svg",
+      "image": "./image/11.png",
       "type" : "narration",
       "script" : [["흥부는 박씨를 땅에 심었어요.",0]],
       "scene" : "#0",
@@ -138,7 +138,7 @@
                   }]
     },
     {
-      "image": "./image/12.svg",
+      "image": "./image/12.png",
       "type" : "narration",
       "script" : [["박씨가 자라자 흥부와 아내는 박을 타기 시작했어요.",0],
                   ["톱질하세 톱질하세!",1],
@@ -163,7 +163,7 @@
                   }]
     },
     {
-      "image": "./image/13.svg",
+      "image": "./image/13.png",
       "type" : "narration",
       "script" : [["그런데 박에서는 금은보화가 나왔어요!",0],
                   ["아니 이게 다 웬 금이야!",1],
@@ -188,7 +188,7 @@
                   }]
     },
     {
-      "image": "./image/14.svg",
+      "image": "./image/14.png",
       "type" : "narration",
       "script" : [["그렇게 흥부와 흥부가족은 부자가 되었어요.",0]],
       "scene" : "#0",
@@ -199,7 +199,7 @@
                   }]
     },
     {
-      "image": "./image/15.svg",
+      "image": "./image/15.png",
       "type" : "narration",
       "script" : [["한편 놀부는 이 소식을 아내에게 전해 들었어요.",0],
                   ["흥부가 갑자기 부자가 됐다고? 무슨 소리야!",2],
@@ -213,18 +213,18 @@
                   {
                     "zoom" : true,
                     "xPosition" : "300",
-                    "yPosition" : "500",
+                    "yPosition" : "600",
                     "ratio" : "2"
                   },
                   {
                     "zoom" : true,
-                    "xPosition" : "1400",
+                    "xPosition" : "1600",
                     "yPosition" : "600",
                     "ratio" : "2"
                   }]
     },
     {
-      "image": "./image/16.svg",
+      "image": "./image/16.png",
       "type" : "narration",
       "script" : [["놀부는 그 소식을 듣고 당장 제비를 잡았어요",0],
                   ["이 녀석들!!",2]],
@@ -242,7 +242,7 @@
                   }]
     },
     {
-      "image": "./image/17.svg",
+      "image": "./image/17.png",
       "type" : "narration",
       "script" : [["그리고 다리를 부러뜨리고는 다시 고쳐주었어요.",0]],
       "scene" : "#0",
@@ -253,7 +253,7 @@
                   }]
     },
     {
-      "image": "./image/19.svg",
+      "image": "./image/19.png",
       "type" : "narration",
       "script" : [["이듬 해 봄, 놀부의 집에도 제비가 날아왔어요.",0],
                   ["제비는 놀부에게도 박씨를 물어다 주었어요.",0],
@@ -275,7 +275,7 @@
                   }]
     },
     {
-      "image": "./image/20.svg",
+      "image": "./image/20.png",
       "type" : "narration",
       "script" : [["놀부도 흥부처럼 박씨를 땅에 심었어요.",0]],
       "scene" : "#0",
