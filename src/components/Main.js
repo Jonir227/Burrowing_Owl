@@ -9,8 +9,8 @@ class Main extends React.Component {
             borderWidth : 0,
             borderColor : 'transparent',
             visibility : 'hidden',
-            width : window.innerWidth,
-            height : window.innerHeight,
+            width : window.innerWidth * 0.99,
+            height : window.innerHeight * 0.98,
         };
         this.buttonChange = this.buttonChange.bind(this);
         this.onResize = this.onResize.bind(this);
@@ -23,8 +23,8 @@ class Main extends React.Component {
     
     onResize() {
         this.setState({
-            width: window.innerWidth,
-            height: window.innerHeight
+            width: window.innerWidth * 0.99,
+            height: window.innerHeight * 0.98
         })
 
     }

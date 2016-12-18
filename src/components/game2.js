@@ -20,8 +20,8 @@ export default class Game2 extends React.Component{
             correctCount : 0,
             correctNum : 3,
             selectImg : null,
-            width : window.innerWidth,
-            height : window.innerHeight
+            width : window.innerWidth * 0.99,
+            height : window.innerHeight * 0.98
         }
         
         this.renderBtn = this.renderBtn.bind(this);
@@ -35,8 +35,8 @@ export default class Game2 extends React.Component{
     }
     onResize() {
         this.setState({
-            width: window.innerWidth,
-            height: window.innerHeight
+            width: window.innerWidth * 0.99,
+            height: window.innerHeight * 0.98
         })
 
     }

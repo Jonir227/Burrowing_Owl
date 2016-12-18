@@ -1,4 +1,5 @@
 import React, { PropType } from 'react';
+import Resizable from 'react-component-resizable'
 import JsonData from './subtitle.json';
 
 
@@ -7,8 +8,8 @@ class ImageLoader extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            imgWidth : window.innerWidth,
-            imgHeight : window.innerHeight*0.85,
+            imgWidth : window.innerWidth * 0.99,
+            imgHeight : window.innerHeight* 0.85,
             chgWidth : 0,
             chgHeight : 0,
             currentX : 0,
@@ -18,15 +19,24 @@ class ImageLoader extends React.Component {
             prevX : 0,
             prevY : 0,
             xDone : false,
-            yDone : false
+            yDone : false,
+            width : window.innerWidth * 0.99,
+            height : window.innerHeight * 0.98
         }
 
         
         this.updateCanvas = this.updateCanvas.bind(this);
         this.zoomImage = this.zoomImage.bind(this);
         this.zoomoutImage = this.zoomoutImage.bind(this);
+        this.onResize = this.onResize.bind(this);
     }
+    onResize() {
+        this.setState({
+            width: window.innerWidth * 0.99,
+            height: window.innerHeight * 0.98
+        })
 
+    }
     componentDidMount(){
        
         this.state.imgWidth = window.innerWidth;
@@ -77,7 +87,7 @@ class ImageLoader extends React.Component {
             
                 ctx.drawImage(base_image, this.state.chgWidth, this.state.chgHeight, this.state.imgWidth , this.state.imgHeight);
             
-            if(this.props.isZoom[this.props.scriptPage].zoom) {
+            if(this.props.isZoom[this.props.scriptPage].zoom && (!this.state.xDone || !this.state.yDone)) {
                 this.setState({
                     currentX : this.props.isZoom[this.props.scriptPage].xPosition,
                     currentY : this.props.isZoom[this.props.scriptPage].yPosition,
@@ -118,7 +128,7 @@ class ImageLoader extends React.Component {
                 });
             }
                 
-        }
+        }else this.setState({xDone : true})
        
         
 
@@ -134,7 +144,7 @@ class ImageLoader extends React.Component {
                 });
             }
                 
-        }
+        }else this.setState({yDone : true})
         
         
        
@@ -171,9 +181,9 @@ class ImageLoader extends React.Component {
     render(){
 
         return (
-                <div style ={{width : window.innerWidth, height : window.innerHeight * 0.85, left : 0, top : 0, padding : 0}}>
-                    <canvas ref="canvas" width={window.innerWidth} height={window.innerHeight*0.85}/>
-                </div>
+            <Resizable onResize={this.onResize}> 
+                <canvas ref="canvas" width={this.state.width} height={this.state.height * 0.85}/>   
+            </Resizable>
         );
     }
 }

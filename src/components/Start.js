@@ -12,15 +12,15 @@ class Start extends React.Component {
 
         super(props);
         this.state = {
-            width: window.innerWidth,
-            height: window.innerHeight
+            width: window.innerWidth * 0.99,
+            height: window.innerHeight * 0.98
         }
         this.onResize = this.onResize.bind(this);
   }
     onResize() {
             this.setState({
-                width: window.innerWidth,
-                height: window.innerHeight
+                width: window.innerWidth * 0.99,
+                height: window.innerHeight * 0.98
             })
 
         }  
