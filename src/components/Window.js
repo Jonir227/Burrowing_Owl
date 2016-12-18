@@ -3,7 +3,7 @@ import ImageLoader from './ImageLoader';
 import LetterBox from './LetterBox';
 import JsonData from './subtitle.json';
 import VoicePlayer from './voicePlayer';
-
+import Resizable from 'react-component-resizable'
 export default class Window extends React.Component {
 
   constructor(props){
@@ -13,12 +13,22 @@ export default class Window extends React.Component {
       max : JsonData.HeungbooNolboo.page,
       scriptPage : 0,
       scriptDone : false,
-      isMuted: false
+      isMuted: false,
+      width: window.innerWidth,
+      height: window.innerHeight
     }
+    this.onResize = this.onResize.bind(this);
     this.nextScript = this.nextScript.bind(this);
     this.prevScript = this.prevScript.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
+  }
+  onResize() {
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight
+    })
+
   }
   nextScript(){
     this.setState({scriptPage : this.state.scriptPage + 1})
@@ -47,7 +57,7 @@ export default class Window extends React.Component {
   
   render(){
     return (
-      <div>
+      <div style = {{width : this.state.width, height : this.state.height}}>
         <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}
                      isZoom = {JsonData.HeungbooNolboo.data[this.state.page].isZoom}
                      scriptPage = {this.state.scriptPage}

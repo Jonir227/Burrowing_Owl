@@ -106,7 +106,7 @@ export default class LetterBox extends React.Component {
       return (
         <Modal isOpen={this.state.quizVisible}
               style={quizStyles}>
-          <div style = {{ background : 'url('+'./image/image3.png' +')', backgroundSize : 'cover', width : '100%', height : '100%', location : 'absolute'}}>
+          <div style = {{ background : 'url('+'./image/3.svg' +')', backgroundSize : 'cover', width : '100%', height : '100%', location : 'absolute'}}>
             <img src = './image/closeIcon.svg'
                 onClick = {()=>{
                   this.setState({quizVisible: false});
@@ -173,7 +173,7 @@ export default class LetterBox extends React.Component {
   render() {
 
     return (
-      <div>
+      <div style = {{ height : window.innerHeight * 0.15}}>
         <img style = {{ width : window.innerWidth * 0.1, height : window.innerHeight * 0.12, position : 'absolute'}} src = {narrationImg[this.props.narration]}/>
         <div style = {styles.boxStyle}>
           <Motion defaultStyle={{opacity: 0, fontSize : 60, color : 'white', textAlign: 'center'}} style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 50, color : 'white', textAlign: 'center'}}>
@@ -183,7 +183,7 @@ export default class LetterBox extends React.Component {
           </Motion>
           <button style = {styles.buttonStyleRight} onClick = {()=>{
 
-            if(this.props.page == 2){
+            if(this.props.page == 16){
 
               this.toggleModalVisible();
             }
