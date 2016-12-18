@@ -3,22 +3,11 @@ import ImageLoader from './ImageLoader';
 import LetterBox from './LetterBox';
 import JsonData from './subtitle.json';
 import VoicePlayer from './voicePlayer';
+import Resizable from 'react-component-resizable'
 import Modal from 'react-modal';
 import AvoidBat from './avoidBat';
 import Game2 from './game2';
 import Draggame from './Draggame';
-
-const customStyles = {
-  content : {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: 100
-  }
-};
 
 export default class Window extends React.Component {
   constructor(props){
@@ -29,6 +18,10 @@ export default class Window extends React.Component {
       scriptPage : 0,
       scriptDone : false,
       isMuted: false,
+
+      width: window.innerWidth,
+      height: window.innerHeight
+
       messageBoxVisible: false,
       gameVisible: true,
       currentGame: ()=><AvoidBat setGameSuccess = {this.setGameSuccess}
@@ -36,6 +29,7 @@ export default class Window extends React.Component {
       gameDone: false,
       gameSuccess: false
     }
+    this.onResize = this.onResize.bind(this);
     this.nextScript = this.nextScript.bind(this);
     this.prevScript = this.prevScript.bind(this);
     this.nextPage = this.nextPage.bind(this);
@@ -44,6 +38,13 @@ export default class Window extends React.Component {
     this.renderMessageBox = this.renderMessageBox.bind(this);
     this.setGameDone = this.setGameDone.bind(this);
     this.setGameSuccess = this.setGameSuccess.bind(this);
+  }
+  onResize() {
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight
+    })
+
   }
 
   nextScript(){
@@ -115,7 +116,7 @@ export default class Window extends React.Component {
 
   render(){
     return (
-      <div>
+      <div style = {{width : this.state.width, height : this.state.height}}>
         <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}
                      isZoom = {JsonData.HeungbooNolboo.data[this.state.page].isZoom}
                      scriptPage = {this.state.scriptPage}
@@ -125,18 +126,18 @@ export default class Window extends React.Component {
                    scriptDone = {this.state.scriptDone}
                    nextScript = {this.nextScript}
                    prevScript = {this.prevScript}
+                   narration = {JsonData.HeungbooNolboo.data[this.state.page].script[this.state.scriptPage][1]}
                    page = {this.state.page}
                    nextPage = {this.nextPage}
                    prevPage = {this.prevPage}/>
         <VoicePlayer audioSrc = './audio/zeze.mp3'
                      onPause = {this.state.isMuted}/>
-        <button onClick = {() => {
-          this.setState({isMuted: !this.state.isMuted})
-        }}>
           <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
+
                 style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
         </button>
         {this.state.gameVisible && this.renderGame()}
+
       </div>
     )
   }
