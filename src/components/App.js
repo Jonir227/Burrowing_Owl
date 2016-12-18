@@ -15,7 +15,6 @@ class App extends React.Component {
         var divStyle = {
          location:'absolute',
          margin : 'hidden'
-
         }
 
       return (
@@ -27,7 +26,6 @@ class App extends React.Component {
                 <Match pattern = "/Game" component = {Game}/>
                 <Match pattern = "/Game2" component = {Game2}/>
                 <Match pattern = "/GameContainer/:name" component = {GameContainer}/>
-
             </div>
         </Router>
         )

@@ -1,12 +1,7 @@
 import React, { PropType } from 'react';
 import JsonData from './subtitle.json';
 
-const styles = {
-    canvasStyle: {
-            width:  '100%',
-            height: '85%'
-    }
-}
+
 
 class ImageLoader extends React.Component {
     constructor(props){
@@ -21,7 +16,9 @@ class ImageLoader extends React.Component {
             currentRatio : 1,
             zoomDone : false,
             prevX : 0,
-            prevY : 0
+            prevY : 0,
+            xDone : false,
+            yDone : false
         }
 
         
@@ -39,9 +36,13 @@ class ImageLoader extends React.Component {
     componentWillReceiveProps(nextProps)
     {
 
+        this.state.xDone = false;
+        this.state.yDone = false;
+
         if(this.props.image === nextProps.image){
             this.state.prevX = this.state.chgWidth;
             this.state.prevY = this.state.chgHeight;
+            
             return;
         }
 
@@ -69,14 +70,14 @@ class ImageLoader extends React.Component {
         var base_image = new Image();
         
         base_image.src = this.props.image;
-
+       
         base_image.onload = function(){
         
             base_image.src = this.props.image;
-
-            ctx.drawImage(base_image, this.state.chgWidth, this.state.chgHeight, this.state.imgWidth , this.state.imgHeight);
             
-            if(this.props.isZoom[this.props.scriptPage].zoom /*&& !this.state.zoomDone*/){
+                ctx.drawImage(base_image, this.state.chgWidth, this.state.chgHeight, this.state.imgWidth , this.state.imgHeight);
+            
+            if(this.props.isZoom[this.props.scriptPage].zoom) {
                 this.setState({
                     currentX : this.props.isZoom[this.props.scriptPage].xPosition,
                     currentY : this.props.isZoom[this.props.scriptPage].yPosition,
@@ -84,14 +85,14 @@ class ImageLoader extends React.Component {
                 })
                 this.zoomImage(this.props.isZoom[this.props.scriptPage].xPosition,this.props.isZoom[this.props.scriptPage].yPosition,this.props.isZoom[this.props.scriptPage].ratio);
             }
-            else{
+            else if(!this.props.isZoom[this.props.scriptPage].zoom){
               this.zoomoutImage(this.state.currentX,this.state.currentY,this.state.currentRatio)
 
             }
         }.bind(this);
-
-
     }
+
+    
 
     zoomImage(xPosition, yPosition, ratio){
         /*
@@ -118,6 +119,8 @@ class ImageLoader extends React.Component {
             }
                 
         }
+       
+        
 
         if(Math.floor(this.state.chgHeight) != Math.floor(-yPosition*window.innerHeight/1080*0.85)){
             if(this.state.chgHeight > -yPosition*window.innerHeight/1080*0.85){
@@ -132,6 +135,7 @@ class ImageLoader extends React.Component {
             }
                 
         }
+        
         
        
         
@@ -167,7 +171,9 @@ class ImageLoader extends React.Component {
     render(){
 
         return (
-                <canvas style = {styles.canvasStyle} ref="canvas" width={window.innerWidth} height={window.innerHeight*0.85}/>
+                <div style ={{width : window.innerWidth, height : window.innerHeight * 0.85, left : 0, top : 0, padding : 0}}>
+                    <canvas ref="canvas" width={window.innerWidth} height={window.innerHeight*0.85}/>
+                </div>
         );
     }
 }
