@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 import JsonData from './subtitle.json';
 import {Motion, spring, presets, precision} from 'react-motion';
 import Modal from 'react-modal';
-import MessageBox from './messageBox';
 const defaultConfig = {
   stiffness: 40
 };
@@ -43,17 +42,6 @@ const styles = {
   }
 };
 
-const customStyles = {
-  content : {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: 100
-  }
-};
 
 const quizStyles = {
   content : {
@@ -69,9 +57,7 @@ export default class LetterBox extends React.Component {
     super(props);
     this.state = {
       isDispeared: false,
-      modalVisible: false,
-
-      quizVisible: true,
+      quizVisible: false,
       answer: '',
       rightAnswer: '흥부와놀부',
       scriptn: 0
@@ -85,19 +71,6 @@ export default class LetterBox extends React.Component {
 
   toggleModalVisible(){
     this.setState({modalVisible: !this.state.modalVisible});
-  }
-
-  renderModal(){
-    return (
-
-
-      <MessageBox boxVisible={this.state.modalVisible}
-                  customStyles={customStyles}
-                  isLink = {true}
-                  title = '미니게임을 진행하시겠습니까?'
-                  path = './GameContainer/Game'
-                  rightButtonEvent={this.toggleModalVisible}/>
-    )
   }
 
   renderQuiz(){
@@ -165,6 +138,7 @@ export default class LetterBox extends React.Component {
     );
   }
 
+
   render() {
 
     return (
@@ -210,7 +184,6 @@ export default class LetterBox extends React.Component {
             <button style = {styles.buttonStyleLeft}>menu</button>
           </Link>
         </div>
-        {this.state.modalVisible && this.renderModal()}
         {this.state.quizVisible && this.renderQuiz()}
       </div>
     );

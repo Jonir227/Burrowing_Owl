@@ -1,6 +1,5 @@
 import React, { PropType } from 'react';
 import { Draggable, Droppable } from 'react-drag-and-drop';
-var ImageList = require('react-image-list');
 
 export default class Draggame extends React.Component {
     constructor(props){
@@ -19,7 +18,6 @@ export default class Draggame extends React.Component {
             index3: false,
             index4: false,
             isGoal: false,
-
             count: 0
         }
         this.seedDropped = this.seedDropped.bind(this);
@@ -54,7 +52,6 @@ export default class Draggame extends React.Component {
            this.state.count += 1;
            this.setState({count: this.state.count})
        }
-       console.log(this.state.count);
        if (this.state.count == 4) {
            this.setState({message: "다 넣었구나! 다음 이야기로 넘어가보자!"})
        }
@@ -153,7 +150,7 @@ export default class Draggame extends React.Component {
                <img src='./seedimage/seed1.png' style={seed1}/>
              </Droppable>
             </div>
-            
+
             <Droppable style ={SeedHole2}
                        types={['seed2']}
                        onDrop={this.seedDropped.bind(this)}>
@@ -174,7 +171,7 @@ export default class Draggame extends React.Component {
             <div>
              <table style={seedBox}>
               <tr>
-               { (this.state.opacity) ? 
+               { (this.state.opacity) ?
                <td style={{width: 90}}> <Draggable type="seed1" data="1"
                                             onMouseEnter={()=> {
                                                 this.setState({index: true, cursor: 'pointer'})
