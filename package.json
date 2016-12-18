@@ -29,6 +29,7 @@
     "react": "^15.3.2",
     "react-component-resizable": "^1.1.0-rc1",
     "react-dom": "^15.3.2",
+    "react-drag-and-drop": "^2.2.0",
     "react-modal": "^1.6.3",
     "react-motion": "^0.4.5",
     "react-router": "^4.0.0-alpha.4"

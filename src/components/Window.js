@@ -8,7 +8,17 @@ import Modal from 'react-modal';
 import AvoidBat from './avoidBat';
 import Game2 from './game2';
 import Draggame from './Draggame';
-
+const customStyles = {
+   content : {
+     top: '50%',
+     left: '50%',
+     right: 'auto',
+     bottom: 'auto',
+     marginRight: '-50%',
+     transform: 'translate(-50%, -50%)',
+     zIndex: 100
+   }
+ };
 export default class Window extends React.Component {
   constructor(props){
     super(props);
@@ -20,7 +30,7 @@ export default class Window extends React.Component {
       isMuted: false,
 
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight,
 
       messageBoxVisible: false,
       gameVisible: true,
@@ -135,7 +145,7 @@ export default class Window extends React.Component {
           <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
 
                 style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
-        </button>
+        
         {this.state.gameVisible && this.renderGame()}
 
       </div>
