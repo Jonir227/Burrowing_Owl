@@ -35,7 +35,7 @@ class ImageLoader extends React.Component {
     }
     componentWillReceiveProps(nextProps)
     {
-
+        this.updateCanvas();
         this.state.xDone = false;
         this.state.yDone = false;
 
@@ -69,27 +69,25 @@ class ImageLoader extends React.Component {
         const ctx = this.refs.canvas.getContext('2d');
         var base_image = new Image();
         
-        base_image.src = this.props.image;
-       
-        base_image.onload = function(){
-        
-            base_image.src = this.props.image;
-            
-                ctx.drawImage(base_image, this.state.chgWidth, this.state.chgHeight, this.state.imgWidth , this.state.imgHeight);
-            
-            if(this.props.isZoom[this.props.scriptPage].zoom) {
-                this.setState({
-                    currentX : this.props.isZoom[this.props.scriptPage].xPosition,
-                    currentY : this.props.isZoom[this.props.scriptPage].yPosition,
-                    currentRatio : this.props.isZoom[this.props.scriptPage].ratio
-                })
-                this.zoomImage(this.props.isZoom[this.props.scriptPage].xPosition,this.props.isZoom[this.props.scriptPage].yPosition,this.props.isZoom[this.props.scriptPage].ratio);
-            }
-            else if(!this.props.isZoom[this.props.scriptPage].zoom){
-              this.zoomoutImage(this.state.currentX,this.state.currentY,this.state.currentRatio)
+        let interval = setInterval(()=>{
+                base_image.src = this.props.image;
+                base_image.onload = function(){     
+                    ctx.drawImage(base_image, this.state.chgWidth, this.state.chgHeight, this.state.imgWidth , this.state.imgHeight);
+                
+                    if(this.props.isZoom[this.props.scriptPage].zoom) {
+                        this.setState({
+                            currentX : this.props.isZoom[this.props.scriptPage].xPosition,
+                            currentY : this.props.isZoom[this.props.scriptPage].yPosition,
+                            currentRatio : this.props.isZoom[this.props.scriptPage].ratio
+                        })
+                        this.zoomImage(this.props.isZoom[this.props.scriptPage].xPosition,this.props.isZoom[this.props.scriptPage].yPosition,this.props.isZoom[this.props.scriptPage].ratio);
+                    }
+                    else if(!this.props.isZoom[this.props.scriptPage].zoom){
+                    this.zoomoutImage(this.state.currentX,this.state.currentY,this.state.currentRatio)
 
-            }
-        }.bind(this);
+                }
+        }.bind(this)},1000/60);
+        
     }
 
     
@@ -119,8 +117,6 @@ class ImageLoader extends React.Component {
             }
                 
         }
-       
-        
 
         if(Math.floor(this.state.chgHeight) != Math.floor(-yPosition*window.innerHeight/1080*0.85)){
             if(this.state.chgHeight > -yPosition*window.innerHeight/1080*0.85){

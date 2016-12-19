@@ -49,8 +49,11 @@ export default class AvoidBat extends React.Component {
   }
 
   toggleBusy() {
+    let score = this.state.time[6] * 10 + this.state.time[7] * 1;
     this.setState({busy: false});
     this.props.setGameDone();
+    this.props.setScore(score);
+    if(score >= 5) this.props.setGameSuccess();
   }
   keyboardListener(event) {
     if (event.keyCode === 37) {
