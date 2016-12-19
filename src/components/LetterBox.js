@@ -5,7 +5,7 @@ import {Motion, spring, presets, precision} from 'react-motion';
 import Modal from 'react-modal';
 
 const defaultConfig = {
-  stiffness: 40
+  stiffness: 70
 };
 const narrationImg = ['./image/owl.png','./image/hb.jpg','./image/nb.jpg']
 const option = ['공', '기', '라', '하', '메', '흥', '놀', '갈', '메', '양', '부', '와', '고', '무', '랄', '행', '연', '강', '현', '수'];
