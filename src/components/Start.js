@@ -33,7 +33,7 @@ class Start extends React.Component {
                         
                         <img    src='./image/1.png' style = {{ width: this.state.width, height: this.state.height}}/>
                         <img src = './image/title.png' style = {{position: 'absolute', top: this.state.height * 0.27, left: this.state.width * 0.4, width : this.state.width * 0.2, height : this.state.height * 0.13 }}/>
-                        <Link to = "/Main">
+                        <Link to = "/Draggame">
                             <div>
                                 <img src = './image/start.png' style = {{position : 'absolute', top :  this.state.height * 0.7, left: this.state.width * 0.52, width : this.state.width * 0.1}}/>
                             </div>
