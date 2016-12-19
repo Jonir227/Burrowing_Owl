@@ -1,17 +1,6 @@
-
 import React, { PropType } from 'react';
 import Resizable from 'react-component-resizable';
-const btnUrl = [['./image/game2/btn1.png',true]
-                ,['./image/game2/btn2.png',false]
-                ,['./image/game2/btn3.png',true]
-                ,['./image/game2/btn4.png',false]
-                ,['./image/game2/btn5.png',false]
-                ,['./image/game2/btn6.png',true]
-                ,['./image/game2/btn7.png',false]
-                ,['./image/game2/btn8.png',false]
-                ,['./image/game2/btn9.png',false]];
-
-export default class Game2 extends React.Component{
+export default class CureSwallow extends React.Component{
 
 
     constructor(props){
@@ -24,12 +13,22 @@ export default class Game2 extends React.Component{
             width : window.innerWidth,
             height : window.innerHeight
         }
-        
+
         this.renderBtn = this.renderBtn.bind(this);
         this.renderOX = this.renderOX.bind(this);
         this.renderCorrectImg = this.renderCorrectImg.bind(this);
         this.renderText = this.renderText.bind(this);
         this.onResize = this.onResize.bind(this);
+        this.btnUrl = [['./image/game2/btn1.png',true]
+                        ,['./image/game2/btn2.png',false]
+                        ,['./image/game2/btn3.png',true]
+                        ,['./image/game2/btn4.png',false]
+                        ,['./image/game2/btn5.png',false]
+                        ,['./image/game2/btn6.png',true]
+                        ,['./image/game2/btn7.png',false]
+                        ,['./image/game2/btn8.png',false]
+                        ,['./image/game2/btn9.png',false]];
+
     }
     onResize() {
         this.setState({
@@ -42,30 +41,30 @@ export default class Game2 extends React.Component{
     }
     renderBtn(styles){
         return(
-            <div>{btnUrl.map((value,i)=>{
+            <div>{this.btnUrl.map((value,i)=>{
                 return(
-                    <img src = {btnUrl[i][0]} style ={styles.imgStyle}
+                    <img src = {this.btnUrl[i][0]} style ={styles.imgStyle}
                     onClick = {()=>{
                         this.setState({
-                            status : btnUrl[i][1],
-                            selectImg : btnUrl[i][0]
+                            status : this.btnUrl[i][1],
+                            selectImg : this.btnUrl[i][0]
                         })
-                        if(btnUrl[i][1]){
-                            btnUrl.splice(i,1);
-                            this.setState({correctCount : this.state.correctCount + 1});
+                        if(this.btnUrl[i][1]){
+                          if(this.state.correctCount == this.state.correctNum - 1) {
+                            this.setState({status : "done"});
+                            this.props.setGameDone();
+                            this.props.setGameSuccess();
+                            this.props.setScore(-1);
+                          }
+                          this.btnUrl.splice(i,1);
+                          this.setState({correctCount : this.state.correctCount + 1});
                         }
-
                     }}/>
                 );
             })}</div>
         )
     }
     renderText(styles){
-      
-        
-        if(this.state.correctCount == this.state.correctNum)
-                this.setState({status : "done"});
-
         if(this.state.status == "start")
             return <h1 style = {styles.textStyle}>알맞은 도구를 클릭 해봐!</h1>
         else if(this.state.status == "done")
@@ -78,7 +77,7 @@ export default class Game2 extends React.Component{
     renderCorrectImg(styles){
         if(this.state.status != "start")
             return <img src = {this.state.selectImg} style = {styles.correctImgStyle}/>
-        else   
+        else
             return <img src = './image/game2/selectImg.png' style = {styles.correctImgStyle}/>
     }
     renderOX(styles){
@@ -87,7 +86,7 @@ export default class Game2 extends React.Component{
                 return  <img src = './image/game2/o.png' style = {styles.correctImgStyle}/>
             else if(!this.state.status)
                 return  <img src = './image/game2/x.png' style = {styles.correctImgStyle}/>
-                
+
     }
 
     render(){
@@ -141,6 +140,6 @@ export default class Game2 extends React.Component{
 
 
 }
-Game2.defaultProps = {
+CureSwallow.defaultProps = {
     image : './image/image6.png'
 };
