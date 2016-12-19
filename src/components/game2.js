@@ -1,3 +1,4 @@
+
 import React, { PropType } from 'react';
 import Resizable from 'react-component-resizable';
 const btnUrl = [['./image/game2/btn1.png',true]
@@ -22,6 +23,7 @@ export default class Game2 extends React.Component{
             selectImg : null,
             width : window.innerWidth * 0.99,
             height : window.innerHeight * 0.98
+
         }
         
         this.renderBtn = this.renderBtn.bind(this);
@@ -30,14 +32,13 @@ export default class Game2 extends React.Component{
         this.renderText = this.renderText.bind(this);
         this.onResize = this.onResize.bind(this);
     }
-    componentDidMount(){
-        
-    }
+
     onResize() {
         this.setState({
-            width: window.innerWidth * 0.99,
-            height: window.innerHeight * 0.98
+            width: window.innerWidth,
+            height: window.innerHeight
         })
+
 
     }
     renderBtn(styles){

@@ -21,9 +21,8 @@ const customStyles = {
      zIndex: 100
    }
  };
- 
-export default class Window extends React.Component {
 
+export default class Window extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -33,13 +32,13 @@ export default class Window extends React.Component {
       scriptDone : false,
       isMuted: false,
 
-
       width: window.innerWidth * 0.99,
       height: window.innerHeight * 0.98,
 
       messageBoxVisible: false,
       gameVisible: true,
       currentGame: ()=><Game2 setGameSuccess = {this.setGameSuccess}
+
                                  setGameDone = {this.setGameDone}/>,
       gameDone: false,
       gameSuccess: false
@@ -59,16 +58,17 @@ export default class Window extends React.Component {
     this.setState({
       width: window.innerWidth * 0.99,
       height: window.innerHeight * 0.98
+
     })
 
   }
+
   nextScript(){
     this.setState({scriptPage : this.state.scriptPage + 1})
-   
   }
+
   prevScript(){
     this.setState({scriptPage : this.state.scriptPage - 1})
-    
   }
   nextPage(){
     if(this.state.page == this.state.max - 1) return;
@@ -98,9 +98,10 @@ export default class Window extends React.Component {
 
   renderGame() {
     let NewGame = this.state.currentGame;
+
     return (
       <Modal isOpen={this.state.gameVisible}>
-        {<this.state.currentGame/>}
+        <this.state.currentGame/>
         <button onClick = {() => {
           this.setState({gameVisible: false});
         }}> close </button>
@@ -133,34 +134,30 @@ export default class Window extends React.Component {
 
   render(){
     return (
-      <Resizable onResize={this.onResize}>
-        <div style = {{width : this.state.width, height : this.state.height}}>
-          <Link to = "/Main">
-              <img src = './image/home.png' style = {{left : 0, top : 0, width : this.state.width * 0.05, height : this.state.height * 0.05, position : 'absolute'}}/>
-          </Link>
-          <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}
-                      isZoom = {JsonData.HeungbooNolboo.data[this.state.page].isZoom}
-                      scriptPage = {this.state.scriptPage}
-                      />
-          <LetterBox script = {JsonData.HeungbooNolboo.data[this.state.page].script}
-                    scriptPage = {this.state.scriptPage}
-                    scriptDone = {this.state.scriptDone}
-                    nextScript = {this.nextScript}
-                    prevScript = {this.prevScript}
-                    narration = {JsonData.HeungbooNolboo.data[this.state.page].script[this.state.scriptPage][1]}
-                    page = {this.state.page}
-                    nextPage = {this.nextPage}
-                    prevPage = {this.prevPage}/>
-          <VoicePlayer audioSrc = './audio/zeze.mp3'
-                      onPause = {this.state.isMuted}/>
-            <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
+      <div style = {{width : this.state.width, height : this.state.height}}>
+        <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}
+                     isZoom = {JsonData.HeungbooNolboo.data[this.state.page].isZoom}
+                     scriptPage = {this.state.scriptPage}
+                     />
+        <LetterBox script = {JsonData.HeungbooNolboo.data[this.state.page].script}
+                   scriptPage = {this.state.scriptPage}
+                   scriptDone = {this.state.scriptDone}
+                   nextScript = {this.nextScript}
+                   prevScript = {this.prevScript}
+                   narration = {JsonData.HeungbooNolboo.data[this.state.page].script[this.state.scriptPage][1]}
+                   page = {this.state.page}
+                   nextPage = {this.nextPage}
+                   prevPage = {this.prevPage}/>
+        <VoicePlayer audioSrc = './audio/zeze.mp3'
+                     onPause = {this.state.isMuted}/>
+          <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
 
-                  style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
-          
-          {this.state.gameVisible && this.renderGame()}
+                style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
+        
+        {this.state.gameVisible && this.renderGame()}
 
-        </div>
-      </Resizable>
+      </div>
+
     )
   }
 }

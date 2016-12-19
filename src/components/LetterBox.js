@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 import JsonData from './subtitle.json';
 import {Motion, spring, presets, precision} from 'react-motion';
 import Modal from 'react-modal';
+
 import Resizable from 'react-component-resizable'
+
 
 
 const defaultConfig = {
@@ -12,18 +14,6 @@ const defaultConfig = {
 const narrationImg = ['./image/owl.png','./image/hb.jpg','./image/nb.jpg']
 const option = ['공', '기', '라', '하', '메', '흥', '놀', '갈', '메', '양', '부', '와', '고', '무', '랄', '행', '연', '강', '현', '수'];
 
-
-const customStyles = {
-  content : {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: 100
-  }
-};
 
 const quizStyles = {
   content : {
@@ -39,15 +29,14 @@ export default class LetterBox extends React.Component {
     super(props);
     this.state = {
       isDispeared: false,
-      modalVisible: false,
-
-      quizVisible: true,
+      quizVisible: false,
       answer: '',
       rightAnswer: '흥부와놀부',
       scriptn: 0,
       narrationImg : './image/image1.png',
       width : window.innerWidth * 0.99,
       height : window.innerHeight * 0.98
+
 
     }
     this.toggleModalVisible = this.toggleModalVisible.bind(this);
@@ -67,19 +56,6 @@ export default class LetterBox extends React.Component {
     this.setState({modalVisible: !this.state.modalVisible});
   }
 
-  renderModal(){
-    return (
-
-
-      <MessageBox boxVisible={this.state.modalVisible}
-                  customStyles={customStyles}
-                  isLink = {true}
-                  title = '미니게임을 진행하시겠습니까?'
-                  path = './GameContainer/Game'
-                  rightButtonEvent={this.toggleModalVisible}/>
-    )
-  }
-
   renderQuiz(){
     
       var x = this.state.width;
@@ -94,6 +70,7 @@ export default class LetterBox extends React.Component {
                 }}
                 style= {{width: 50, height: 50}}/>
             <h1 style = {{textAlign: 'center',position : 'absolute', top : 0, left : this.state.width * 0.25, width : this.state.width * 0.5, 
+
                           background : 'white', borderWidth : 1, borderColor : 'black',borderStyle : 'solid',fontSize : 40}}>Quiz: 이 동화의 제목은 무엇일까요?</h1>
             <button style = {{position: 'absolute', left: x * 0.4, top : y * 0.1, width : x * 0.03,height : y * 0.06, background : 'url('+'./image/backSpace.png'+')', backgroundSize : 'cover', backgroundColor : 'white',
                               borderWidth : 1, borderColor : 'black',borderStyle : 'solid'}}
@@ -151,6 +128,7 @@ export default class LetterBox extends React.Component {
     );
   }
 
+
   render() {
 
     var styles = {
@@ -180,7 +158,7 @@ export default class LetterBox extends React.Component {
           height : this.state.height * 0.05
         }
   };
-    var space = "     ";
+
     return (
       <Resizable onResize={this.onResize}>
         <div style = {{ width : this.state.width, height : this.state.height * 0.12}}>
@@ -190,6 +168,7 @@ export default class LetterBox extends React.Component {
                     style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : 'white', marginLeft : '5%', marginTop : '1.5%', fontWeight: 'bold'}}>
               {interpolatingStyle =>
                 <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0]}</div>
+
               }
             </Motion>
             <button style = {styles.buttonStyleRight} onClick = {()=>{
@@ -226,9 +205,6 @@ export default class LetterBox extends React.Component {
           </div>
           {this.state.quizVisible && this.renderQuiz()}
         </div>
-
-       
-
       </Resizable>
 
     );

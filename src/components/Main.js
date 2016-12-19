@@ -11,6 +11,7 @@ class Main extends React.Component {
             visibility : 'hidden',
             width : window.innerWidth * 0.99,
             height : window.innerHeight * 0.98,
+
         };
         this.buttonChange = this.buttonChange.bind(this);
         this.onResize = this.onResize.bind(this);
@@ -25,6 +26,7 @@ class Main extends React.Component {
         this.setState({
             width: window.innerWidth * 0.99,
             height: window.innerHeight * 0.98
+
         })
 
     }

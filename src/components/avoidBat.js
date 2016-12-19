@@ -44,17 +44,13 @@ export default class AvoidBat extends React.Component {
     this.setState({time: newTime});
   }
 
-  componentWillUnmount(){
-    window.removeEventListener('keydown', this.keyboardListener);
-    clearInterval(clockTimer);
-  }
-
   componentWillUpdate(nextProps, nextState) {
     if(!nextState.busy) window.removeEventListener('keydown', this.keyboardListener);
   }
 
   toggleBusy() {
     this.setState({busy: false});
+    this.props.setGameDone();
   }
   keyboardListener(event) {
     if (event.keyCode === 37) {

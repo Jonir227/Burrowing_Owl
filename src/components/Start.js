@@ -14,6 +14,7 @@ class Start extends React.Component {
         this.state = {
             width: window.innerWidth * 0.99,
             height: window.innerHeight * 0.98
+
         }
         this.onResize = this.onResize.bind(this);
   }
@@ -21,6 +22,7 @@ class Start extends React.Component {
             this.setState({
                 width: window.innerWidth * 0.99,
                 height: window.innerHeight * 0.98
+
             })
 
         }  

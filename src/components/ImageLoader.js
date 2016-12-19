@@ -22,6 +22,7 @@ class ImageLoader extends React.Component {
             yDone : false,
             width : window.innerWidth * 0.99,
             height : window.innerHeight * 0.98
+
         }
 
         
@@ -88,6 +89,7 @@ class ImageLoader extends React.Component {
                 ctx.drawImage(base_image, this.state.chgWidth, this.state.chgHeight, this.state.imgWidth , this.state.imgHeight);
             
             if(this.props.isZoom[this.props.scriptPage].zoom && (!this.state.xDone || !this.state.yDone)) {
+
                 this.setState({
                     currentX : this.props.isZoom[this.props.scriptPage].xPosition,
                     currentY : this.props.isZoom[this.props.scriptPage].yPosition,
@@ -127,8 +129,8 @@ class ImageLoader extends React.Component {
                     chgWidth : this.state.chgWidth + xPosition*(window.innerWidth - this.state.prevX)/1920/1000
                 });
             }
-                
         }else this.setState({xDone : true})
+
        
         
 
@@ -145,6 +147,7 @@ class ImageLoader extends React.Component {
             }
                 
         }else this.setState({yDone : true})
+        
         
         
        
@@ -184,6 +187,7 @@ class ImageLoader extends React.Component {
             <Resizable onResize={this.onResize}> 
                 <canvas ref="canvas" width={this.state.width} height={this.state.height * 0.85}/>   
             </Resizable>
+
         );
     }
 }
