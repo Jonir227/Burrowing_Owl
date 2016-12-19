@@ -93,7 +93,7 @@ export default class LetterBox extends React.Component {
                   this.setState({quizVisible: false});
                 }}
                 style= {{width: 50, height: 50}}/>
-            <h1 style = {{textAlign: 'center',position : 'absolute', top : 0, left : x * 0.25, width : x * 0.5, 
+            <h1 style = {{textAlign: 'center',position : 'absolute', top : 0, left : this.state.width * 0.25, width : this.state.width * 0.5, 
                           background : 'white', borderWidth : 1, borderColor : 'black',borderStyle : 'solid',fontSize : 40}}>Quiz: 이 동화의 제목은 무엇일까요?</h1>
             <button style = {{position: 'absolute', left: x * 0.4, top : y * 0.1, width : x * 0.03,height : y * 0.06, background : 'url('+'./image/backSpace.png'+')', backgroundSize : 'cover', backgroundColor : 'white',
                               borderWidth : 1, borderColor : 'black',borderStyle : 'solid'}}
