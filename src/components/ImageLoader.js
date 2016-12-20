@@ -103,7 +103,6 @@ class ImageLoader extends React.Component {
 
        if(this.state.xDone && this.state.yDone)
             clearInterval(this.interval)
-       
     }
 
     
@@ -133,8 +132,7 @@ class ImageLoader extends React.Component {
             }
         }
 
-       
-        
+  
         if(Math.abs(this.state.chgHeight - -yPosition*this.state.height/1080*0.85) <= 1) this.setState({yDone : true})
         else if(Math.floor(this.state.chgHeight) != Math.floor(-yPosition*this.state.height/1080*0.85)){
             if(this.state.chgHeight > -yPosition*this.state.height/1080*0.85){

@@ -58,7 +58,7 @@ export default class AvoidBat extends React.Component {
     this.props.setGameDone();
     this.props.setScore(score);
     if(score >= 5) this.props.setGameSuccess();
-    
+
   }
   keyboardListener(event) {
     if (event.keyCode === 37) {

@@ -239,9 +239,8 @@ export default class Window extends React.Component {
             <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
 
                   style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
-
           {this.state.gameVisible && this.renderGame()}
-          
+
         </div>
       </Resizable>
     )

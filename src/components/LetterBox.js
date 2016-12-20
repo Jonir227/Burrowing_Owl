@@ -9,7 +9,7 @@ import Resizable from 'react-component-resizable'
 
 
 const defaultConfig = {
-  stiffness: 40
+  stiffness: 70
 };
 const narrationImg = ['./image/부엉이.png','./image/흥부.png','./image/놀부.png','./image/흥부아내.png','./image/놀부아내.png']
 const option = ['공', '기', '라', '하', '메', '흥', '놀', '갈', '메', '양', '부', '와', '고', '무', '랄', '행', '연', '강', '현', '수'];
@@ -36,8 +36,6 @@ export default class LetterBox extends React.Component {
       narrationImg : './image/image1.png',
       width : window.innerWidth * 0.99,
       height : window.innerHeight * 0.98
-
-
     }
     this.toggleModalVisible = this.toggleModalVisible.bind(this);
     this.renderQuiz = this.renderQuiz.bind(this);
@@ -57,7 +55,6 @@ export default class LetterBox extends React.Component {
   }
 
   renderQuiz(){
-    
       var x = this.state.width;
       var y = this.state.height;
       return (
@@ -70,7 +67,6 @@ export default class LetterBox extends React.Component {
                 }}
                 style= {{width: 50, height: 50}}/>
             <h1 style = {{textAlign: 'center',position : 'absolute', top : 0, left : this.state.width * 0.25, width : this.state.width * 0.5, 
-
                           background : 'white', borderWidth : 1, borderColor : 'black',borderStyle : 'solid',fontSize : 40}}>Quiz: 이 동화의 제목은 무엇일까요?</h1>
             <button style = {{position: 'absolute', left: x * 0.4, top : y * 0.1, width : x * 0.03,height : y * 0.06, background : 'url('+'./image/backSpace.png'+')', backgroundSize : 'cover', backgroundColor : 'white',
                               borderWidth : 1, borderColor : 'black',borderStyle : 'solid'}}
@@ -130,7 +126,6 @@ export default class LetterBox extends React.Component {
 
 
   render() {
-
     var styles = {
         boxStyle: {
           background : 'black',
@@ -168,7 +163,6 @@ export default class LetterBox extends React.Component {
                     style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.5%', fontWeight: 'bold'}}>
               {interpolatingStyle =>
                 <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0]}</div>
-
               }
             </Motion>
             {!this.props.gameVisible&&<audio src={this.props.audioSrc} type='audio/mp3' autoPlay/>}
