@@ -11,7 +11,7 @@ import Resizable from 'react-component-resizable'
 const defaultConfig = {
   stiffness: 40
 };
-const narrationImg = ['./image/owl.png','./image/hb.jpg','./image/nb.jpg']
+const narrationImg = ['./image/부엉이.png','./image/흥부.png','./image/놀부.png','./image/흥부아내.png','./image/놀부아내.png']
 const option = ['공', '기', '라', '하', '메', '흥', '놀', '갈', '메', '양', '부', '와', '고', '무', '랄', '행', '연', '강', '현', '수'];
 
 
@@ -171,9 +171,10 @@ export default class LetterBox extends React.Component {
 
               }
             </Motion>
+            {!this.props.gameVisible&&<audio src={this.props.audioSrc} type='audio/mp3' autoPlay/>}
             <button style = {styles.buttonStyleRight} onClick = {()=>{
 
-              if(this.props.page == 16){
+              if(this.props.page == 20){
 
                 this.toggleModalVisible();
               }

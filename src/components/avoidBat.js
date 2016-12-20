@@ -4,11 +4,12 @@ export default class AvoidBat extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      n: 20,
-      heroPosition: 200,
+      n: 15,
+      heroPosition: window.innerWidth * 0.99 / 2 - 50,
       busy: true,
       start: 0,
-      time: ''
+      time: '',
+      recordTime : '',
     }
     this.renderHero = this.renderHero.bind(this);
     this.keyboardListener = this.keyboardListener.bind(this);
@@ -34,6 +35,7 @@ export default class AvoidBat extends React.Component {
   formatTime(time) {
     let h = 0, m = 0, s = 0, ms = 0;
   	let newTime = '';
+    let recordTime = '';
   	h = Math.floor( time / (60 * 60 * 1000) );
   	time = time % (60 * 60 * 1000);
   	m = Math.floor( time / (60 * 1000) );
@@ -41,7 +43,9 @@ export default class AvoidBat extends React.Component {
   	s = Math.floor( time / 1000 );
   	ms = time % 1000;
   	newTime = this.pad(h, 2) + ':' + this.pad(m, 2) + ':' + this.pad(s, 2) + ':' + this.pad(ms, 3);
+    recordTime = this.pad(h, 2) + ':' + this.pad(m, 2) + ':' + this.pad(s, 2);
     this.setState({time: newTime});
+    this.setState({recordTime : recordTime});
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -49,26 +53,30 @@ export default class AvoidBat extends React.Component {
   }
 
   toggleBusy() {
+    let score = this.state.time[6] * 10 + this.state.time[7] * 1;
     this.setState({busy: false});
     this.props.setGameDone();
+    this.props.setScore(score);
+    if(score >= 5) this.props.setGameSuccess();
+    
   }
   keyboardListener(event) {
     if (event.keyCode === 37) {
-      if(this.state.heroPosition >= 10) this.setState({heroPosition: this.state.heroPosition - 10})
-      else if(this.state.heroPosition > 0) this.setState({heroPosition: 0})
+      if(this.state.heroPosition >= 30) this.setState({heroPosition: this.state.heroPosition - 30})
+      else if(this.state.heroPosition >= 0) this.setState({heroPosition: 0})
     }
     if (event.keyCode === 39) {
-      if(this.state.heroPosition <= 470) this.setState({heroPosition: this.state.heroPosition + 10})
-      else if(this.state.heroPosition < 480) this.setState({heroPosition: 500})
+      if(this.state.heroPosition <= window.innerWidth * 0.99 - 30) this.setState({heroPosition: this.state.heroPosition + 30})
+      else if(this.state.heroPosition < window.innerWidth * 0.99) this.setState({heroPosition: window.innerWidth * 0.99})
     }
-    if(this.state.count >= 10) window.removeEventListener('keydown', this.keyboardListener);
+    if(this.state.count >= 30) window.removeEventListener('keydown', this.keyboardListener);
   }
 
 
   renderHero() {
     return (
-      <img src = '../image/hero1.png'
-           style = {{top:  440, left: this.state.heroPosition, width: 20, height: 60, position: 'absolute'}}/>
+      <img src = './image/game/hero.png'
+           style = {{top:  window.innerHeight * 0.98 - 150, left: this.state.heroPosition, width: 100, height: 150, position: 'absolute'}}/>
     )
   }
   render() {
@@ -80,12 +88,13 @@ export default class AvoidBat extends React.Component {
                      busy = {this.state.busy}/>)
     }
     return (
-      <div>
-        <div style = {{left: '30%', position: 'absolute', top: '10%'}}> Time: {this.state.time}</div>
-        <div style = {{background: 'green', width: 500, height: 500, position: 'absolute', top: '15%', left: '30%'}}>
+      <div style ={{width : window.innerWidth * 0.99, height : window.innerHeight * 0.98, overflow : 'hidden'}}>
+       
+        <div style = {{background: "url(" + "./image/game/background.png" + ")", width: window.innerWidth * 0.99, height: window.innerHeight * 0.98, position: 'absolute', top: 0, left: 0}}>
           {bats}
           {this.renderHero()}
         </div>
+         <div style = {{left: '3%', position: 'absolute', top: '3%'}}> Time: {this.state.time}</div>
       </div>
     );
   }
