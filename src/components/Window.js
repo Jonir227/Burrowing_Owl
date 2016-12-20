@@ -76,18 +76,17 @@ export default class Window extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 4) {
       this.setState({gameVisible: true});
-    }else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 16){
+    } else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 16){
       this.setState({gameVisible: true,
                      currentGame: ()=><AvoidBat setGameSuccess = {this.setGameSuccess}
                                                 setGameDone = {this.setGameDone}
                                                 setScroe = {this.setScroe}/>});
+    } else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
+      this.setState({gameVisible: true,
+                     currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
+                                                   setGameDone = {this.setGameDone}
+                                                   setScore = {this.setScore}/>});
     }
-    // else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
-    //   this.setState({gameVisible: true,
-    //                  currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
-    //                                                setGameDone = {this.setGameDone}
-    //                                                setScore = {this.setScore}/>});
-    // }
   }
 
   nextScript(){
@@ -160,14 +159,14 @@ export default class Window extends React.Component {
                                                               messageBoxVisible: false,
                                                               gameSuccess: false});
                }
-              // else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
-              //   this.setState({gameVisible: true,
-              //                  currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
-              //                                                setGameDone = {this.setGameDone}
-              //                                                setScore = {this.setScore}/>,
-              //                                                messageBoxVisible: false,
-              //                                                gameSuccess: false});
-              // }
+              else if(this.state.page === 7) {
+                this.setState({gameVisible: true,
+                               currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
+                                                             setGameDone = {this.setGameDone}
+                                                             setScore = {this.setScore}/>,
+                                                             messageBoxVisible: false,
+                                                             gameSuccess: false});
+              }
           }}> 예 </button>
           <button onClick = {()=>{
             if(this.state.page === 5){
@@ -182,7 +181,16 @@ export default class Window extends React.Component {
                                                               messageBoxVisible: false,
                                                               gameSuccess: false,
                                                               gameVisible: false});
+            } else if(this.state.page === 7) {
+                this.setState({gameVisible: true,
+                               currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
+                                                             setGameDone = {this.setGameDone}
+                                                             setScore = {this.setScore}/>,
+                                                             messageBoxVisible: false,
+                                                             gameSuccess: false,
+                                                             gameVisible: false});
             }
+
           }}> 아니오 </button>
           </div>
           :
@@ -201,14 +209,14 @@ export default class Window extends React.Component {
                                                             messageBoxVisible: false,
                                                             gameSuccess: false});
              }
-            // else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
-            //   this.setState({gameVisible: true,
-            //                  currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
-            //                                                setGameDone = {this.setGameDone}
-            //                                                setScore = {this.setScore}/>,
-            //                                                messageBoxVisible: false,
-            //                                                gameSuccess: false});
-            // }
+            else if(this.state.page === 6) {
+              this.setState({gameVisible: true,
+                             currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
+                                                           setGameDone = {this.setGameDone}
+                                                           setScore = {this.setScore}/>,
+                                                           messageBoxVisible: false,
+                                                           gameSuccess: false});
+            }
           }}> 다시 도전하기 </button>
           </div>
         }
