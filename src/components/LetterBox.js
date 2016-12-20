@@ -164,8 +164,8 @@ export default class LetterBox extends React.Component {
         <div style = {{ width : this.state.width, height : this.state.height * 0.12}}>
           <img style = {{ width : this.state.width * 0.1, height : this.state.height * 0.12, position : 'absolute'}} src = {narrationImg[this.props.narration]}/>
           <div style = {styles.boxStyle}>
-            <Motion defaultStyle={{opacity: 0, fontSize : 40, color : 'white', marginLeft : '5%', marginTop : '1.5%', fontWeight: 'bold'}} 
-                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : 'white', marginLeft : '5%', marginTop : '1.5%', fontWeight: 'bold'}}>
+            <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.5%', fontWeight: 'bold'}} 
+                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.5%', fontWeight: 'bold'}}>
               {interpolatingStyle =>
                 <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0]}</div>
 

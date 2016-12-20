@@ -9,7 +9,7 @@ class ImageLoader extends React.Component {
         super(props);
         this.state = {
             imgWidth : window.innerWidth * 0.99,
-            imgHeight : window.innerHeight* 0.85,
+            imgHeight : window.innerHeight * 0.98 * 0.85,
             chgWidth : 0,
             chgHeight : 0,
             currentX : 0,
@@ -46,9 +46,10 @@ class ImageLoader extends React.Component {
     }
     componentWillReceiveProps(nextProps)
     {
-
         this.state.xDone = false;
         this.state.yDone = false;
+        this.updateCanvas();
+        
 
         if(this.props.image === nextProps.image){
             this.state.prevX = this.state.chgWidth;
@@ -80,28 +81,29 @@ class ImageLoader extends React.Component {
         const ctx = this.refs.canvas.getContext('2d');
         var base_image = new Image();
         
-        base_image.src = this.props.image;
        
-        base_image.onload = function(){
-        
+        let interval = setInterval(()=>{
             base_image.src = this.props.image;
-            
+            base_image.onload = function(){  
                 ctx.drawImage(base_image, this.state.chgWidth, this.state.chgHeight, this.state.imgWidth , this.state.imgHeight);
-            
-            if(this.props.isZoom[this.props.scriptPage].zoom && (!this.state.xDone || !this.state.yDone)) {
+                
+                if(this.props.isZoom[this.props.scriptPage].zoom && (!this.state.xDone || !this.state.yDone)) {
+                    this.setState({
+                        currentX : this.props.isZoom[this.props.scriptPage].xPosition,
+                        currentY : this.props.isZoom[this.props.scriptPage].yPosition,
+                        currentRatio : this.props.isZoom[this.props.scriptPage].ratio
+                    })
+                    this.zoomImage(this.props.isZoom[this.props.scriptPage].xPosition,this.props.isZoom[this.props.scriptPage].yPosition,this.props.isZoom[this.props.scriptPage].ratio);
+                }
+                else if(!this.props.isZoom[this.props.scriptPage].zoom){
+                this.zoomoutImage(this.state.currentX,this.state.currentY,this.state.currentRatio)
 
-                this.setState({
-                    currentX : this.props.isZoom[this.props.scriptPage].xPosition,
-                    currentY : this.props.isZoom[this.props.scriptPage].yPosition,
-                    currentRatio : this.props.isZoom[this.props.scriptPage].ratio
-                })
-                this.zoomImage(this.props.isZoom[this.props.scriptPage].xPosition,this.props.isZoom[this.props.scriptPage].yPosition,this.props.isZoom[this.props.scriptPage].ratio);
-            }
-            else if(!this.props.isZoom[this.props.scriptPage].zoom){
-              this.zoomoutImage(this.state.currentX,this.state.currentY,this.state.currentRatio)
+                }
+            }.bind(this)},1000/60);
 
-            }
-        }.bind(this);
+       if(this.state.xDone && this.state.yDone)
+            clearInterval(this.interval)
+       
     }
 
     
@@ -117,45 +119,45 @@ class ImageLoader extends React.Component {
 
         })
         */
-        
-        if(Math.floor(this.state.chgWidth) != Math.floor(-xPosition*window.innerWidth/1920) ){
-            if(this.state.chgWidth > -xPosition*window.innerWidth/1920){
+        if(Math.abs(this.state.chgWidth - -xPosition*this.state.width/1920) <= 1 ) this.setState({xDone : true})
+        else if(Math.floor(this.state.chgWidth) != Math.floor(-xPosition*this.state.width/1920) ){
+            if(this.state.chgWidth > -xPosition*this.state.width/1920){
                 this.setState({
-                    chgWidth : this.state.chgWidth - xPosition*(window.innerWidth + this.state.prevX)/1920/1000
+                    chgWidth : this.state.chgWidth - xPosition*(this.state.width)/1920/1000
                 });
             }
             else{
                 this.setState({
-                    chgWidth : this.state.chgWidth + xPosition*(window.innerWidth - this.state.prevX)/1920/1000
+                    chgWidth : this.state.chgWidth + xPosition*(this.state.width)/1920/1000
                 });
             }
-        }else this.setState({xDone : true})
+        }
 
        
         
-
-        if(Math.floor(this.state.chgHeight) != Math.floor(-yPosition*window.innerHeight/1080*0.85)){
-            if(this.state.chgHeight > -yPosition*window.innerHeight/1080*0.85){
+        if(Math.abs(this.state.chgHeight - -yPosition*this.state.height/1080*0.85) <= 1) this.setState({yDone : true})
+        else if(Math.floor(this.state.chgHeight) != Math.floor(-yPosition*this.state.height/1080*0.85)){
+            if(this.state.chgHeight > -yPosition*this.state.height/1080*0.85){
                 this.setState({
-                    chgHeight : this.state.chgHeight - yPosition*(window.innerHeight*0.85 + this.state.prevY)/1080/1000
+                    chgHeight : this.state.chgHeight - yPosition*(this.state.height*0.85)/1080/1000
                 });
             }
             else{
                 this.setState({
-                    chgHeight : this.state.chgHeight + yPosition*(window.innerHeight*0.85 - this.state.prevY)/1080/1000
+                    chgHeight : this.state.chgHeight + yPosition*(this.state.height*0.85)/1080/1000
                 });
             }
                 
-        }else this.setState({yDone : true})
+        }
         
         
         
        
         
-        if(this.state.imgWidth <= window.innerWidth*ratio || this.state.imgHeight <= window.innerHeight*ratio*0.85){
+        if(this.state.imgWidth <= this.state.width*ratio || this.state.imgHeight <= this.state.height*ratio*0.85){
                 this.setState({
-                    imgWidth : this.state.imgWidth + (window.innerWidth*ratio - window.innerWidth)/1000,
-                    imgHeight : this.state.imgHeight + (window.innerHeight*ratio - window.innerHeight)*0.85/1000
+                    imgWidth : this.state.imgWidth + (this.state.width*ratio - this.state.width)/1000,
+                    imgHeight : this.state.imgHeight + (this.state.height*ratio - this.state.height)*0.85/1000
                 });
         }
     
@@ -164,16 +166,16 @@ class ImageLoader extends React.Component {
 
         if(this.state.chgWidth <= 0 || this.state.chgHeight <= 0){
                 this.setState({
-                    chgWidth : this.state.chgWidth + xPosition*window.innerWidth/1920/1000,
-                    chgHeight : this.state.chgHeight + yPosition*window.innerHeight/1080*0.85/1000
+                    chgWidth : this.state.chgWidth + xPosition*this.state.width/1920/1000,
+                    chgHeight : this.state.chgHeight + yPosition*this.state.height/1080*0.85/1000
                 });
 
         }
         
-        if(this.state.imgWidth >= window.innerWidth || this.state.imgHeight >= window.innerHeight*0.85){
+        if(this.state.imgWidth >= this.state.width || this.state.imgHeight >= this.state.height*0.85){
                 this.setState({
-                    imgWidth : this.state.imgWidth - (window.innerWidth*ratio - window.innerWidth)/1000,
-                    imgHeight : this.state.imgHeight - (window.innerHeight*ratio - window.innerHeight)*0.85/1000
+                    imgWidth : this.state.imgWidth - (this.state.width*ratio - this.state.width)/1000,
+                    imgHeight : this.state.imgHeight - (this.state.height*ratio - this.state.height)*0.85/1000
 
 
                 });
@@ -185,7 +187,9 @@ class ImageLoader extends React.Component {
 
         return (
             <Resizable onResize={this.onResize}> 
-                <canvas ref="canvas" width={this.state.width} height={this.state.height * 0.85}/>   
+                <div style ={{width : this.state.width, height : this.state.height * 0.85, left : 0, top : 0, padding : 0}}>
+                    <canvas ref="canvas" width={this.state.width} height={this.state.height*0.85}/>
+                </div>
             </Resizable>
 
         );
