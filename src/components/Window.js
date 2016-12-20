@@ -76,6 +76,11 @@ export default class Window extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 4) {
       this.setState({gameVisible: true});
+    }else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 16){
+      this.setState({gameVisible: true,
+                     currentGame: ()=><AvoidBat setGameSuccess = {this.setGameSuccess}
+                                                setGameDone = {this.setGameDone}
+                                                setScroe = {this.setScroe}/>});
     }
     // else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
     //   this.setState({gameVisible: true,
@@ -148,7 +153,13 @@ export default class Window extends React.Component {
                                                              setScore = {this.setScore}/>,
                                                              messageBoxVisible: false,
                                                              gameSuccess: false});
-              }
+              } else if(this.state.page === 17) {
+                 this.setState({currentGame: ()=><AvoidBat    setGameSuccess = {this.setGameSuccess}
+                                                              setGameDone = {this.setGameDone}
+                                                              setScore = {this.setScore}/>,
+                                                              messageBoxVisible: false,
+                                                              gameSuccess: false});
+               }
               // else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
               //   this.setState({gameVisible: true,
               //                  currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
@@ -164,6 +175,13 @@ export default class Window extends React.Component {
                            currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
                                                          setGameDone = {this.setGameDone}
                                                          setScore = {this.setScore}/>});
+            }else if(this.state.page === 17) {
+                 this.setState({currentGame: ()=><AvoidBat    setGameSuccess = {this.setGameSuccess}
+                                                              setGameDone = {this.setGameDone}
+                                                              setScore = {this.setScore}/>,
+                                                              messageBoxVisible: false,
+                                                              gameSuccess: false,
+                                                              gameVisible: false});
             }
           }}> 아니오 </button>
           </div>
@@ -176,7 +194,13 @@ export default class Window extends React.Component {
                                                            setGameDone = {this.setGameDone}
                                                            setScore = {this.setScore}/>,
                                                            messageBoxVisible: false});
-            }
+            } else if(this.state.page === 17) {
+               this.setState({currentGame: ()=><AvoidBat    setGameSuccess = {this.setGameSuccess}
+                                                            setGameDone = {this.setGameDone}
+                                                            setScore = {this.setScore}/>,
+                                                            messageBoxVisible: false,
+                                                            gameSuccess: false});
+             }
             // else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
             //   this.setState({gameVisible: true,
             //                  currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
@@ -193,7 +217,7 @@ export default class Window extends React.Component {
   }
 
   render(){
-    return (
+      return(
       <Resizable onResize ={this.onResize}>
         <div style = {{width : this.state.width, height : this.state.height}}>
           <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}
@@ -208,15 +232,18 @@ export default class Window extends React.Component {
                     narration = {JsonData.HeungbooNolboo.data[this.state.page].script[this.state.scriptPage][1]}
                     page = {this.state.page}
                     nextPage = {this.nextPage}
-                    prevPage = {this.prevPage}/>
-          <VoicePlayer audioSrc = './audio/zeze.mp3'
-                      onPause = {this.state.isMuted}/>
+                    prevPage = {this.prevPage}
+                    audioSrc = {(JSON.stringify(JsonData.HeungbooNolboo.data[this.state.page].narration).substr(1,JsonData.HeungbooNolboo.data[this.state.page].narration.length ) + (this.state.scriptPage + 1) +".mp3")}
+                    onPause = {this.state.isMuted}
+                    gameVisible = {this.state.gameVisible}/>
             <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
 
                   style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
           {this.state.gameVisible && this.renderGame()}
+
         </div>
       </Resizable>
     )
+    
   }
 }
