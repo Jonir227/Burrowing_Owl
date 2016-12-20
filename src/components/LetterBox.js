@@ -4,40 +4,15 @@ import JsonData from './subtitle.json';
 import {Motion, spring, presets, precision} from 'react-motion';
 import Modal from 'react-modal';
 
+import Resizable from 'react-component-resizable'
+
+
+
 const defaultConfig = {
   stiffness: 70
 };
 const narrationImg = ['./image/owl.png','./image/hb.jpg','./image/nb.jpg']
 const option = ['공', '기', '라', '하', '메', '흥', '놀', '갈', '메', '양', '부', '와', '고', '무', '랄', '행', '연', '강', '현', '수'];
-const styles = {
-  boxStyle: {
-    background : 'black',
-    padding : 10,
-    borderWidth : 1,
-    borderColor : 'white',
-    borderStyle : 'solid',
-    marginLeft : '10%'
-  },
-  letterStyle : {
-    fontFamily : "맑은 고딕",
-    fontSize : 50,
-    color : 'white',
-    textAlign: 'center'
-  },
-  buttonStyleRight : {
-    float : 'right',
-    background : 'white',
-    marginRight: 10,
-    fontSize : 20,
-    borderColor : 'black'
-  },
-  buttonStyleLeft : {
-    background : 'white',
-    float: 'right',
-    fontSize : 20,
-    borderColor : 'black'
-  }
-};
 
 
 const quizStyles = {
@@ -59,14 +34,21 @@ export default class LetterBox extends React.Component {
       rightAnswer: '흥부와놀부',
       scriptn: 0,
       narrationImg : './image/image1.png',
-      width : window.innerWidth,
-      height : window.innerHeight
+      width : window.innerWidth * 0.99,
+      height : window.innerHeight * 0.98
     }
     this.toggleModalVisible = this.toggleModalVisible.bind(this);
     this.renderQuiz = this.renderQuiz.bind(this);
     this.renderOption = this.renderOption.bind(this);
+    this.onResize = this.onResize.bind(this);
   }
+  onResize() {
+        this.setState({
+            width: window.innerWidth * 0.99,
+            height: window.innerHeight * 0.98
+        })
 
+    }
 
   toggleModalVisible(){
     this.setState({modalVisible: !this.state.modalVisible});
@@ -84,7 +66,7 @@ export default class LetterBox extends React.Component {
                   this.setState({quizVisible: false});
                 }}
                 style= {{width: 50, height: 50}}/>
-            <h1 style = {{textAlign: 'center',position : 'absolute', top : 0, left : x * 0.25, width : x * 0.5,
+            <h1 style = {{textAlign: 'center',position : 'absolute', top : 0, left : this.state.width * 0.25, width : this.state.width * 0.5, 
                           background : 'white', borderWidth : 1, borderColor : 'black',borderStyle : 'solid',fontSize : 40}}>Quiz: 이 동화의 제목은 무엇일까요?</h1>
             <button style = {{position: 'absolute', left: x * 0.4, top : y * 0.1, width : x * 0.03,height : y * 0.06, background : 'url('+'./image/backSpace.png'+')', backgroundSize : 'cover', backgroundColor : 'white',
                               borderWidth : 1, borderColor : 'black',borderStyle : 'solid'}}
@@ -144,52 +126,81 @@ export default class LetterBox extends React.Component {
 
 
   render() {
+    var styles = {
+        boxStyle: {
+          background : 'black',
+          borderWidth : 1,
+          borderColor : 'white',
+          borderStyle : 'solid',
+          marginLeft : this.state.width * 0.1,
+          width : this.state.width * 0.9,
+          height : this.state.height * 0.12
+        },
+        buttonStyleRight : {
+          float : 'right',
+          background : 'white',
+          fontSize : 20,
+          borderColor : 'black',
+          width : this.state.width * 0.05,
+          height : this.state.height * 0.05
+        },
+        buttonStyleLeft : {
+          background : 'white',
+          float: 'right',
+          fontSize : 20,
+          borderColor : 'black',
+          width : this.state.width * 0.05,
+          height : this.state.height * 0.05
+        }
+  };
+
     return (
-      <div style = {{ height : window.innerHeight * 0.15}}>
-        <img style = {{ width : window.innerWidth * 0.1, height : window.innerHeight * 0.12, position : 'absolute'}} src = {narrationImg[this.props.narration]}/>
-        <div style = {styles.boxStyle}>
-          <Motion defaultStyle={{opacity: 0, fontSize : 60, color : 'white'}} style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 50, color : 'white'}}>
-            {interpolatingStyle =>
-              <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0]}</div>
-            }
-          </Motion>
-          <button style = {styles.buttonStyleRight} onClick = {()=>{
-
-            if(this.props.page == 16){
-
-              this.toggleModalVisible();
-            }
-            else {
-              if(this.props.scriptPage < this.props.script.length - 1){
-                if(this.state.isDispeared){ this.props.nextScript(); this.setState({isDispeared: false}); }
-                else this.setState({isDispeared: true});
+      <Resizable onResize={this.onResize}>
+        <div style = {{ width : this.state.width, height : this.state.height * 0.12}}>
+          <img style = {{ width : this.state.width * 0.1, height : this.state.height * 0.12, position : 'absolute'}} src = {narrationImg[this.props.narration]}/>
+          <div style = {styles.boxStyle}>
+            <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.5%', fontWeight: 'bold'}} 
+                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.5%', fontWeight: 'bold'}}>
+              {interpolatingStyle =>
+                <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0]}</div>
               }
-              else{
-                if(this.state.isDispeared){
-                  this.setState({
-                    isDispeared: false
-                  });
-                  this.props.nextPage();
+            </Motion>
+            <button style = {styles.buttonStyleRight} onClick = {()=>{
+
+              if(this.props.page == 16){
+
+                this.toggleModalVisible();
+              }
+              else {
+                if(this.props.scriptPage < this.props.script.length - 1){
+                  if(this.state.isDispeared){ this.props.nextScript(); this.setState({isDispeared: false}); }
+                  else this.setState({isDispeared: true});
                 }
-                else this.setState({isDispeared: true});
+                else{
+                  if(this.state.isDispeared){
+                    this.setState({
+                      isDispeared: false
+                    });
+                    this.props.nextPage();
+                  }
+                  else this.setState({isDispeared: true});
+                }
               }
-            }
-          }}> next </button>
-        <button style = {styles.buttonStyleLeft} onClick = {()=>{
-            if(this.props.scriptPage > 0) this.props.prevScript();
-            else{
-              this.setState({
-                isDispeared : false
-              })
-              this.props.prevPage();
-            }
-          }}> prev </button>
-          <Link to = "/Main">
-            <button style = {styles.buttonStyleLeft}>menu</button>
-          </Link>
+            }}> next </button>
+          <button style = {styles.buttonStyleLeft} onClick = {()=>{
+              if(this.props.scriptPage > 0) this.props.prevScript();
+              else{
+                this.setState({
+                  isDispeared : false
+                })
+                this.props.prevPage();
+              }
+            }}> prev </button>
+          </div>
+          {this.state.quizVisible && this.renderQuiz()}
         </div>
-        {this.state.quizVisible && this.renderQuiz()}
-      </div>
+      </Resizable>
+
     );
   }
 }

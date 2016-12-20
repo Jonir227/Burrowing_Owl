@@ -26,7 +26,10 @@ const messageBoxStyle = {
      top: 0,
      left: 0,
      right: 0,
-     bottom: 0
+     bottom: 0,
+     overflow : 'hidden',
+     width : window.innerWidth * 0.99,
+     height : window.innerHeight * 0.98
    }
  }
 
@@ -39,8 +42,8 @@ export default class Window extends React.Component {
       scriptPage : 0,
       scriptDone : false,
       isMuted: false,
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: window.innerWidth*0.99,
+      height: window.innerHeight*0.98,
       messageBoxVisible: false,
       gameVisible: false,
       currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
@@ -65,8 +68,8 @@ export default class Window extends React.Component {
   }
   onResize() {
     this.setState({
-      width: window.innerWidth,
-      height: window.innerHeight
+      width: window.innerWidth*0.99,
+      height: window.innerHeight*0.98
     })
   }
 
@@ -191,29 +194,29 @@ export default class Window extends React.Component {
 
   render(){
     return (
-      <div style = {{width : this.state.width, height : this.state.height}}>
-        <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}
-                     isZoom = {JsonData.HeungbooNolboo.data[this.state.page].isZoom}
-                     scriptPage = {this.state.scriptPage}
-                     />
-        <LetterBox script = {JsonData.HeungbooNolboo.data[this.state.page].script}
-                   scriptPage = {this.state.scriptPage}
-                   scriptDone = {this.state.scriptDone}
-                   nextScript = {this.nextScript}
-                   prevScript = {this.prevScript}
-                   narration = {JsonData.HeungbooNolboo.data[this.state.page].script[this.state.scriptPage][1]}
-                   page = {this.state.page}
-                   nextPage = {this.nextPage}
-                   prevPage = {this.prevPage}/>
-        <VoicePlayer audioSrc = './audio/zeze.mp3'
-                     onPause = {this.state.isMuted}/>
-          <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
+      <Resizable onResize ={this.onResize}>
+        <div style = {{width : this.state.width, height : this.state.height}}>
+          <ImageLoader image = {JsonData.HeungbooNolboo.data[this.state.page].image}
+                      isZoom = {JsonData.HeungbooNolboo.data[this.state.page].isZoom}
+                      scriptPage = {this.state.scriptPage}
+                      />
+          <LetterBox script = {JsonData.HeungbooNolboo.data[this.state.page].script}
+                    scriptPage = {this.state.scriptPage}
+                    scriptDone = {this.state.scriptDone}
+                    nextScript = {this.nextScript}
+                    prevScript = {this.prevScript}
+                    narration = {JsonData.HeungbooNolboo.data[this.state.page].script[this.state.scriptPage][1]}
+                    page = {this.state.page}
+                    nextPage = {this.nextPage}
+                    prevPage = {this.prevPage}/>
+          <VoicePlayer audioSrc = './audio/zeze.mp3'
+                      onPause = {this.state.isMuted}/>
+            <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
 
-                style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
-
-        {this.state.gameVisible && this.renderGame()}
-
-      </div>
+                  style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
+          {this.state.gameVisible && this.renderGame()}
+        </div>
+      </Resizable>
     )
   }
 }
