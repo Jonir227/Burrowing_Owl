@@ -73,7 +73,7 @@
       "narration" : "./audio/narration/scene3_",
       "isZoom" :  [{
                     "zoom" : false
-                    
+
       }]
     },
     {
@@ -390,7 +390,7 @@
                       "xPosition" : "1000",
                       "yPosition" : "700",
                       "ratio" : "2"
-                      
+
                   }]
     },
     {
@@ -418,12 +418,12 @@
                       "xPosition" : "1300",
                       "yPosition" : "700",
                       "ratio" : "2"
-                      
+
                   },
                   {
                       "zoom" : false
                   }]
     }
-    
-  ], "page" : "21" }
+
+  ], "page" : "20" }
 }
