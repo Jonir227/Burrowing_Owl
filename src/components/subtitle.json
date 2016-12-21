@@ -3,9 +3,9 @@
     {
       "image": "./image/3.png",
       "type" : "narration",
-      "script" : [["옛날 옛적에 한 형제가 살았습니다.",0],
-                  ["아버지가 물려주신 막대한 재산을 가진 놀부와",0],
-                  ["그렇지 못한 흥부였지요",0]],
+      "script" : [["옛날 옛적에 한 형제가 살았습니다.\nĐã có một thời gian ông sống một người anh em.",0],
+                  ["아버지가 물려주신 막대한 재산을 가진 놀부와\nNolbu với một người cha người thừa hưởng một tài sản khổng lồ",0],
+                  ["그렇지 못한 흥부였지요\nNếu không yeotjiyo Heungbu",0]],
       "scene" : "#0",
       "index" : "0",
       "narration" : "./audio/narration/scene1_",

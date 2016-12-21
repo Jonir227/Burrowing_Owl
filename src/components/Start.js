@@ -5,8 +5,10 @@ import App from './App'
 import Resizable from 'react-component-resizable'
 
 const defaultConfig = {
+
     stiffness : 40
 }
+
 class Start extends React.Component {
 
     constructor(props){

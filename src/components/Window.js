@@ -8,7 +8,7 @@ import Modal from 'react-modal';
 import AvoidBat from './avoidBat';
 import CureSwallow from './cureSwallow';
 import Draggame from './Draggame';
-const backgroundUrl = ['./image/game2/swallow.png','./image/game/background.png']
+const backgroundUrl = ['./image/game2/swallow.png','./image/game/background.png','./image/game3/background.png']
 const messageBoxStyle = {
    content : {
      background: '#FAE6A2',
@@ -91,9 +91,15 @@ export default class Window extends React.Component {
                      gameStart : false,
                      currentGame: ()=><AvoidBat setGameSuccess = {this.setGameSuccess}
                                                 setGameDone = {this.setGameDone}
-                                                setScroe = {this.setScroe}/>});
+                                                setScore = {this.setScore}/>});
     } else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
       this.setState({gameVisible: true,
+                     gameNumber : 2,
+                     gameInfo : true,
+                     gameTitle : "제비가 준 박씨를 심어봐!",
+                     gameInfoImage : './image/game3/',
+                     gameInfoIndex : 1,
+                     gameStart : false,
                      currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
                                                    setGameDone = {this.setGameDone}
                                                    setScore = {this.setScore}/>});
@@ -290,8 +296,7 @@ export default class Window extends React.Component {
                     gameVisible = {this.state.gameVisible}/>
             <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
              style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
-          {this.state.gameVisible && !this.state.gameStart &&<div stlye = {{ left : 0, top : 0, zIndex : 50, position : 'absolute'}}>
-            <img src = {backgroundUrl[this.state.gameNumber]} style = {{ width : this.state.width, height : this.state.height, left : 0, top : 0, position : 'absolute'}}/>
+          {this.state.gameVisible && !this.state.gameStart &&<div><img src = {backgroundUrl[this.state.gameNumber]} style = {{ width : this.state.width, height : this.state.height, left : 0, top : 0, position : 'absolute'}}/>
             {this.state.gameNumber == 1&&<img src = './image/game/hero.png' style = {{top:  this.state.height - 150, left: this.state.width/2 - 50, width: 100, height: 150, position: 'absolute'}}/>}</div>}
           {this.state.gameVisible && this.state.gameStart && this.renderGame()}
           {this.state.gameInfo && this.renderInfo(modalStyle)}

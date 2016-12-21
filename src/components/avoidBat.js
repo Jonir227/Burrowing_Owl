@@ -55,6 +55,7 @@ export default class AvoidBat extends React.Component {
   toggleBusy() {
     let score = this.state.time[6] * 10 + this.state.time[7] * 1;
     this.setState({busy: false});
+
     this.props.setGameDone();
     this.props.setScore(score);
     if(score >= 5) this.props.setGameSuccess();
@@ -75,6 +76,7 @@ export default class AvoidBat extends React.Component {
 
   renderHero() {
     return (
+
       <img src = './image/game/hero.png'
            style = {{top:  window.innerHeight * 0.98 - 150, left: this.state.heroPosition, width: 100, height: 150, position: 'absolute'}}/>
     )
@@ -90,6 +92,7 @@ export default class AvoidBat extends React.Component {
     return (
       <div style ={{width : window.innerWidth * 0.99, height : window.innerHeight * 0.98, overflow : 'hidden'}}>
        
+
         <div style = {{background: "url(" + "./image/game/background.png" + ")", width: window.innerWidth * 0.99, height: window.innerHeight * 0.98, position: 'absolute', top: 0, left: 0}}>
           {bats}
           {this.renderHero()}

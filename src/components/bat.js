@@ -16,7 +16,9 @@ export default class Bat extends React.Component {
       if(this.state.positionX < window.innerWidth * 0.99 ) this.setState({positionY: this.state.positionY + (this.state.speed * 10)})
       else if(this.state.positionX <= window.innerWidth * 0.99) this.setState({positionY: window.innerHeight * 0.98});
       if(this.state.positionY >= window.innerHeight * 0.98 - this.state.speed * 10) {
+
         this.setState({positionY: 0, speed: Math.floor((Math.random() * 10) + 1), positionX: Math.floor((Math.random() *window.innerWidth * 0.99 - 50 ))});
+
       }
       if(window.innerHeight * 0.98 - 250 <= this.state.positionY && this.state.positionX -100 <= this.props.heroPosition  && this.state.positionX + 50 >= this.props.heroPosition)
         this.props.toggleBusy();
@@ -33,7 +35,9 @@ export default class Bat extends React.Component {
     
     return (
       <div>
+
         <img src = "./image/game/bat.png"
+
              style = {{width: 50, height: 100, opacity: (this.state.done) ? 0 : 1, position: 'absolute', left: this.state.positionX, top: this.state.positionY}}/>
       </div>
     )

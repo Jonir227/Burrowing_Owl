@@ -157,7 +157,7 @@ export default class Draggame extends React.Component {
 
             <div>
              <Resizable onResize={this.onResize}> 
-                <img src="./image/seedimage/background.png" style={{
+                <img src="./image/game3/background.png" style={{
                     width: this.state.width * 0.98,
                     height: this.state.height * 0.98,
                 }}/>
@@ -165,7 +165,7 @@ export default class Draggame extends React.Component {
              <Droppable style ={SeedHole1}
                         types={['seed1']}
                         onDrop={this.seedDropped.bind(this)}>
-                    <img src='./image/seedimage/seedhole1.png' style={{
+                    <img src='./image/game3/seedhole1.png' style={{
                         width: this.state.width * 0.1,
                         height: this.state.height * 0.15
                     }}
@@ -180,7 +180,7 @@ export default class Draggame extends React.Component {
             <Droppable style ={SeedHole2}
                        types={['seed2']}
                        onDrop={this.seedDropped.bind(this)}>
-                <img src='./image/seedimage/seedhole2.png' style={{
+                <img src='./image/game3/seedhole2.png' style={{
                     width: this.state.width * 0.1,
                     height: this.state.height * 0.15,
                 }}
@@ -195,7 +195,7 @@ export default class Draggame extends React.Component {
             <Droppable style ={SeedHole3}
                        types={['seed3']}
                        onDrop={this.seedDropped.bind(this)}>
-                <img src='./image/seedimage/seedhole3.png' style={{
+                <img src='./image/game3/seedhole3.png' style={{
                     width: this.state.width * 0.1,
                     height: this.state.height * 0.15
                 }}
@@ -210,7 +210,7 @@ export default class Draggame extends React.Component {
             <Droppable style ={SeedHole4}
                        types={['seed4']}
                        onDrop={this.seedDropped.bind(this)}>
-                <img src='./image/seedimage/seedhole4.png' style={{
+                <img src='./image/game3/seedhole4.png' style={{
                     width: this.state.width * 0.1,
                     height: this.state.height * 0.15,
                 }}
@@ -225,7 +225,7 @@ export default class Draggame extends React.Component {
             <Droppable style ={SeedHole5}
                        types={['seed5']}
                        onDrop={this.seedDropped.bind(this)}>
-                <img src='./image/seedimage/seedhole5.png' style={{
+                <img src='./image/game3/seedhole5.png' style={{
                     width: this.state.width * 0.1,
                     height: this.state.height * 0.15,
                 }}
@@ -242,7 +242,7 @@ export default class Draggame extends React.Component {
 
                 {(!this.state.isGoal) ?
                 <Draggable type="seed1" data="seed1">
-                <img src='./image/seedimage/seed1.png'
+                <img src='./image/game3/seed1.png'
                     onMouseEnter={()=> {
                         this.setState({index: 1})  
                     }}
@@ -258,7 +258,7 @@ export default class Draggame extends React.Component {
                 null }
                 {(this.state.isGoal && !this.state.isGoal2) ? 
                 <Draggable type="seed2" data="seed2">
-                <img src='./image/seedimage/seed2.png'
+                <img src='./image/game3/seed2.png'
                  onMouseEnter={()=> {
                         this.setState({index: 2})  
                     }}
@@ -275,7 +275,7 @@ export default class Draggame extends React.Component {
 
                 {(this.state.isGoal2 && !this.state.isGoal3) ?
                 <Draggable type="seed3" data="seed3">
-                <img src='./image/seedimage/seed3.png'
+                <img src='./image/game3/seed3.png'
                     onMouseEnter={()=> {
                         this.setState({index: 3})  
                     }}
@@ -292,7 +292,7 @@ export default class Draggame extends React.Component {
                
                {(this.state.isGoal3 && !this.state.isGoal4) ? 
                 <Draggable type="seed4" data="seed4"> 
-                <img src = './image/seedimage/seed4.png'
+                <img src = './image/game3/seed4.png'
                     onMouseEnter={()=> {
                         this.setState({index: 4})
                     }}
@@ -309,7 +309,7 @@ export default class Draggame extends React.Component {
 
                {(this.state.isGoal4 && !this.state.isGoal5) ? 
                 <Draggable type="seed5" data="seed5"> 
-                <img src = './image/seedimage/seed5.png'
+                <img src = './image/game3/seed5.png'
                     onMouseEnter={()=> {
                         this.setState({index: 5})
                     }}
@@ -330,7 +330,7 @@ export default class Draggame extends React.Component {
             </div>
 
             <div style={owlStyle}>
-                <img src='./image/seedimage/owl.png' style={{width: this.state.width*0.1, height:this.state.height*0.15}}/>
+                <img src='./image/game3/owl.png' style={{width: this.state.width*0.1, height:this.state.height*0.15}}/>
             </div>
 
             </Resizable>
