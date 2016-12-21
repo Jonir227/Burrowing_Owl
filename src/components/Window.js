@@ -11,12 +11,11 @@ import Draggame from './Draggame';
 const backgroundUrl = ['./image/game2/swallow.png','./image/game/background.png']
 const messageBoxStyle = {
    content : {
-     top: '50%',
-     left: '50%',
-     right: 'auto',
-     bottom: 'auto',
-     marginRight: '-50%',
-     transform: 'translate(-50%, -50%)',
+     background: '#FAE6A2',
+     top: '30%',
+     left: '30%',
+     right: '30%',
+     bottom: '30%',
      zIndex: 100
    }
  };
@@ -150,12 +149,12 @@ export default class Window extends React.Component {
     return (
       <Modal isOpen={this.state.messageBoxVisible}
              style = {messageBoxStyle}>
-        { (this.state.score !== -1) && <h1> 당신의 기록은 {this.state.score} 입니다! </h1> }
+        { (this.state.score !== -1) && <h1 style = {{textAlign : 'center', fontWeight: 'bold'}}> 당신의 기록은 {this.state.score} 입니다! </h1> }
         { (this.state.gameSuccess) ?
-          <div>
+          <div style = {{textAlign : 'center', fontWeight: 'bold'}}>
           <h1> 축하드립니다. 미션을 성공하셨네요! </h1>
           <h1> 다시 하시겠습니까? </h1>
-          <button onClick = {() => {
+          <img onClick = {() => {
               if(this.state.page === 5){
                 this.setState({currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
                                                              setGameDone = {this.setGameDone}
@@ -178,8 +177,8 @@ export default class Window extends React.Component {
                                                              messageBoxVisible: false,
                                                              gameSuccess: false});
               }
-          }}> 예 </button>
-          <button onClick = {()=>{
+          }} src = './image/Modal/check.PNG' style = {{position:'absolute', left:'30%', height:80, width :80}}></img>
+          <img onClick = {()=>{
             if(this.state.page === 5){
             this.setState({messageBoxVisible: false, gameVisible: false, gameSuccess: false,
                            currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
@@ -201,8 +200,7 @@ export default class Window extends React.Component {
                                                              gameSuccess: false,
                                                              gameVisible: false});
             }
-
-          }}> 아니오 </button>
+          }}src = './image/Modal/x.PNG' style = {{position:'absolute', right:'30%', height:80, width :80}}></img>
           </div>
           :
           <div>
