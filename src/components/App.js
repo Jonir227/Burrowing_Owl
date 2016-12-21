@@ -6,6 +6,7 @@ import Game from './game'
 import CureSwallow from './cureSwallow'
 import AvoidBat from './avoidBat';
 import Draggame from './Draggame';
+import Owl from './owl';
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 
 class App extends React.Component {
