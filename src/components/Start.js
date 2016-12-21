@@ -1,10 +1,13 @@
 import React, { PropType } from 'react';
-
+import {Motion, spring, presets, precision} from 'react-motion';
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 
 import App from './App'
 import Resizable from 'react-component-resizable'
 
+const defaultConfig = {
+  stiffness: 60
+};
 
 class Start extends React.Component {
 
