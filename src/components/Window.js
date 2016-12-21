@@ -1,4 +1,6 @@
 import React, { PropType } from 'react';
+import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
+import Main from './Main'
 import ImageLoader from './ImageLoader';
 import LetterBox from './LetterBox';
 import JsonData from './subtitle.json';
@@ -8,15 +10,15 @@ import Modal from 'react-modal';
 import AvoidBat from './avoidBat';
 import CureSwallow from './cureSwallow';
 import Draggame from './Draggame';
-const backgroundUrl = ['./image/game2/swallow.png','./image/game/background.png']
+
+const backgroundUrl = ['./image/game2/swallow.png','./image/game/background.png','./image/game3/background.png'];
 const messageBoxStyle = {
    content : {
-     top: '50%',
-     left: '50%',
-     right: 'auto',
-     bottom: 'auto',
-     marginRight: '-50%',
-     transform: 'translate(-50%, -50%)',
+     background: '#FAE6A2',
+     top: '30%',
+     left: '30%',
+     right: '30%',
+     bottom: '30%',
      zIndex: 100
    }
  };
@@ -58,7 +60,16 @@ export default class Window extends React.Component {
       gameTitle : "제비 다리를 고쳐줘!",
       gameInfoImage : './image/game2/',
       gameInfoIndex : 1,
-      gameStart : false
+      gameStart : false,
+
+      optionModal : false,
+      subViet : true,
+      voicePlay : true,
+      gamePlay : true,
+      onoffImage : './image/option/on.png',
+      voiceImage : './image/option/on.png',
+      gameImage : './image/option/on.png'
+
     }
     this.onResize = this.onResize.bind(this);
     this.nextScript = this.nextScript.bind(this);
@@ -68,6 +79,8 @@ export default class Window extends React.Component {
     this.renderGame = this.renderGame.bind(this);
     this.renderMessageBox = this.renderMessageBox.bind(this);
     this.renderInfo = this.renderInfo.bind(this);
+    this.renderOption = this.renderOption.bind(this);
+    this.toggleSub = this.toggleSub.bind(this);
     this.setGameDone = this.setGameDone.bind(this);
     this.setGameSuccess = this.setGameSuccess.bind(this);
     this.setScore = this.setScore.bind(this);
@@ -80,26 +93,33 @@ export default class Window extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 4) {
-      this.setState({gameVisible: true, gameNumber : 0, gameInfo : true, gameTitle : "제비 다리를 고쳐줘!", gameInfoImage : './image/game2/', gameInfoIndex : 1, gameStart : false});
-    }else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 17){
-      this.setState({gameVisible : true,
-                     gameNumber : 1,
-                     gameInfo : true,
-                     gameTitle : "도깨비 방망이를 피해봐!",
-                     gameInfoImage : './image/game/',
-                     gameInfoIndex : 1,
-                     gameStart : false,
-                     currentGame: ()=><AvoidBat setGameSuccess = {this.setGameSuccess}
-                                                setGameDone = {this.setGameDone}
-                                                setScroe = {this.setScroe}/>});
+    if(this.state.gamePlay){
+      if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 4) {
+        this.setState({gameVisible: true, gameNumber : 0, gameInfo : true, gameTitle : "제비 다리를 고쳐줘!", gameInfoImage : './image/game2/', gameInfoIndex : 1, gameStart : false});
+      }else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 17){
+        this.setState({gameVisible : true,
+                      gameNumber : 1,
+                      gameInfo : true,
+                      gameTitle : "도깨비 방망이를 피해봐!",
+                      gameInfoImage : './image/game/',
+                      gameInfoIndex : 1,
+                      gameStart : false,
+                      currentGame: ()=><AvoidBat setGameSuccess = {this.setGameSuccess}
+                                                  setGameDone = {this.setGameDone}
+                                                  setScore = {this.setScore}/>});
+      } else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
+        this.setState({gameVisible: true,
+                      gameNumber : 2,
+                      gameInfo : true,
+                      gameTitle : "제비가 준 박씨를 심어봐!",
+                      gameInfoImage : './image/game3/',
+                      gameInfoIndex : 1,
+                      gameStart : false,
+                      currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
+                                                    setGameDone = {this.setGameDone}
+                                                    setScore = {this.setScore}/>});
+      }
     }
-    // else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
-    //   this.setState({gameVisible: true,
-    //                  currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
-    //                                                setGameDone = {this.setGameDone}
-    //                                                setScore = {this.setScore}/>});
-    // }
   }
 
   nextScript(){
@@ -137,6 +157,7 @@ export default class Window extends React.Component {
   setGameSuccess() {
     this.setState({gameSuccess: true});
   }
+  
   renderGame() {
     return (
       <Modal isOpen={this.state.gameVisible}
@@ -146,17 +167,50 @@ export default class Window extends React.Component {
       </Modal>
     );
   }
-  
+  renderOption(optionStyle){
+    
+
+    return(
+      <Modal isOpen ={this.state.optionModal} style = {optionStyle}>
+          <img src = './image/option/close.png' style = {{left : '5%',top : '5%', postion : 'absolute', width : '7%', height : '14%'}} onClick = {()=> this.setState({optionModal : false})}/>
+          <h1 style = {{top : '20%', left : '10%', width : this.state.width * 0.15, height : this.state.height * 0.1, fontWeight : 'bold', position : 'absolute'}}>처음으로</h1>
+          <Link to = "/Main"><img src = './image/option/home.png' style = {{left : '70%', top : '20%', width : '10%', height : '15%', position : 'absolute'}}/></Link>
+          <h1 style = {{top : '40%', left : '10%', width : this.state.width * 0.15, height : this.state.height * 0.1, fontWeight : 'bold', position : 'absolute'}}>베트남 자막</h1>
+          <img src = {this.state.onoffImage} style = {{left : '70%', top : '40%', width : '10%', height : '10%', position : 'absolute'}} onClick = {()=> this.toggleSub()}/>
+          <h1 style = {{top : '60%', left : '10%', width : this.state.width * 0.15, height : this.state.height * 0.1, fontWeight : 'bold', position : 'absolute'}}>나레이션</h1>
+          <img src = {this.state.voiceImage} style = {{left : '70%', top : '60%', width : '10%', height : '10%', position : 'absolute'}} onClick = {()=> this.toggleVoice()}/>
+          <h1 style = {{top : '80%', left : '10%', width : this.state.width * 0.15, height : this.state.height * 0.1, fontWeight : 'bold', position : 'absolute'}}>미니게임</h1>
+          <img src = {this.state.gameImage} style = {{left : '70%', top :'80%', width : '10%', height : '10%', position : 'absolute' }} onClick = {()=> this.toggleGame()}/>
+          
+      </Modal>
+        
+    )
+  }
+  toggleSub(){
+    if(!this.state.subViet)
+      this.setState({subViet : true, onoffImage : './image/option/on.png'});
+    else this.setState({subViet : false, onoffImage : './image/option/off.png'});
+  }
+  toggleVoice(){
+    if(!this.state.voicePlay)
+      this.setState({voicePlay : true, voiceImage : './image/option/on.png'});
+    else this.setState({voicePlay : false, voiceImage : './image/option/off.png'});
+  }
+  toggleGame(){
+    if(!this.state.gamePlay)
+      this.setState({gamePlay : true, gameImage : './image/option/on.png'});
+    else this.setState({gamePlay : false, gameImage : './image/option/off.png'});
+  }
   renderMessageBox(){
     return (
       <Modal isOpen={this.state.messageBoxVisible}
              style = {messageBoxStyle}>
-        { (this.state.score !== -1) && <h1> 당신의 기록은 {this.state.score} 입니다! </h1> }
+        { (this.state.score !== -1) && <h1 style = {{textAlign : 'center', fontWeight: 'bold'}}> 당신의 기록은 {this.state.score} 입니다! </h1> }
         { (this.state.gameSuccess) ?
-          <div>
+          <div style = {{textAlign : 'center', fontWeight: 'bold'}}>
           <h1> 축하드립니다. 미션을 성공하셨네요! </h1>
           <h1> 다시 하시겠습니까? </h1>
-          <button onClick = {() => {
+          <img onClick = {() => {
               if(this.state.page === 5){
                 this.setState({currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
                                                              setGameDone = {this.setGameDone}
@@ -171,16 +225,16 @@ export default class Window extends React.Component {
                                 gameSuccess: false
                               });
                }
-              // else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
-              //   this.setState({gameVisible: true,
-              //                  currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
-              //                                                setGameDone = {this.setGameDone}
-              //                                                setScore = {this.setScore}/>,
-              //                                                messageBoxVisible: false,
-              //                                                gameSuccess: false});
-              // }
-          }}> 예 </button>
-          <button onClick = {()=>{
+              else if(this.state.page === 7) {
+                this.setState({gameVisible: true,
+                               currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
+                                                             setGameDone = {this.setGameDone}
+                                                             setScore = {this.setScore}/>,
+                                                             messageBoxVisible: false,
+                                                             gameSuccess: false});
+              }
+          }} src = './image/Modal/check.PNG' style = {{position:'absolute', left:'30%', height: '15%', width :'10%'}}></img>
+          <img onClick = {()=>{
             if(this.state.page === 5){
             this.setState({messageBoxVisible: false, gameVisible: false, gameSuccess: false,
                            currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
@@ -193,8 +247,16 @@ export default class Window extends React.Component {
                                                               messageBoxVisible: false,
                                                               gameSuccess: false,
                                                               gameVisible: false});
+            } else if(this.state.page === 7) {
+                this.setState({gameVisible: true,
+                               currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
+                                                             setGameDone = {this.setGameDone}
+                                                             setScore = {this.setScore}/>,
+                                                             messageBoxVisible: false,
+                                                             gameSuccess: false,
+                                                             gameVisible: false});
             }
-          }}> 아니오 </button>
+          }}src = './image/Modal/x.PNG' style = {{position:'absolute', right:'30%', height: '15%', width :'10%'}}></img>
           </div>
           :
           <div>
@@ -212,14 +274,14 @@ export default class Window extends React.Component {
                                                             messageBoxVisible: false,
                                                             gameSuccess: false});
              }
-            // else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
-            //   this.setState({gameVisible: true,
-            //                  currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
-            //                                                setGameDone = {this.setGameDone}
-            //                                                setScore = {this.setScore}/>,
-            //                                                messageBoxVisible: false,
-            //                                                gameSuccess: false});
-            // }
+            else if(this.state.page === 6) {
+              this.setState({gameVisible: true,
+                             currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
+                                                           setGameDone = {this.setGameDone}
+                                                           setScore = {this.setScore}/>,
+                                                           messageBoxVisible: false,
+                                                           gameSuccess: false});
+            }
           }}> 다시 도전하기 </button>
           </div>
         }
@@ -262,6 +324,17 @@ export default class Window extends React.Component {
                     zIndex: 100
                 }
             };
+      const optionStyle = {
+                content : {
+                    background: '#FAE6A2',
+                    top: '20%',
+                    left: '20%',
+                    width : this.state.width * 0.6,
+                    height : this.state.height * 0.6,
+                    zIndex: 200,
+                    overflow : 'hidden'
+                }
+            };
       
       return(
       <Resizable onResize ={this.onResize}>
@@ -271,6 +344,8 @@ export default class Window extends React.Component {
                       scriptPage = {this.state.scriptPage}
                       />
           <LetterBox script = {JsonData.HeungbooNolboo.data[this.state.page].script}
+                    subViet = {this.state.subViet}
+                    scriptViet = {JsonData.HeungbooNolboo.data[this.state.page].scriptViet}
                     scriptPage = {this.state.scriptPage}
                     scriptDone = {this.state.scriptDone}
                     nextScript = {this.nextScript}
@@ -280,8 +355,10 @@ export default class Window extends React.Component {
                     nextPage = {this.nextPage}
                     prevPage = {this.prevPage}
                     audioSrc = {(JSON.stringify(JsonData.HeungbooNolboo.data[this.state.page].narration).substr(1,JsonData.HeungbooNolboo.data[this.state.page].narration.length ) + (this.state.scriptPage + 1) +".mp3")}
-                    onPause = {this.state.isMuted}
+                    onPause = {this.state.voicePlay}
                     gameVisible = {this.state.gameVisible}/>
+            <img src = './image/option/setting.png' style = {{ left : '3%', top : '3%', width : '3%', height : '3%', position : 'absolute'}}
+                 onClick = {()=>{this.setState({optionModal : true})}}/>
             <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
              style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
           {this.state.gameVisible && !this.state.gameStart &&<div stlye = {{ left : 0, top : 0, zIndex : 50, position : 'absolute'}}>
@@ -289,7 +366,7 @@ export default class Window extends React.Component {
             {this.state.gameNumber == 1&&<img src = './image/game/hero.png' style = {{top:  this.state.height - 150, left: this.state.width/2 - 50, width: 100, height: 150, position: 'absolute'}}/>}</div>}
           {this.state.gameVisible && this.state.gameStart && this.renderGame()}
           {this.state.gameInfo && this.renderInfo(modalStyle)}
-
+          {this.state.optionModal && this.renderOption(optionStyle)}
         </div>
       </Resizable>
     )

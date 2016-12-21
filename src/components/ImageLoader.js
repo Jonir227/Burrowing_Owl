@@ -48,8 +48,6 @@ class ImageLoader extends React.Component {
     {
         this.state.xDone = false;
         this.state.yDone = false;
-        this.updateCanvas();
-        
 
         if(this.props.image === nextProps.image){
             this.state.prevX = this.state.chgWidth;
@@ -57,7 +55,6 @@ class ImageLoader extends React.Component {
             
             return;
         }
-
         this.state.imgWidth = window.innerWidth;
         this.state.imgHeight = window.innerHeight*0.85;
         this.state.chgWidth = 0;
@@ -101,8 +98,7 @@ class ImageLoader extends React.Component {
                 }
             }.bind(this)},1000/60);
 
-       if(this.state.xDone && this.state.yDone)
-            clearInterval(this.interval)
+       
     }
 
     
@@ -118,31 +114,31 @@ class ImageLoader extends React.Component {
 
         })
         */
-        if(Math.abs(this.state.chgWidth - -xPosition*this.state.width/1920) <= 1 ) this.setState({xDone : true})
+        if(Math.abs(this.state.chgWidth - -xPosition*this.state.width/1920) <= 10 ) this.setState({xDone : true})
         else if(Math.floor(this.state.chgWidth) != Math.floor(-xPosition*this.state.width/1920) ){
             if(this.state.chgWidth > -xPosition*this.state.width/1920){
                 this.setState({
-                    chgWidth : this.state.chgWidth - xPosition*(this.state.width)/1920/1000
+                    chgWidth : this.state.chgWidth - xPosition*(this.state.width)/1920/100
                 });
             }
             else{
                 this.setState({
-                    chgWidth : this.state.chgWidth + xPosition*(this.state.width)/1920/1000
+                    chgWidth : this.state.chgWidth + xPosition*(this.state.width)/1920/100
                 });
             }
         }
 
   
-        if(Math.abs(this.state.chgHeight - -yPosition*this.state.height/1080*0.85) <= 1) this.setState({yDone : true})
+        if(Math.abs(this.state.chgHeight - -yPosition*this.state.height/1080*0.85) <= 10) this.setState({yDone : true})
         else if(Math.floor(this.state.chgHeight) != Math.floor(-yPosition*this.state.height/1080*0.85)){
             if(this.state.chgHeight > -yPosition*this.state.height/1080*0.85){
                 this.setState({
-                    chgHeight : this.state.chgHeight - yPosition*(this.state.height*0.85)/1080/1000
+                    chgHeight : this.state.chgHeight - yPosition*(this.state.height*0.85)/1080/100
                 });
             }
             else{
                 this.setState({
-                    chgHeight : this.state.chgHeight + yPosition*(this.state.height*0.85)/1080/1000
+                    chgHeight : this.state.chgHeight + yPosition*(this.state.height*0.85)/1080/100
                 });
             }
                 
@@ -154,8 +150,8 @@ class ImageLoader extends React.Component {
         
         if(this.state.imgWidth <= this.state.width*ratio || this.state.imgHeight <= this.state.height*ratio*0.85){
                 this.setState({
-                    imgWidth : this.state.imgWidth + (this.state.width*ratio - this.state.width)/1000,
-                    imgHeight : this.state.imgHeight + (this.state.height*ratio - this.state.height)*0.85/1000
+                    imgWidth : this.state.imgWidth + (this.state.width*ratio - this.state.width)/100,
+                    imgHeight : this.state.imgHeight + (this.state.height*ratio - this.state.height)*0.85/100
                 });
         }
     
@@ -164,16 +160,16 @@ class ImageLoader extends React.Component {
 
         if(this.state.chgWidth <= 0 || this.state.chgHeight <= 0){
                 this.setState({
-                    chgWidth : this.state.chgWidth + xPosition*this.state.width/1920/1000,
-                    chgHeight : this.state.chgHeight + yPosition*this.state.height/1080*0.85/1000
+                    chgWidth : this.state.chgWidth + xPosition*this.state.width/1920/100,
+                    chgHeight : this.state.chgHeight + yPosition*this.state.height/1080*0.85/100
                 });
 
         }
         
         if(this.state.imgWidth >= this.state.width || this.state.imgHeight >= this.state.height*0.85){
                 this.setState({
-                    imgWidth : this.state.imgWidth - (this.state.width*ratio - this.state.width)/1000,
-                    imgHeight : this.state.imgHeight - (this.state.height*ratio - this.state.height)*0.85/1000
+                    imgWidth : this.state.imgWidth - (this.state.width*ratio - this.state.width)/100,
+                    imgHeight : this.state.imgHeight - (this.state.height*ratio - this.state.height)*0.85/100
 
 
                 });
