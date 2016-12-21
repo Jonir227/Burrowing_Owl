@@ -143,8 +143,8 @@ export default class LetterBox extends React.Component {
           width : this.state.width * 0.05,
           height : this.state.height * 0.05,
           position : 'absolute',
-          bottom : 0,
-          right : 0
+          bottom : this.state.height * 0.15,
+          right : this.state.width * 0.01
         },
         buttonStyleLeft : {
           background : 'white',
@@ -153,27 +153,27 @@ export default class LetterBox extends React.Component {
           width : this.state.width * 0.05,
           height : this.state.height * 0.05,
           position : 'absolute',
-          bottom : 0,
-          right : 0 + this.state.width * 0.05
+          bottom : this.state.height * 0.15,
+          right : 0 + this.state.width * 0.06
         }
   };
-   
+    
     return (
       <Resizable onResize={this.onResize}>
         <div style = {{ width : this.state.width, height : this.state.height * 0.12}}>
           <img style = {{ width : this.state.width * 0.1, height : this.state.height * 0.15, position : 'absolute'}} src = {narrationImg[this.props.narration]}/>
           <div style = {styles.boxStyle}>
-
-            <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}} 
-                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}}>
+          
+            <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : "0.8%", fontWeight: 'bold'}} 
+                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : "0.8%", fontWeight: 'bold'}}>
               {interpolatingStyle =>
                 <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0]}</div>}
             </Motion>
 
-            {this.props.subViet && <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}} 
-                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}}>
+            {this.props.subViet && <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : "0.8%", fontWeight: 'bold'}} 
+                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '0.8%', fontWeight: 'bold'}}>
               {interpolatingStyle =>
-                <div style = {interpolatingStyle}>{this.props.scriptViet[this.props.scriptPage][0]}</div>}
+                <div style = {interpolatingStyle}>{this.props.scriptViet[this.props.scriptPage]}</div>}
             </Motion>}
 
             {this.props.onPause&&!this.props.gameVisible&&<audio id = "narration" src={this.props.audioSrc} type='audio/mp3' autoPlay/>}

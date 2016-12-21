@@ -68,7 +68,8 @@ export default class Window extends React.Component {
       gamePlay : true,
       onoffImage : './image/option/on.png',
       voiceImage : './image/option/on.png',
-      gameImage : './image/option/on.png'
+      gameImage : './image/option/on.png',
+      borderWidth : 0
 
     }
     this.onResize = this.onResize.bind(this);
@@ -357,8 +358,8 @@ export default class Window extends React.Component {
                     audioSrc = {(JSON.stringify(JsonData.HeungbooNolboo.data[this.state.page].narration).substr(1,JsonData.HeungbooNolboo.data[this.state.page].narration.length ) + (this.state.scriptPage + 1) +".mp3")}
                     onPause = {this.state.voicePlay}
                     gameVisible = {this.state.gameVisible}/>
-            <img src = './image/option/setting.png' style = {{ left : '3%', top : '3%', width : '3%', height : '3%', position : 'absolute'}}
-                 onClick = {()=>{this.setState({optionModal : true})}}/>
+            <img src = './image/option/setting.png' style = {{ left : '0.7%', top : '1%', width : '4%', height : '8%', position : 'absolute', borderRadius : 15, borderStyle : 'solid', borderColor : 'white', borderWidth : this.state.borderWidth}}
+                 onClick = {()=>{this.setState({optionModal : true})}}  onMouseEnter={()=> {this.setState({borderWidth : 5})}} onMouseLeave={()=> {this.setState({borderWidth : 0})}}/>
             <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
              style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
           {this.state.gameVisible && !this.state.gameStart &&<div stlye = {{ left : 0, top : 0, zIndex : 50, position : 'absolute'}}>

@@ -39,7 +39,7 @@ class Start extends React.Component {
                         <img src='./image/1.png' style = {{ width: this.state.width, height: this.state.height}}/>
                         <Motion defaultStyle = {{opacity : 0}} style = {{opacity : spring(1,defaultConfig)}}>{interpolated=>
                             <div style = {interpolated}>
-                                <img src = './image/title.png' style = {{position: 'absolute', top: this.state.height * 0.27, left: this.state.width * 0.4, width : this.state.width * 0.2, height : this.state.height * 0.13 }}/>
+                                <img src = './image/title2.png' style = {{position: 'absolute', top: this.state.height * 0.27, left: this.state.width * 0.4, width : this.state.width * 0.2, height : this.state.height * 0.13 }}/>
                                 <Link to = "/Main">
                                     <div>
                                         <img src = './image/start.png' style = {{position : 'absolute', top :  this.state.height * 0.7, left: this.state.width * 0.52, width : this.state.width * 0.1}}/>
