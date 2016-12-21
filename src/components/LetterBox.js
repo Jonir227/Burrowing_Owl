@@ -23,7 +23,6 @@ export default class LetterBox extends React.Component {
       width : window.innerWidth * 0.99,
       height : window.innerHeight * 0.98
     }
-    this.toggleModalVisible = this.toggleModalVisible.bind(this);
     this.onResize = this.onResize.bind(this);
   }
   onResize() {
@@ -34,9 +33,6 @@ export default class LetterBox extends React.Component {
 
     }
 
-  toggleModalVisible(){
-    this.setState({modalVisible: !this.state.modalVisible});
-  }
 
 
 
@@ -72,7 +68,7 @@ export default class LetterBox extends React.Component {
           right : 0 + this.state.width * 0.06
         }
   };
-
+    
     return (
       <Resizable onResize={this.onResize}>
         <div style = {{ width : this.state.width, height : this.state.height * 0.12}}>
@@ -91,29 +87,20 @@ export default class LetterBox extends React.Component {
                 <div style = {interpolatingStyle}>{this.props.scriptViet[this.props.scriptPage]}</div>}
             </Motion>}
 
-            {this.props.onPause&&!this.props.gameVisible&&<audio id = "narration" src={this.props.audioSrc} type='audio/mp3' autoPlay/>}
-            <button style = {styles.buttonStyleRight} onClick = {()=>{
-
-
             {!this.props.quizVisible && this.props.onPause&&!this.props.gameVisible&&<audio id = "narration" src={this.props.audioSrc} type='audio/mp3' autoPlay/>}
             <button style = {styles.buttonStyleRight} onClick = {()=>{
-              if(this.props.page == 20){
-                this.toggleModalVisible();
+              if(this.props.scriptPage < this.props.script.length - 1){
+                if(this.state.isDispeared){ this.props.nextScript(); this.setState({isDispeared: false}); }
+                else this.setState({isDispeared: true});
               }
-              else {
-                if(this.props.scriptPage < this.props.script.length - 1){
-                  if(this.state.isDispeared){ this.props.nextScript(); this.setState({isDispeared: false}); }
-                  else this.setState({isDispeared: true});
+              else{
+                if(this.state.isDispeared){
+                  this.setState({
+                    isDispeared: false
+                  });
+                  this.props.nextPage();
                 }
-                else{
-                  if(this.state.isDispeared){
-                    this.setState({
-                      isDispeared: false
-                    });
-                    this.props.nextPage();
-                  }
-                  else this.setState({isDispeared: true});
-                }
+                else this.setState({isDispeared: true});
               }
             }}> next </button>
           <button style = {styles.buttonStyleLeft} onClick = {()=>{
