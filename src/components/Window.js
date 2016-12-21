@@ -4,7 +4,6 @@ import Main from './Main'
 import ImageLoader from './ImageLoader';
 import LetterBox from './LetterBox';
 import JsonData from './subtitle.json';
-import VoicePlayer from './voicePlayer';
 import Resizable from 'react-component-resizable'
 import Modal from 'react-modal';
 import AvoidBat from './avoidBat';
@@ -75,20 +74,20 @@ export default class Window extends React.Component {
       gameInfoImage : './image/game2/',
       gameInfoIndex : 1,
       gameStart : false,
-        
+
       optionModal : false,
       subViet : true,
       voicePlay : true,
       gamePlay : true,
       onoffImage : './image/option/on.png',
       voiceImage : './image/option/on.png',
-      gameImage : './image/option/on.png'
+      gameImage : './image/option/on.png',
       quizVisible: false,
       owlScripts: ['착한 동생과 마음씨가 고약한 형이 나오는 동화였지?', '착한 동생 이름이 흥부였어!', '마음씨가 고약한 형의 이름은 무엇이었을까?']
 
     }
     this.renderQuiz = this.renderQuiz.bind(this);
-    this.renderOption = this.renderOption.bind(this);
+    this.renderQuizOption = this.renderQuizOption.bind(this);
     this.onResize = this.onResize.bind(this);
     this.nextScript = this.nextScript.bind(this);
     this.prevScript = this.prevScript.bind(this);
@@ -136,6 +135,8 @@ export default class Window extends React.Component {
                       currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
                                                     setGameDone = {this.setGameDone}
                                                     setScore = {this.setScore}/>});
+      }  else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 1) {
+         this.setState({quizVisible: true});
       }
     }
   }
@@ -186,16 +187,17 @@ export default class Window extends React.Component {
               <div style = {{position: 'absolute', left: x * 0.15 + 400, background: 'white', width: 100, height: 100, borderWidth : 1, borderColor : 'black',borderStyle : 'solid', borderRadius: 15}}>
                 <div style = {{textAlign: 'center', position: 'absolute', left: '27.5%', top: '25%', fontSize : 50, fontWeight : 'bold'}}> {this.state.answer[4]} </div>
               </div>
-              {this.renderOption()}
+              {this.renderQuizOption()}
             </div>
           </div>
         </Modal>
       )
   }
 
-  renderOption(){
+  renderQuizOption(){
     var x = this.state.width;
     var y = this.state.height;
+    console.log('hi');
     return (
       <div style = {{position: 'relative', top : this.state.width * 0.05, left: x * 0.15}}>
         {option.map((value,i)=>{
@@ -249,7 +251,7 @@ export default class Window extends React.Component {
   setGameSuccess() {
     this.setState({gameSuccess: true});
   }
-  
+
   renderGame() {
     return (
       <Modal isOpen={this.state.gameVisible}
@@ -259,9 +261,8 @@ export default class Window extends React.Component {
       </Modal>
     );
   }
-  renderOption(optionStyle){
-    
 
+  renderOption(optionStyle){
     return(
       <Modal isOpen ={this.state.optionModal} style = {optionStyle}>
           <img src = './image/option/close.png' style = {{left : '5%',top : '5%', postion : 'absolute', width : '7%', height : '14%'}} onClick = {()=> this.setState({optionModal : false})}/>
@@ -273,9 +274,9 @@ export default class Window extends React.Component {
           <img src = {this.state.voiceImage} style = {{left : '70%', top : '60%', width : '10%', height : '10%', position : 'absolute'}} onClick = {()=> this.toggleVoice()}/>
           <h1 style = {{top : '80%', left : '10%', width : this.state.width * 0.15, height : this.state.height * 0.1, fontWeight : 'bold', position : 'absolute'}}>미니게임</h1>
           <img src = {this.state.gameImage} style = {{left : '70%', top :'80%', width : '10%', height : '10%', position : 'absolute' }} onClick = {()=> this.toggleGame()}/>
-          
+
       </Modal>
-        
+
     )
   }
   toggleSub(){
@@ -427,7 +428,7 @@ export default class Window extends React.Component {
                     overflow : 'hidden'
                 }
             };
-      
+
       return(
       <Resizable onResize ={this.onResize}>
         <div style = {{width : this.state.width, height : this.state.height}}>
@@ -448,13 +449,10 @@ export default class Window extends React.Component {
                     prevPage = {this.prevPage}
                     audioSrc = {(JSON.stringify(JsonData.HeungbooNolboo.data[this.state.page].narration).substr(1,JsonData.HeungbooNolboo.data[this.state.page].narration.length ) + (this.state.scriptPage + 1) +".mp3")}
                     onPause = {this.state.voicePlay}
-                    gameVisible = {this.state.gameVisible}/>
+                    gameVisible = {this.state.gameVisible}
+                    quizVisible = {this.state.quizVisible}/>
             <img src = './image/option/setting.png' style = {{ left : '3%', top : '3%', width : '3%', height : '3%', position : 'absolute'}}
                  onClick = {()=>{this.setState({optionModal : true})}}/>
-                    quizVisible = {this.state.quizVisible}/>
-
-            <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
-             style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
           {this.state.gameVisible && !this.state.gameStart &&<div stlye = {{ left : 0, top : 0, zIndex : 50, position : 'absolute'}}>
             <img src = {backgroundUrl[this.state.gameNumber]} style = {{ width : this.state.width, height : this.state.height, left : 0, top : 0, position : 'absolute'}}/>
             {this.state.gameNumber == 1&&<img src = './image/game/hero.png' style = {{top:  this.state.height - 150, left: this.state.width/2 - 50, width: 100, height: 150, position: 'absolute'}}/>}</div>}

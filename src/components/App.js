@@ -21,7 +21,7 @@ class App extends React.Component {
       return (
         <Router>
             <div style = {divStyle}>
-                <Match exactly pattern="/" component={Window} />
+                <Match exactly pattern="/" component={Start} />
                 <Match pattern = "/Main" component={Main} />
                 <Match pattern = "/Window" component = {Window}/>
             </div>
