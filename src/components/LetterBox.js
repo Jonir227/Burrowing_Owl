@@ -72,20 +72,24 @@ export default class LetterBox extends React.Component {
           right : 0 + this.state.width * 0.05
         }
   };
-
+   
     return (
       <Resizable onResize={this.onResize}>
         <div style = {{ width : this.state.width, height : this.state.height * 0.12}}>
           <img style = {{ width : this.state.width * 0.1, height : this.state.height * 0.15, position : 'absolute'}} src = {narrationImg[this.props.narration]}/>
           <div style = {styles.boxStyle}>
-            <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}}
+            <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}} 
                     style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}}>
               {interpolatingStyle =>
-                <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0].split("\n").map( line => { return (<span>{line}<br/></span>)
-          })}</div>
-              }
+                <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0]}</div>}
             </Motion>
-            {!this.props.gameVisible && !this.props.quizVisible &&<audio src={this.props.audioSrc} type='audio/mp3' autoPlay/>}
+            {this.props.subViet && <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}} 
+                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}}>
+              {interpolatingStyle =>
+                <div style = {interpolatingStyle}>{this.props.scriptViet[this.props.scriptPage][0]}</div>}
+            </Motion>}
+
+            {!this.props.quizVisible && this.props.onPause&&!this.props.gameVisible&&<audio id = "narration" src={this.props.audioSrc} type='audio/mp3' autoPlay/>}
             <button style = {styles.buttonStyleRight} onClick = {()=>{
               if(this.props.page == 20){
                 this.toggleModalVisible();
