@@ -1,5 +1,6 @@
 import React, { PropType } from 'react';
 import Resizable from 'react-component-resizable';
+import Modal from 'react-modal';
 import {Motion, spring, presets, precision} from 'react-motion';
 
 const defaultConfig = {
@@ -103,6 +104,7 @@ export default class CureSwallow extends React.Component{
                         <img src = './image/game2/hint.png' style = {interpolated}></img>}</Motion>
         )
     }
+    
     render(){
         var styles = {
             boxStyle: {
@@ -140,19 +142,11 @@ export default class CureSwallow extends React.Component{
                 position : 'absolute',
                 fontAlign : 'center',
                 fontFamily : 'Arial'
-            },
-            modalStyle : {
-                content : {
-                width : this.state.width * 0.5,
-                height : this.state.height * 0.5,
-                top : 0,
-                left : 0
-                }
-            }
-        }
+            }}
+            
+        
         return (
             <Resizable onResize={this.onResize} > 
-                
                 <img src = './image/game2/swallow.png' style = {{  width : this.state.width * 0.99 ,height : this.state.height*0.85, position : 'relative', left : 0, top : 0}}/>
                 <img src = './image/game2/hand.png' style = {{  position : 'absolute', width : this.state.width * 0.3, height : this.state.height * 0.4, left : '60%', top : '40%' }}/>
                 <img src = './image/game2/부엉이.png' style = {{  position : 'absolute', width : this.state.width * 0.2, height : this.state.height * 0.3, left : '7%', top : '50%' }}/>

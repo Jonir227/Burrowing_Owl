@@ -134,35 +134,40 @@ export default class LetterBox extends React.Component {
           borderStyle : 'solid',
           marginLeft : this.state.width * 0.1,
           width : this.state.width * 0.9,
-          height : this.state.height * 0.12
+          height : this.state.height * 0.15
         },
         buttonStyleRight : {
-          float : 'right',
           background : 'white',
           fontSize : 20,
           borderColor : 'black',
           width : this.state.width * 0.05,
-          height : this.state.height * 0.05
+          height : this.state.height * 0.05,
+          position : 'absolute',
+          bottom : 0,
+          right : 0
         },
         buttonStyleLeft : {
           background : 'white',
-          float: 'right',
           fontSize : 20,
           borderColor : 'black',
           width : this.state.width * 0.05,
-          height : this.state.height * 0.05
+          height : this.state.height * 0.05,
+          position : 'absolute',
+          bottom : 0,
+          right : 0 + this.state.width * 0.05
         }
   };
 
     return (
       <Resizable onResize={this.onResize}>
         <div style = {{ width : this.state.width, height : this.state.height * 0.12}}>
-          <img style = {{ width : this.state.width * 0.1, height : this.state.height * 0.12, position : 'absolute'}} src = {narrationImg[this.props.narration]}/>
+          <img style = {{ width : this.state.width * 0.1, height : this.state.height * 0.15, position : 'absolute'}} src = {narrationImg[this.props.narration]}/>
           <div style = {styles.boxStyle}>
-            <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.5%', fontWeight: 'bold'}} 
-                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.5%', fontWeight: 'bold'}}>
+            <Motion defaultStyle={{opacity: 0, fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}} 
+                    style={{opacity: spring((this.state.isDispeared) ? 0 : 1, defaultConfig), fontSize : 40, color : "white", marginLeft : "5%", marginTop : '1.3%', fontWeight: 'bold'}}>
               {interpolatingStyle =>
-                <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0]}</div>
+                <div style = {interpolatingStyle}>{this.props.script[this.props.scriptPage][0].split("\n").map( line => { return (<span>{line}<br/></span>)
+          })}</div>
               }
             </Motion>
             {!this.props.gameVisible&&<audio src={this.props.audioSrc} type='audio/mp3' autoPlay/>}

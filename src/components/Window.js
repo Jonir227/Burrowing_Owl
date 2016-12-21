@@ -8,15 +8,14 @@ import Modal from 'react-modal';
 import AvoidBat from './avoidBat';
 import CureSwallow from './cureSwallow';
 import Draggame from './Draggame';
-
+const backgroundUrl = ['./image/game2/swallow.png','./image/game/background.png','./image/game3/background.png']
 const messageBoxStyle = {
    content : {
-     top: '50%',
-     left: '50%',
-     right: 'auto',
-     bottom: 'auto',
-     marginRight: '-50%',
-     transform: 'translate(-50%, -50%)',
+     background: '#FAE6A2',
+     top: '30%',
+     left: '30%',
+     right: '30%',
+     bottom: '30%',
      zIndex: 100
    }
  };
@@ -53,7 +52,12 @@ export default class Window extends React.Component {
       gameSuccess: false,
       score: 0,
       goal: 0,
-      gameNumber: 0
+      gameNumber: 0,
+      gameInfo : false,
+      gameTitle : "제비 다리를 고쳐줘!",
+      gameInfoImage : './image/game2/',
+      gameInfoIndex : 1,
+      gameStart : false
     }
     this.onResize = this.onResize.bind(this);
     this.nextScript = this.nextScript.bind(this);
@@ -62,6 +66,7 @@ export default class Window extends React.Component {
     this.prevPage = this.prevPage.bind(this);
     this.renderGame = this.renderGame.bind(this);
     this.renderMessageBox = this.renderMessageBox.bind(this);
+    this.renderInfo = this.renderInfo.bind(this);
     this.setGameDone = this.setGameDone.bind(this);
     this.setGameSuccess = this.setGameSuccess.bind(this);
     this.setScore = this.setScore.bind(this);
@@ -75,14 +80,26 @@ export default class Window extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 4) {
-      this.setState({gameVisible: true});
-    } else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 16){
-      this.setState({gameVisible: true,
+      this.setState({gameVisible: true, gameNumber : 0, gameInfo : true, gameTitle : "제비 다리를 고쳐줘!", gameInfoImage : './image/game2/', gameInfoIndex : 1, gameStart : false});
+    }else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 17){
+      this.setState({gameVisible : true,
+                     gameNumber : 1,
+                     gameInfo : true,
+                     gameTitle : "도깨비 방망이를 피해봐!",
+                     gameInfoImage : './image/game/',
+                     gameInfoIndex : 1,
+                     gameStart : false,
                      currentGame: ()=><AvoidBat setGameSuccess = {this.setGameSuccess}
                                                 setGameDone = {this.setGameDone}
-                                                setScroe = {this.setScroe}/>});
+                                                setScore = {this.setScore}/>});
     } else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 6) {
       this.setState({gameVisible: true,
+                     gameNumber : 2,
+                     gameInfo : true,
+                     gameTitle : "제비가 준 박씨를 심어봐!",
+                     gameInfoImage : './image/game3/',
+                     gameInfoIndex : 1,
+                     gameStart : false,
                      currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
                                                    setGameDone = {this.setGameDone}
                                                    setScore = {this.setScore}/>});
@@ -124,9 +141,7 @@ export default class Window extends React.Component {
   setGameSuccess() {
     this.setState({gameSuccess: true});
   }
-
   renderGame() {
-    let NewGame = this.state.currentGame;
     return (
       <Modal isOpen={this.state.gameVisible}
              style={gameStyle}>
@@ -135,29 +150,30 @@ export default class Window extends React.Component {
       </Modal>
     );
   }
-
+  
   renderMessageBox(){
     return (
       <Modal isOpen={this.state.messageBoxVisible}
              style = {messageBoxStyle}>
-        { (this.state.score !== -1) && <h1> 당신의 기록은 {this.state.score} 입니다! </h1> }
+        { (this.state.score !== -1) && <h1 style = {{textAlign : 'center', fontWeight: 'bold'}}> 당신의 기록은 {this.state.score} 입니다! </h1> }
         { (this.state.gameSuccess) ?
-          <div>
+          <div style = {{textAlign : 'center', fontWeight: 'bold'}}>
           <h1> 축하드립니다. 미션을 성공하셨네요! </h1>
           <h1> 다시 하시겠습니까? </h1>
-          <button onClick = {() => {
+          <img onClick = {() => {
               if(this.state.page === 5){
                 this.setState({currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
                                                              setGameDone = {this.setGameDone}
                                                              setScore = {this.setScore}/>,
                                                              messageBoxVisible: false,
                                                              gameSuccess: false});
-              } else if(this.state.page === 17) {
+              } else if(this.state.page === 18) {
                  this.setState({currentGame: ()=><AvoidBat    setGameSuccess = {this.setGameSuccess}
                                                               setGameDone = {this.setGameDone}
                                                               setScore = {this.setScore}/>,
-                                                              messageBoxVisible: false,
-                                                              gameSuccess: false});
+                                messageBoxVisible: false,
+                                gameSuccess: false
+                              });
                }
               else if(this.state.page === 7) {
                 this.setState({gameVisible: true,
@@ -167,14 +183,14 @@ export default class Window extends React.Component {
                                                              messageBoxVisible: false,
                                                              gameSuccess: false});
               }
-          }}> 예 </button>
-          <button onClick = {()=>{
+          }} src = './image/Modal/check.PNG' style = {{position:'absolute', left:'30%', height:80, width :80}}></img>
+          <img onClick = {()=>{
             if(this.state.page === 5){
             this.setState({messageBoxVisible: false, gameVisible: false, gameSuccess: false,
                            currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
                                                          setGameDone = {this.setGameDone}
                                                          setScore = {this.setScore}/>});
-            }else if(this.state.page === 17) {
+            }else if(this.state.page === 18) {
                  this.setState({currentGame: ()=><AvoidBat    setGameSuccess = {this.setGameSuccess}
                                                               setGameDone = {this.setGameDone}
                                                               setScore = {this.setScore}/>,
@@ -190,8 +206,7 @@ export default class Window extends React.Component {
                                                              gameSuccess: false,
                                                              gameVisible: false});
             }
-
-          }}> 아니오 </button>
+          }}src = './image/Modal/x.PNG' style = {{position:'absolute', right:'30%', height:80, width :80}}></img>
           </div>
           :
           <div>
@@ -202,7 +217,7 @@ export default class Window extends React.Component {
                                                            setGameDone = {this.setGameDone}
                                                            setScore = {this.setScore}/>,
                                                            messageBoxVisible: false});
-            } else if(this.state.page === 17) {
+            } else if(this.state.page === 18) {
                this.setState({currentGame: ()=><AvoidBat    setGameSuccess = {this.setGameSuccess}
                                                             setGameDone = {this.setGameDone}
                                                             setScore = {this.setScore}/>,
@@ -223,8 +238,43 @@ export default class Window extends React.Component {
       </Modal>
     )
   }
+  renderInfo(modalStyle){
+      
+      
+        return(
+            <Modal isOpen = {this.state.gameInfo} style = {modalStyle}>
+                <h1>{this.state.gameTitle}</h1>
+                <img src = './image/game2/부엉이.png' style = {{position : 'absolute',top : this.state.height * 0.15,width : this.state.width * 0.1, height : this.state.height * 0.1}}/>
+                <div>
+                    <img src = './image/game2/textbox.png' style = {{position : 'absolute', top : this.state.height * 0.1, left : this.state.width * 0.12, width : this.state.width * 0.5, height : this.state.height * 0.5}}/>
+                    <img src = {this.state.gameInfoImage + "info" + String(this.state.gameInfoIndex) + ".png" } 
+                         style = {{position : 'absolute', top : this.state.height * 0.15, left : this.state.width * 0.2, width : this.state.width * 0.4, height : this.state.height * 0.4}}/> 
+                    {(this.state.gameInfoIndex != 3) &&<div style = {{position : 'absolute', top : this.state.height * 0.55, left : this.state.width * 0.52, width : this.state.width * 0.04, height : this.state.height * 0.03,
+                                                                      background : 'white', borderColor : 'black', borderWidth : 3, borderStyle : 'solid', borderRadius: 15, textAlign : 'center',fontSize : 20, fontWeight : 'bold'}}
+                            onClick = {()=>{this.setState({gameInfoIndex : this.state.gameInfoIndex + 1})}}>다음</div>}
+                    {(this.state.gameInfoIndex == 3) &&<div style = {{position : 'absolute', top : this.state.height * 0.55, left : this.state.width * 0.52, width : this.state.width * 0.04, height : this.state.height * 0.03,
+                                                                      background : 'white', borderColor : 'black', borderWidth : 3, borderStyle : 'solid', borderRadius: 15, textAlign : 'center',fontSize : 20, fontWeight : 'bold'}}
+                            onClick = {()=>{this.setState({gameInfo : false, gameStart : true})}}>시작</div>}
+                    {(this.state.gameInfoIndex != 1) &&<div style = {{position : 'absolute', top : this.state.height * 0.55, left : this.state.width * 0.47, width : this.state.width * 0.04, height : this.state.height * 0.03,
+                                                                      background : 'white', borderColor : 'black', borderWidth : 3, borderStyle : 'solid', borderRadius: 15, textAlign : 'center',fontSize : 20, fontWeight : 'bold'}}
+                            onClick = {()=>{this.setState({gameInfoIndex : this.state.gameInfoIndex - 1})}}>이전</div>}
+                    
+                </div>
+            </Modal>
 
+        )
+    }
   render(){
+      const modalStyle = {
+                content : {
+                    top: '20%',
+                    left: '20%',
+                    width : this.state.width * 0.6,
+                    height : this.state.height * 0.6,
+                    zIndex: 100
+                }
+            };
+      
       return(
       <Resizable onResize ={this.onResize}>
         <div style = {{width : this.state.width, height : this.state.height}}>
@@ -245,9 +295,11 @@ export default class Window extends React.Component {
                     onPause = {this.state.isMuted}
                     gameVisible = {this.state.gameVisible}/>
             <img src = {(this.state.isMuted) ? './image/mute.svg' : './image/voice.png'}
-
-                  style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
-          {this.state.gameVisible && this.renderGame()}
+             style = {{width: 50, height: 50, position: 'absolute', left: window.innerWidth - 50, top: 0, zIndex: 50}}/>
+          {this.state.gameVisible && !this.state.gameStart &&<div><img src = {backgroundUrl[this.state.gameNumber]} style = {{ width : this.state.width, height : this.state.height, left : 0, top : 0, position : 'absolute'}}/>
+            {this.state.gameNumber == 1&&<img src = './image/game/hero.png' style = {{top:  this.state.height - 150, left: this.state.width/2 - 50, width: 100, height: 150, position: 'absolute'}}/>}</div>}
+          {this.state.gameVisible && this.state.gameStart && this.renderGame()}
+          {this.state.gameInfo && this.renderInfo(modalStyle)}
 
         </div>
       </Resizable>
