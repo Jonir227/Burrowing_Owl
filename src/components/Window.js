@@ -82,6 +82,8 @@ export default class Window extends React.Component {
     this.renderInfo = this.renderInfo.bind(this);
     this.renderOption = this.renderOption.bind(this);
     this.toggleSub = this.toggleSub.bind(this);
+    this.toggleGame = this.toggleGame.bind(this);
+    this.toggleVoice = this.toggleVoice.bind(this);
     this.setGameDone = this.setGameDone.bind(this);
     this.setGameSuccess = this.setGameSuccess.bind(this);
     this.setScore = this.setScore.bind(this);
