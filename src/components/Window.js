@@ -82,8 +82,8 @@ export default class Window extends React.Component {
       onoffImage : './image/option/on.png',
       voiceImage : './image/option/on.png',
       gameImage : './image/option/on.png',
-
-      borderWidth : 0
+      finalMessageVisible: false,
+      borderWidth : 0,
       quizVisible: false,
       owlScripts: ['착한 동생과 마음씨가 고약한 형이 나오는 동화였지?', '착한 동생 이름이 흥부였어!', '마음씨가 고약한 형의 이름은 무엇이었을까?']
     }
@@ -104,6 +104,7 @@ export default class Window extends React.Component {
     this.setGameDone = this.setGameDone.bind(this);
     this.setGameSuccess = this.setGameSuccess.bind(this);
     this.setScore = this.setScore.bind(this);
+    this.renderFinalMessage = this.renderFinalMessage.bind(this);
   }
   onResize() {
     this.setState({
@@ -138,11 +139,25 @@ export default class Window extends React.Component {
                       currentGame: ()=><Draggame    setGameSuccess = {this.setGameSuccess}
                                                     setGameDone = {this.setGameDone}
                                                     setScore = {this.setScore}/>});
-      }  else if(JsonData.HeungbooNolboo.data[prevState.page].script.length - 1 === prevState.scriptPage && prevState.page === 1) {
-         this.setState({quizVisible: true});
-      }
+      } 
     }
   }
+
+  renderFinalMessage() {
+    return (
+      <Modal isOpen={this.state.finalMessageVisible}
+             style = {messageBoxStyle}>
+        <div style = {{textAlign : 'center', fontWeight: 'bold'}}>
+          <h1> 축하해~ 퀴즈를 잘 풀었어! </h1>
+          <h1> 다른 동화를 살펴보자! </h1>
+          <Link to = '/Main'>          
+            <img src = './image/Modal/check.PNG' style = {{position:'absolute', left:'45%', height: '15%', width :'10%'}}/>
+          </Link>
+        </div>
+      </Modal>
+    )
+  }
+
   renderQuiz(){
       var x = this.state.width;
       var y = this.state.height;
@@ -167,10 +182,7 @@ export default class Window extends React.Component {
             <img style = {{position: 'absolute', left: x * 0.47, bottom : y * 0.07, width : x * 0.04, height : y * 0.07, backgroundSize : 'cover'}}
                     onClick = {()=>{
                       if(this.state.rightAnswer === this.state.answer) {
-                        this.setState({owlScripts: ['축하해 퀴즈를 풀었어!!!', '이제 다시 동화로 돌아가보자!']});
-                        setTimeout(()=>{
-                          this.setState({quizVisible: false});
-                        }, 4500);
+                        this.setState({quizVisible: false, finalMessageVisible: true});
                       }
                     }}
                     src = './image/Modal/check.PNG'/>
@@ -200,7 +212,6 @@ export default class Window extends React.Component {
   renderQuizOption(){
     var x = this.state.width;
     var y = this.state.height;
-    console.log('hi');
     return (
       <div style = {{position: 'relative', top : this.state.width * 0.05, left: x * 0.15}}>
         {option.map((value,i)=>{
@@ -227,12 +238,15 @@ export default class Window extends React.Component {
     this.setState({scriptPage : this.state.scriptPage - 1})
   }
   nextPage(){
-    if(this.state.page == this.state.max - 1) return;
-    this.setState({
-      page : this.state.page+1,
-      scriptPage : 0,
-      scriptDone : false
-    })
+    if(this.state.page == this.state.max - 1) {
+      this.setState({quizVisible: true});
+    } else {
+      this.setState({
+        page : this.state.page+1,
+        scriptPage : 0,
+        scriptDone : false
+      })
+    }    
   }
   prevPage(){
     if(this.state.page < 1) return;
@@ -454,8 +468,10 @@ export default class Window extends React.Component {
                     onPause = {this.state.voicePlay}
                     gameVisible = {this.state.gameVisible}
                     quizVisible = {this.state.quizVisible}/>
-            <img src = './image/option/setting.png' style = {{ left : '3%', top : '3%', width : '3%', height : '3%', position : 'absolute'}}
-                 onClick = {()=>{this.setState({optionModal : true})}}/>
+            <img src = './image/option/setting.png' style = {{ left : '0.7%', top : '1%', width : '4%', height : '8%', position : 'absolute', borderRadius : 15, borderStyle : 'solid', borderColor : 'white', borderWidth : this.state.borderWidth}}
+                 onClick = {()=>{this.setState({optionModal : true})}}  onMouseEnter={()=> {this.setState({borderWidth : 5})}} onMouseLeave={()=> {this.setState({borderWidth : 0})}}/>
+
+
           {this.state.gameVisible && !this.state.gameStart &&<div stlye = {{ left : 0, top : 0, zIndex : 50, position : 'absolute'}}>
             <img src = {backgroundUrl[this.state.gameNumber]} style = {{ width : this.state.width, height : this.state.height, left : 0, top : 0, position : 'absolute'}}/>
             {this.state.gameNumber == 1&&<img src = './image/game/hero.png' style = {{top:  this.state.height - 150, left: this.state.width/2 - 50, width: 100, height: 150, position: 'absolute'}}/>}</div>}
@@ -463,6 +479,7 @@ export default class Window extends React.Component {
           {this.state.gameInfo && this.renderInfo(modalStyle)}
           {this.state.optionModal && this.renderOption(optionStyle)}
           {this.state.quizVisible && this.renderQuiz()}
+          {this.state.finalMessageVisible && this.renderFinalMessage()}
         </div>
       </Resizable>
     )

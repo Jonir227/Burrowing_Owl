@@ -14,7 +14,7 @@ export default class Owls extends React.Component {
       if(this.state.index < this.props.scripts.length - 1) this.setState({index: this.state.index + 1});
       else this.setState({index: 0});
       if(this.props.isDone === true) clearInterval(this.interval);
-    }, 2000);
+    }, 3000);
   }
 
   render() {
