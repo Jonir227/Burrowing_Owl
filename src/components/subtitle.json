@@ -6,9 +6,10 @@
       "script" : [["옛날 옛적에 한 형제가 살았습니다.",0],
                   ["아버지가 물려주신 막대한 재산을 가진 놀부와",0],
                   ["그렇지 못한 흥부였지요",0]],
-      "scriptViet" :[["Đã có một thời gian ông sống một người anh em.",0],
-                     ["Nolbu với một người cha người thừa hưởng một tài sản khổng lồ",0],
-                     ["Nếu không yeotjiyo Heungbu",0]],
+      "scriptViet" :["Đã có một thời gian ông sống một người anh em.",
+                     "Nolbu với một người cha người thừa hưởng một tài sản khổng lồ",
+                     "Nếu không yeotjiyo Heungbu"],
+
       "scene" : "#0",
       "index" : "0",
       "narration" : "./audio/narration/scene1_",
