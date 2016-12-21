@@ -8,6 +8,7 @@
                   ["그렇지 못한 흥부였지요",0]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene1_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -33,6 +34,7 @@
                    ["게으른 너셕 같으니라고!",2]],
       "scene" : "#0",
       "index" : "1",
+      "narration" : "./audio/narration/scene2_",
       "isZoom" :  [
                     {
                       "zoom":false
@@ -59,6 +61,7 @@
       "script" : [["그러던 어느 날, 커다란 구렁이가 흥부네 처마에 있던 제비집을 덮쳤어요.",0]],
       "scene" : "#0",
       "index" : "2",
+      "narration" : "./audio/narration/scene3_",
       "isZoom" :  [{
                     "zoom" : false
                     
@@ -71,6 +74,7 @@
                   ["훠이 훠이!",1]],
       "scene" : "#0",
       "index" : "3",
+      "narration" : "./audio/narration/scene4_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -88,6 +92,7 @@
       "script" : [["그런데 새끼 제비 한 마리가 땅에 떨어져 다리가 부러지고 말았어요",0]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene5_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -99,6 +104,7 @@
       "script" : [["흥부는 붕대로 제비다리를 잘 매 주었어요.",0]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene6_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -107,11 +113,12 @@
     {
       "image": "./image/10.png",
       "type" : "narration",
-      "script" : [["이듬 해 봄, 흥부의 집에 제비가 날아왔어요.",0],
+      "script" : [["이듬 해 봄이 되자 흥부의 집에 제비가 날아왔어요.",0],
                   ["제비는 흥부에게 박씨를 물어다 주었어요.",0],
                   ["이 것은 박씨구나! 고맙다 제비야!",1]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene8_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -132,6 +139,7 @@
       "script" : [["흥부는 박씨를 땅에 심었어요.",0]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene9_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -142,9 +150,10 @@
       "type" : "narration",
       "script" : [["박씨가 자라자 흥부와 아내는 박을 타기 시작했어요.",0],
                   ["톱질하세 톱질하세!",1],
-                  ["슬근슬근 톱질하세!",1]],
+                  ["슬근슬근 톱질하세!",3]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene10_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -167,9 +176,10 @@
       "type" : "narration",
       "script" : [["그런데 박에서는 금은보화가 나왔어요!",0],
                   ["아니 이게 다 웬 금이야!",1],
-                  ["경사났네 경사났어!!",1]],
+                  ["경사났네 경사났어!!",3]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene11_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -190,9 +200,10 @@
     {
       "image": "./image/14.png",
       "type" : "narration",
-      "script" : [["그렇게 흥부와 흥부가족은 부자가 되었어요.",0]],
+      "script" : [["그렇게 흥부가족은 부자가 되었어요.",0]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene12_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -203,9 +214,10 @@
       "type" : "narration",
       "script" : [["한편 놀부는 이 소식을 아내에게 전해 들었어요.",0],
                   ["흥부가 갑자기 부자가 됐다고? 무슨 소리야!",2],
-                  ["아니 박에서 금은보화가 나왔다네요!",2]],
+                  ["아니 박에서 금은보화가 나왔다네요!",4]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene13_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -213,13 +225,13 @@
                   {
                     "zoom" : true,
                     "xPosition" : "300",
-                    "yPosition" : "600",
+                    "yPosition" : "700",
                     "ratio" : "2"
                   },
                   {
                     "zoom" : true,
                     "xPosition" : "1600",
-                    "yPosition" : "600",
+                    "yPosition" : "700",
                     "ratio" : "2"
                   }]
     },
@@ -230,6 +242,7 @@
                   ["이 녀석들!!",2]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene14_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -247,6 +260,7 @@
       "script" : [["그리고 다리를 부러뜨리고는 다시 고쳐주었어요.",0]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene15_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -255,11 +269,12 @@
     {
       "image": "./image/19.png",
       "type" : "narration",
-      "script" : [["이듬 해 봄, 놀부의 집에도 제비가 날아왔어요.",0],
+      "script" : [["이듬 해 봄이 되자 놀부의 집에도 제비가 날아왔어요.",0],
                   ["제비는 놀부에게도 박씨를 물어다 주었어요.",0],
-                  ["여기서 금은보화가 나온다는 말이지!",1]],
+                  ["여기서 금은보화가 나온다는 말이지!",2]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene17_",
       "isZoom" :  [
                   {
                       "zoom" : false
@@ -280,10 +295,105 @@
       "script" : [["놀부도 흥부처럼 박씨를 땅에 심었어요.",0]],
       "scene" : "#0",
       "index" : "0",
+      "narration" : "./audio/narration/scene18_",
       "isZoom" :  [
                   {
                       "zoom" : false
                   }]
+    },
+    {
+      "image": "./image/21.png",
+      "type" : "narration",
+      "script" : [["박이 나오자 놀부와 놀부부인도 톱질을 하기 시작했어요.",0],
+                  ["톱질하세 톱질하세!.",2],
+                  ["슬근슬근 톱질하세!.",4]],
+      "scene" : "#0",
+      "index" : "0",
+      "narration" : "./audio/narration/scene19_",
+      "isZoom" :  [
+                  {
+                      "zoom" : false
+                  },
+                  {
+                    "zoom" : true,
+                    "xPosition" : "1500",
+                    "yPosition" : "900",
+                    "ratio" : "2"
+                  },
+                  {
+                    "zoom" : true,
+                    "xPosition" : "300",
+                    "yPosition" : "900",
+                    "ratio" : "2"
+                  }]
+    },
+    {
+      "image": "./image/22.png",
+      "type" : "narration",
+      "script" : [["그런데 박에서는 금은보화가 아닌 도깨비가 나왔어요!",0]],
+      "scene" : "#0",
+      "index" : "0",
+      "narration" : "./audio/narration/scene20_",
+      "isZoom" :  [
+                  {
+                      "zoom" : false
+                  }]
+    },
+    {
+      "image": "./image/23.png",
+      "type" : "narration",
+      "script" : [["도깨비는 방망이로 놀부가족들을 혼내주었어요.",0],
+                  ["그리고 모든 물건들을 훔쳐 달아나 버렸어요.",0],
+                  ["아이고, 욕심부리다가 망해버렸구나!!",2]],
+      "scene" : "#0",
+      "index" : "0",
+      "narration" : "./audio/narration/scene21_",
+      "isZoom" :  [
+                  {
+                      "zoom" : false
+                  },
+                  {
+                      "zoom" : false
+                  },
+                  {
+                      "zoom" : true,
+                      "xPosition" : "1000",
+                      "yPosition" : "700",
+                      "ratio" : "2"
+                      
+                  }]
+    },
+    {
+      "image": "./image/24.png",
+      "type" : "narration",
+      "script" : [["착한 흥부는 그 소식을 듣고 한걸음에 달려왔어요.",0],
+                  ["형님 저희랑 함께 살아요.",1],
+                  ["고맙구나 아우야!!",2],
+                  ["놀부는 잘못을 크게 뉘우치고 흥부와 사이좋게 살았답니다",0]],
+      "scene" : "#0",
+      "index" : "0",
+      "narration" : "./audio/narration/scene22_",
+      "isZoom" :  [
+                  {
+                      "zoom" : false
+                  },
+                  {
+                      "zoom" : true,
+                      "xPosition" : "900",
+                      "yPosition" : "700",
+                      "ratio" : "2"
+                  },
+                  {
+                      "zoom" : true,
+                      "xPosition" : "1300",
+                      "yPosition" : "700",
+                      "ratio" : "2"
+                      
+                  },
+                  {
+                      "zoom" : false
+                  }]
     }
-  ], "page" : "16" }
+    
+  ], "page" : "21" }
 }
