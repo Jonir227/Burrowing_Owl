@@ -6,6 +6,7 @@ import Game from './game'
 import CureSwallow from './cureSwallow'
 import AvoidBat from './avoidBat';
 import Draggame from './Draggame';
+import Owl from './owl';
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router'
 
 class App extends React.Component {
@@ -20,7 +21,7 @@ class App extends React.Component {
       return (
         <Router>
             <div style = {divStyle}>
-                <Match exactly pattern="/" component={Start} />
+                <Match exactly pattern="/" component={Window} />
                 <Match pattern = "/Main" component={Main} />
                 <Match pattern = "/Window" component = {Window}/>
             </div>
