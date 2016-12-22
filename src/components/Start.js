@@ -33,6 +33,7 @@ class Start extends React.Component {
         
         
          return (
+             
                 <Resizable onResize={this.onResize}>
                     <div style = {{width : this.state.width, height :this.state.height, margin: 0,padding : 0, position : 'absolute'}}>
                         

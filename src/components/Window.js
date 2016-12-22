@@ -15,6 +15,10 @@ const backgroundUrl = ['./image/game2/swallow.png','./image/game/background.png'
 const messageBoxStyle = {
    content : {
      background: '#FAE6A2',
+     borderColor : 'black',
+     borderRadius : 15,
+     borderWidth : 5,
+     borderStyle : 'solid',
      top: '30%',
      left: '30%',
      right: '30%',
@@ -371,7 +375,8 @@ export default class Window extends React.Component {
           </div>
           :
           <div>
-          <h1> 아쉽게도 성공하지 못했어요! 다시 도전해보세요 </h1>
+          <h1> 아쉽게도 성공하지 못했어요!</h1>
+          <h1> 다시 도전해보세요! </h1>
           <button onClick = {() => {
             if(this.state.page === 5) {
               this.setState({currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
@@ -404,7 +409,7 @@ export default class Window extends React.Component {
 
         return(
             <Modal isOpen = {this.state.gameInfo} style = {modalStyle}>
-                <h1>{this.state.gameTitle}</h1>
+                <h1 style = {{fontWeight : 'bold'}}>{this.state.gameTitle}</h1>
                 <img src = './image/game2/부엉이.png' style = {{position : 'absolute',top : this.state.height * 0.15,width : this.state.width * 0.1, height : this.state.height * 0.1}}/>
                 <div>
                     <img src = './image/game2/textbox.png' style = {{position : 'absolute', top : this.state.height * 0.1, left : this.state.width * 0.12, width : this.state.width * 0.5, height : this.state.height * 0.5}}/>
@@ -432,6 +437,10 @@ export default class Window extends React.Component {
                     left: '20%',
                     width : this.state.width * 0.6,
                     height : this.state.height * 0.6,
+                    borderColor : 'black',
+                    borderRadius : 15,
+                    borderWidth : 5,
+                    borderStyle : 'solid',
                     zIndex: 100
                 }
             };
@@ -443,6 +452,10 @@ export default class Window extends React.Component {
                     width : this.state.width * 0.6,
                     height : this.state.height * 0.6,
                     zIndex: 200,
+                    borderColor : 'black',
+                    borderRadius : 15,
+                    borderWidth : 5,
+                    borderStyle : 'solid',
                     overflow : 'hidden'
                 }
             };
