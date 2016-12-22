@@ -10,6 +10,7 @@ export default class AvoidBat extends React.Component {
       start: 0,
       time: '',
       recordTime : '',
+      color : 'black'
     }
     this.renderHero = this.renderHero.bind(this);
     this.keyboardListener = this.keyboardListener.bind(this);
@@ -19,7 +20,7 @@ export default class AvoidBat extends React.Component {
   }
   componentDidMount() {
     window.addEventListener('keydown', this.keyboardListener);
-    this.setState({start: (new Date()).getTime()})
+    this.setState({start: (new Date()).getTime(), color : 'black'})
     let clockTimer = setInterval(()=>{
       this.formatTime((new Date()).getTime() - this.state.start);
       if(!this.state.busy) clearInterval(clockTimer);
@@ -44,6 +45,9 @@ export default class AvoidBat extends React.Component {
   	ms = time % 1000;
   	newTime = this.pad(h, 2) + ':' + this.pad(m, 2) + ':' + this.pad(s, 2) + ':' + this.pad(ms, 3);
     recordTime = this.pad(h, 2) + ':' + this.pad(m, 2) + ':' + this.pad(s, 2);
+
+    if(s >= 5)
+      this.setState({color : 'red'})
     this.setState({time: newTime});
     this.setState({recordTime : recordTime});
   }
@@ -97,7 +101,7 @@ export default class AvoidBat extends React.Component {
           {bats}
           {this.renderHero()}
         </div>
-         <div style = {{left: '3%', position: 'absolute', top: '3%'}}> Time: {this.state.time}</div>
+         <div style = {{left: '3%', position: 'absolute', top: '3%',fontSize : 20,fontWeight : 'bold',color : this.state.color}}> 경과 시간 : {this.state.time}</div>
       </div>
     );
   }

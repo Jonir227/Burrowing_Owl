@@ -10,11 +10,15 @@ import AvoidBat from './avoidBat';
 import CureSwallow from './cureSwallow';
 import Owl from './owl';
 import Draggame from './Draggame';
+const backgroundUrl = ['./image/game2/swallow.png','./image/game/background.png','./image/game3/background.png']
 
-const backgroundUrl = ['./image/game2/swallow.png','./image/game/background.png','./image/game3/background.png'];
 const messageBoxStyle = {
    content : {
      background: '#FAE6A2',
+     borderColor : 'black',
+     borderRadius : 15,
+     borderWidth : 5,
+     borderStyle : 'solid',
      top: '30%',
      left: '30%',
      right: '30%',
@@ -140,6 +144,7 @@ export default class Window extends React.Component {
                                                     setGameDone = {this.setGameDone}
                                                     setScore = {this.setScore}/>});
       } 
+
     }
   }
 
@@ -370,7 +375,8 @@ export default class Window extends React.Component {
           </div>
           :
           <div>
-          <h1> 아쉽게도 성공하지 못했어요! 다시 도전해보세요 </h1>
+          <h1> 아쉽게도 성공하지 못했어요!</h1>
+          <h1> 다시 도전해보세요! </h1>
           <button onClick = {() => {
             if(this.state.page === 5) {
               this.setState({currentGame: ()=><CureSwallow setGameSuccess = {this.setGameSuccess}
@@ -403,7 +409,7 @@ export default class Window extends React.Component {
 
         return(
             <Modal isOpen = {this.state.gameInfo} style = {modalStyle}>
-                <h1>{this.state.gameTitle}</h1>
+                <h1 style = {{fontWeight : 'bold'}}>{this.state.gameTitle}</h1>
                 <img src = './image/game2/부엉이.png' style = {{position : 'absolute',top : this.state.height * 0.15,width : this.state.width * 0.1, height : this.state.height * 0.1}}/>
                 <div>
                     <img src = './image/game2/textbox.png' style = {{position : 'absolute', top : this.state.height * 0.1, left : this.state.width * 0.12, width : this.state.width * 0.5, height : this.state.height * 0.5}}/>
@@ -431,6 +437,10 @@ export default class Window extends React.Component {
                     left: '20%',
                     width : this.state.width * 0.6,
                     height : this.state.height * 0.6,
+                    borderColor : 'black',
+                    borderRadius : 15,
+                    borderWidth : 5,
+                    borderStyle : 'solid',
                     zIndex: 100
                 }
             };
@@ -442,6 +452,10 @@ export default class Window extends React.Component {
                     width : this.state.width * 0.6,
                     height : this.state.height * 0.6,
                     zIndex: 200,
+                    borderColor : 'black',
+                    borderRadius : 15,
+                    borderWidth : 5,
+                    borderStyle : 'solid',
                     overflow : 'hidden'
                 }
             };
@@ -470,8 +484,6 @@ export default class Window extends React.Component {
                     quizVisible = {this.state.quizVisible}/>
             <img src = './image/option/setting.png' style = {{ left : '0.7%', top : '1%', width : '4%', height : '8%', position : 'absolute', borderRadius : 15, borderStyle : 'solid', borderColor : 'white', borderWidth : this.state.borderWidth}}
                  onClick = {()=>{this.setState({optionModal : true})}}  onMouseEnter={()=> {this.setState({borderWidth : 5})}} onMouseLeave={()=> {this.setState({borderWidth : 0})}}/>
-
-
           {this.state.gameVisible && !this.state.gameStart &&<div stlye = {{ left : 0, top : 0, zIndex : 50, position : 'absolute'}}>
             <img src = {backgroundUrl[this.state.gameNumber]} style = {{ width : this.state.width, height : this.state.height, left : 0, top : 0, position : 'absolute'}}/>
             {this.state.gameNumber == 1&&<img src = './image/game/hero.png' style = {{top:  this.state.height - 150, left: this.state.width/2 - 50, width: 100, height: 150, position: 'absolute'}}/>}</div>}

@@ -132,16 +132,17 @@ export default class CureSwallow extends React.Component{
                 position : 'absolute'
             },
             textStyle : {
-                borderWidth : 5,
+                borderWidth : 3,
                 borderColor : 'black',
                 background : 'white',
                 borderStyle : 'solid',
-                top : '35%',
-                left : '2%',
-                fontSize : this.state.height * 0.05,
+                borderRadius : 15,
+                top : '50%',
+                left : '1.5%',
+                fontSize : this.state.height * 0.03,
+                fontWeight : 'bold',
                 position : 'absolute',
-                fontAlign : 'center',
-                fontFamily : 'Arial'
+                fontAlign : 'center'
             }}
             
         
@@ -149,7 +150,7 @@ export default class CureSwallow extends React.Component{
             <Resizable onResize={this.onResize} > 
                 <img src = './image/game2/swallow.png' style = {{  width : this.state.width * 0.99 ,height : this.state.height*0.85, position : 'relative', left : 0, top : 0}}/>
                 <img src = './image/game2/hand.png' style = {{  position : 'absolute', width : this.state.width * 0.3, height : this.state.height * 0.4, left : '60%', top : '40%' }}/>
-                <img src = './image/game2/부엉이.png' style = {{  position : 'absolute', width : this.state.width * 0.2, height : this.state.height * 0.3, left : '7%', top : '50%' }}/>
+                <img src = './image/game2/부엉이.png' style = {{  position : 'absolute', width : this.state.width * 0.1, height : this.state.height * 0.2, left : '3%', top : '60%' }}/>
                 
                 <div>
                     <img src = {this.state.hintImg} 
